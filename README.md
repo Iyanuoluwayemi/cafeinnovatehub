@@ -1,36 +1,63 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Cafe Innovate Hub (CIH) Website
 
-## Getting Started
+A modern [Next.js](https://nextjs.org) App Router application tailored for **Cafe Innovate Hub**, built with TypeScript, Tailwind CSS, and optimized Google Fonts.
+
+---
+
+## Brand Identity & Design System
+
+### 🎨 Brand Color Palette
+
+| Token Name | Hex Code | Utility Class (Background) | Utility Class (Text) | Description |
+| :--- | :--- | :--- | :--- | :--- |
+| **`cihBlue`** | `#0A2D66` | `bg-cihBlue` | `text-cihBlue` | Primary Brand Blue |
+| **`cihBlueDark`** | `#071f47` | `bg-cihBlueDark` | `text-cihBlueDark` | Deep Contrast Dark Blue |
+| **`cihLightBlue`** | `#53ACFF` | `bg-cihLightBlue` | `text-cihLightBlue` | Vibrant Accent Sky Blue |
+| **`cihYellow`** | `#FFEA00` | `bg-cihYellow` | `text-cihYellow` | High-energy Action Yellow |
+| **`cihYellowHover`** | `#FFB703` | `bg-cihYellowHover` | `text-cihYellowHover` | Interactive Warm Amber/Gold Hover |
+
+Both camelCase (`bg-cihBlue`) and kebab-case (`bg-cih-blue`) variants are supported through Tailwind theme variables.
+
+### ✍️ Typography
+
+- **Headings (`h1` - `h6`, `.font-heading`)**: `Bricolage Grotesque` (via `next/font/google`, CSS variable `--font-bricolage`)
+- **Body Text (`body`, `.font-sans`, `.font-body`)**: `Plus Jakarta Sans` (via `next/font/google`, CSS variable `--font-plus-jakarta`)
+
+---
+
+## 🚀 Getting Started
 
 First, run the development server:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) in your browser to view the application.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Available Scripts
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- `npm run dev` — Starts the Turbopack Next.js development server
+- `npm run build` — Builds the application for production with Turbopack & TypeScript checks
+- `npm run start` — Starts the production server
+- `npm run lint` — Runs ESLint checks across the codebase
 
-## Learn More
+---
 
-To learn more about Next.js, take a look at the following resources:
+## 📁 Project Structure
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```
+├── src/
+│   ├── app/
+│   │   ├── favicon.ico
+│   │   ├── globals.css         # Tailwind v4 import & CIH @theme variables
+│   │   ├── layout.tsx          # Root layout with fonts & Navbar/Footer
+│   │   └── page.tsx            # CIH showcase home page
+│   └── components/
+│       └── layout/
+│           ├── Navbar.tsx      # Sticky brand navigation
+│           └── Footer.tsx      # Branded footer with contact & quick links
+├── package.json
+├── tsconfig.json
+└── next.config.ts
+```
