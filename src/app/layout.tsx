@@ -20,6 +20,9 @@ export const metadata: Metadata = {
   title: "Cafe Innovate Hub | Fueling Ideas & Brewing Innovation",
   description:
     "Cafe Innovate Hub is the premier innovation hub and coworking cafe bringing together founders, developers, creators, and technology leaders.",
+  icons: {
+    icon: "https://res.cloudinary.com/dykvipays/image/upload/cih_icon_dct98o.png",
+  },
 };
 
 export default function RootLayout({
