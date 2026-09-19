@@ -64,16 +64,19 @@ export default function Footer() {
                 <Link href="/" className="transition-colors hover:text-cihYellow">Home</Link>
               </li>
               <li>
-                <Link href="/#about" className="transition-colors hover:text-cihYellow">About Us</Link>
+                <Link href="/about" className="transition-colors hover:text-cihYellow">About Us</Link>
               </li>
               <li>
-                <Link href="/#programs" className="transition-colors hover:text-cihYellow">Programs</Link>
+                <Link href="/programs" className="transition-colors hover:text-cihYellow">Programs</Link>
               </li>
               <li>
-                <Link href="/#community" className="transition-colors hover:text-cihYellow">Join the Community</Link>
+                <Link href="/community" className="transition-colors hover:text-cihYellow">Join the Community</Link>
               </li>
               <li>
-                <Link href="/#blog" className="transition-colors hover:text-cihYellow">Blog</Link>
+                <Link href="/blog" className="transition-colors hover:text-cihYellow">Blog</Link>
+              </li>
+              <li>
+                <Link href="/contact" className="transition-colors hover:text-cihYellow">Contact</Link>
               </li>
             </ul>
           </div>

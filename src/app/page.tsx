@@ -45,198 +45,220 @@ const fadeInUp: Variants = {
 export default function Home() {
   return (
     <div className="min-h-screen bg-slate-50 flex flex-col font-sans overflow-x-hidden">
-      {/* Hero Section */}
-      <section className="relative flex flex-col items-center justify-center pt-32 pb-24 px-4 sm:px-6 lg:px-8 overflow-hidden min-h-[85vh]">
-        {/* Background Image */}
-        <Image
-          src="https://res.cloudinary.com/dykvipays/image/upload/Modify_business_owner_image_2K_20260919125210_hswh8s.jpg"
-          alt="Cafe Innovate Hub Background"
-          fill
-          priority
-          className="object-cover"
-        />
-        {/* Dark Overlay */}
-        <div className="absolute inset-0 bg-black/80 z-0"></div>
 
-        <motion.div 
-          className="relative w-full max-w-5xl mx-auto text-center z-10"
-          initial={{ opacity: 0, y: 25 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] as const }}
-        >
-          {/* Floating Pill 1: Graphic Design */}
-          <motion.div
-            className="hidden md:flex absolute top-0 left-4 rotate-[-6deg]"
-            initial={{ opacity: 0, scale: 0.8, y: -10 }}
-            animate={{ 
-              opacity: 1, 
-              scale: 1, 
-              y: [0, -10, 0] 
-            }}
-            transition={{
-              opacity: { duration: 0.6, delay: 0.3 },
-              scale: { duration: 0.6, delay: 0.3 },
-              y: { repeat: Infinity, duration: 4.5, ease: "easeInOut" }
-            }}
-          >
-            <div className="bg-white/10 backdrop-blur-md px-6 py-3 rounded-full border border-white/20 shadow-lg flex items-center gap-2.5">
-              <span className="w-2.5 h-2.5 rounded-full bg-cihLightBlue" />
-              <span className="text-sm font-bold text-white">Graphic Design</span>
-            </div>
-          </motion.div>
+      {/* Immersive Dark Hero & Impact Section */}
+      <section className="relative w-full overflow-hidden bg-[#0a0f0d] pt-32 pb-24 lg:pt-40 lg:pb-32 flex flex-col items-center">
+        {/* Immersive Background Image with deep fade */}
+        <div className="absolute inset-0 z-0">
+          <div className="absolute inset-0 bg-gradient-to-b from-[#0a0f0d]/10 via-[#0a0f0d]/60 to-[#0a0f0d] z-10"></div>
+          <Image
+            src="https://res.cloudinary.com/dykvipays/image/upload/f_auto,q_auto,w_1920/Upscale_image_remove_noise_2K_20260919135611_mctuby.jpg"
+            alt="Cafe Innovate Hub Immersive Background"
+            fill
+            priority
+            className="object-cover object-top opacity-50 mix-blend-luminosity"
+          />
+        </div>
 
-          {/* Floating Pill 2: Digital Marketing */}
-          <motion.div
-            className="hidden md:flex absolute -bottom-4 right-4 rotate-[4deg]"
-            initial={{ opacity: 0, scale: 0.8, y: 10 }}
-            animate={{ 
-              opacity: 1, 
-              scale: 1, 
-              y: [0, 10, 0] 
-            }}
-            transition={{
-              opacity: { duration: 0.6, delay: 0.4 },
-              scale: { duration: 0.6, delay: 0.4 },
-              y: { repeat: Infinity, duration: 5.5, ease: "easeInOut" }
-            }}
-          >
-            <div className="bg-white/10 backdrop-blur-md px-6 py-3 rounded-full border border-white/20 shadow-lg flex items-center gap-2.5">
-              <span className="w-2.5 h-2.5 rounded-full bg-cihYellow" />
-              <span className="text-sm font-bold text-white">Digital Marketing</span>
-            </div>
-          </motion.div>
-
-          {/* H1 */}
-          <motion.h1 
-            className="font-bricolage text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-[1.1] tracking-tight relative"
+        {/* Hero Content */}
+        <div className="relative z-20 w-full max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center flex flex-col items-center mt-12 lg:mt-24">
+          
+          {/* Floating Pill Tags (Decorative) */}
+          <motion.div 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.1, ease: [0.16, 1, 0.3, 1] as const }}
+            transition={{ duration: 0.8, delay: 0.1 }}
+            className="absolute -top-12 left-10 md:left-20 px-4 py-2 bg-white/10 backdrop-blur-md rounded-full border border-white/20 text-white text-xs font-bold tracking-widest flex items-center gap-2 hidden md:flex"
           >
-            Practical digital skills for<br />
-            real business growth.
+            <span className="w-2 h-2 rounded-full bg-cihLightBlue"></span>
+            Build Smart
+          </motion.div>
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.3 }}
+            className="absolute top-20 -right-4 md:right-12 px-4 py-2 bg-white/10 backdrop-blur-md rounded-full border border-white/20 text-white text-xs font-bold tracking-widest flex items-center gap-2 hidden md:flex"
+          >
+            <span className="w-2 h-2 rounded-full bg-cihYellow"></span>
+            Grow Faster
+          </motion.div>
+
+          <motion.h1 
+            className="text-5xl md:text-6xl lg:text-7xl font-bricolage font-black text-white leading-[1.1] tracking-tight mb-8"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+          >
+            Practical digital skills.<br />
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-slate-300 to-slate-500">
+              Real business growth.
+            </span>
           </motion.h1>
 
           <motion.p 
-            className="mt-8 text-lg md:text-xl text-slate-300 max-w-2xl mx-auto font-medium leading-relaxed"
+            className="text-lg md:text-xl text-slate-300 max-w-2xl font-medium leading-relaxed mb-10"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.2, ease: [0.16, 1, 0.3, 1] as const }}
+            transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
           >
-            Empowering business owners and young professionals with digital skills to improve their business and career.
+            Empowering business owners and young professionals with digital skills to improve their business, operations, and career.
           </motion.p>
-          
-          {/* Hero CTAs */}
+
           <motion.div 
-            className="mt-10 flex flex-wrap gap-4 justify-center relative z-20"
+            className="flex flex-col sm:flex-row items-center justify-center gap-4 w-full sm:w-auto"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.3, ease: [0.16, 1, 0.3, 1] as const }}
+            transition={{ duration: 0.8, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
           >
-            <EclipseButton variant="primary">
-              Explore Our Trainings
-            </EclipseButton>
+            <Link href="/programs">
+              <EclipseButton variant="yellow" className="w-full sm:w-auto px-8 py-4 text-base">
+                Explore Our Trainings
+              </EclipseButton>
+            </Link>
+            <Link href="/community">
+              <EclipseButton variant="ghost" className="w-full sm:w-auto px-8 py-4 text-base">
+                Join the Community
+              </EclipseButton>
+            </Link>
           </motion.div>
+        </div>
+
+        {/* Impact Numbers integrated beautifully below */}
+        <motion.div 
+          className="relative z-20 w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 mt-32 lg:mt-48"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-40px" }}
+          variants={containerVariants}
+        >
+          <div className="grid grid-cols-1 lg:grid-cols-4 gap-12 lg:gap-8 items-start border-t border-white/10 pt-16">
+            <div className="lg:col-span-1">
+              <h3 className="text-2xl md:text-3xl font-bricolage font-bold text-white leading-tight">
+                A year of real impact, one person and one business at a time.
+              </h3>
+            </div>
+            
+            <div className="lg:col-span-3 grid grid-cols-2 md:grid-cols-4 gap-8">
+              <motion.div variants={cardVariants} className="flex flex-col">
+                <span className="text-5xl font-bricolage font-black text-cihYellow mb-2">50+</span>
+                <span className="text-sm text-slate-400 font-medium uppercase tracking-widest">Businesses Trained</span>
+              </motion.div>
+
+              <motion.div variants={cardVariants} className="flex flex-col">
+                <span className="text-5xl font-bricolage font-black text-cihLightBlue mb-2">200+</span>
+                <span className="text-sm text-slate-400 font-medium uppercase tracking-widest">Professionals</span>
+              </motion.div>
+
+              <motion.div variants={cardVariants} className="flex flex-col">
+                <span className="text-5xl font-bricolage font-black text-white mb-2">5</span>
+                <span className="text-sm text-slate-400 font-medium uppercase tracking-widest">Cohorts Run</span>
+              </motion.div>
+
+              <motion.div variants={cardVariants} className="flex flex-col">
+                <span className="text-3xl font-bricolage font-black text-white mb-3">Bi-monthly</span>
+                <span className="text-sm text-slate-400 font-medium uppercase tracking-widest leading-relaxed">Free Live<br/>Webinars</span>
+              </motion.div>
+            </div>
+          </div>
         </motion.div>
       </section>
 
-      {/* Impact Section */}
-      <section className="relative py-16 bg-slate-50 border-y border-slate-200 shadow-xs z-20">
+
+
+      {/* What We Do Section - Upgraded */}
+      <section className="relative py-24 md:py-32 bg-white overflow-hidden z-10">
+        {/* Soft ambient glows */}
+        <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-cihYellow/[0.05] rounded-full blur-[100px] pointer-events-none -z-10"></div>
+        <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-cihBlue/[0.03] rounded-full blur-[100px] pointer-events-none -z-10"></div>
+        
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            className="text-center mb-12"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-40px" }}
-            transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] as const }}
-          >
-            <h2 className="text-3xl md:text-4xl font-extrabold text-cihBlue tracking-tight max-w-3xl mx-auto">
-              A year of real impact, one person and one business at a time.
-            </h2>
-          </motion.div>
-          <motion.div 
-            className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-4 divide-y-0 md:divide-x divide-slate-200 text-center"
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-40px" }}
-            variants={containerVariants}
-          >
-            {/* Stat 1: 50+ */}
-            <motion.div variants={fadeInUp} className="flex flex-col items-center justify-center p-4 transition-transform hover:-translate-y-1">
-              <AnimatedCounter 
-                value={50} 
-                suffix="+" 
-                className="font-bricolage text-5xl md:text-6xl font-black text-cihBlue tracking-tighter" 
-              />
-              <p className="mt-3 text-xs md:text-sm font-bold text-slate-500 uppercase tracking-widest">
-                Businesses Trained
-              </p>
-            </motion.div>
-
-            {/* Stat 2: 200+ */}
-            <motion.div variants={fadeInUp} className="flex flex-col items-center justify-center p-4 transition-transform hover:-translate-y-1">
-              <AnimatedCounter 
-                value={200} 
-                suffix="+" 
-                className="font-bricolage text-5xl md:text-6xl font-black text-cihBlue tracking-tighter" 
-              />
-              <p className="mt-3 text-xs md:text-sm font-bold text-slate-500 uppercase tracking-widest">
-                Professionals Trained
-              </p>
-            </motion.div>
-
-            {/* Stat 3: 5 */}
-            <motion.div variants={fadeInUp} className="flex flex-col items-center justify-center p-4 transition-transform hover:-translate-y-1">
-              <AnimatedCounter 
-                value={5} 
-                className="font-bricolage text-5xl md:text-6xl font-black text-cihBlue tracking-tighter" 
-              />
-              <p className="mt-3 text-xs md:text-sm font-bold text-slate-500 uppercase tracking-widest">
-                Cohorts Run
-              </p>
-            </motion.div>
-
-            {/* Stat 4: Bi-monthly */}
-            <motion.div variants={fadeInUp} className="flex flex-col items-center justify-center p-4 transition-transform hover:-translate-y-1">
-              <div className="font-bricolage text-4xl md:text-5xl font-black text-cihBlue tracking-tighter leading-tight">
-                Bi monthly
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-8 items-center">
+            
+            {/* Left Content */}
+            <motion.div
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, margin: "-40px" }}
+              transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+              className="space-y-8 lg:pr-12"
+            >
+              <span className="text-sm font-bold text-cihLightBlue uppercase tracking-widest flex items-center gap-2">
+                <span className="w-2 h-2 rounded-full bg-cihLightBlue"></span>
+                Digital Skills Accelerator
+              </span>
+              <h2 className="text-4xl md:text-5xl lg:text-6xl font-bricolage font-black text-cihBlue leading-[1.1] tracking-tight">
+                Turn a phone and internet connection into real opportunity.
+              </h2>
+              <div className="text-lg text-slate-600 font-medium leading-relaxed space-y-6">
+                <p>
+                  Cafe Innovate Hub is helping small business owners and young professionals grow through practical, accessible digital skills training programs.
+                </p>
+                <p>
+                  From digital marketing to graphic design, we keep our trainings affordable—and often free—so cost is never the reason someone gets left behind.
+                </p>
               </div>
-              <p className="mt-3 text-xs md:text-sm font-bold text-slate-500 uppercase tracking-widest">
-                free live webinars
-              </p>
+              <div className="pt-4">
+                <Link href="/about" className="inline-flex items-center gap-2 text-cihBlue font-bold text-lg group hover:text-cihLightBlue transition-colors">
+                  Our Origin Story
+                  <svg className="w-5 h-5 transform group-hover:translate-x-2 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                  </svg>
+                </Link>
+              </div>
             </motion.div>
-          </motion.div>
-        </div>
-      </section>
 
-      {/* What We Do Section */}
-      <section className="relative py-24 bg-white border-b border-slate-200 z-10">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-40px" }}
-            transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] as const }}
-            className="space-y-8"
-          >
-            <h2 className="text-3xl md:text-4xl font-extrabold text-cihBlue tracking-tight">
-              What We Do
-            </h2>
-            <div className="text-lg md:text-xl text-slate-600 font-medium leading-relaxed space-y-6">
-              <p>
-                Cafe Innovate Hub is a digital skills accelerator helping small business owners and young Professionals grow through practical, accessible digital skills training programs.
-              </p>
-              <p>
-                From digital marketing to graphic design, we teach the skills that turn a phone and an internet connection into real opportunity, and we keep it affordable so cost is never the reason someone or a business, gets left behind.
-              </p>
-            </div>
-          </motion.div>
+            {/* Right Image / Composition */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true, margin: "-40px" }}
+              transition={{ duration: 0.7, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+              className="relative w-full h-[500px] lg:h-[600px] flex items-center justify-center lg:justify-end"
+            >
+              {/* Decorative shapes behind */}
+              <div className="absolute top-10 right-10 w-[80%] h-[80%] bg-blue-50 rounded-[3rem] -z-10 rotate-6"></div>
+              
+              {/* The Standardized Image Container */}
+              <div className="relative w-[90%] h-[90%] rounded-3xl overflow-hidden shadow-2xl border-4 border-white">
+                <Image
+                  src="https://res.cloudinary.com/dykvipays/image/upload/f_auto,q_auto,w_800/DMM_pz1swq.png"
+                  alt="Cafe Innovate Hub Training"
+                  fill
+                  className="object-cover"
+                />
+              </div>
+
+              {/* Floating Stat Card overlapping */}
+              <motion.div 
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.5, ease: "easeOut" }}
+                className="absolute bottom-10 left-0 md:-left-8 bg-white p-6 rounded-3xl shadow-2xl border border-slate-100 flex flex-col gap-1 z-20 w-[240px]"
+              >
+                <div className="flex items-center gap-3 mb-2">
+                  <div className="w-10 h-10 rounded-xl bg-cihYellow/20 flex items-center justify-center text-yellow-600">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                  </div>
+                  <span className="text-xs font-bold text-slate-400 uppercase tracking-widest">Accessible</span>
+                </div>
+                <span className="text-3xl font-bricolage font-black text-slate-900">100%</span>
+                <span className="text-sm font-medium text-slate-500 leading-tight">Focus on practical, hands-on growth</span>
+              </motion.div>
+            </motion.div>
+
+          </div>
         </div>
       </section>
 
       {/* Programs Section with Top-Down Layout */}
-      <section id="programs" className="relative py-24 bg-slate-50 border-b border-slate-200">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section id="programs" className="relative py-24 bg-slate-50 border-b border-slate-200 overflow-hidden">
+        {/* CSS Grid Pattern for depth */}
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#00000008_1px,transparent_1px),linear-gradient(to_bottom,#00000008_1px,transparent_1px)] bg-[size:24px_24px]"></div>
+        {/* Soft glowing ambient light */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[600px] bg-cihBlue/[0.03] rounded-full blur-[120px] z-0 pointer-events-none"></div>
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           
           {/* Header Row */}
           <motion.div 
@@ -304,189 +326,16 @@ export default function Home() {
         </div>
       </section>
 
-      {/* About Section */}
-      <section id="about" className="relative py-24 bg-gradient-to-b from-slate-50 to-blue-50 border-b border-slate-200 overflow-hidden">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center lg:min-h-[600px] relative">
-            
-            {/* Left Side: Origin Story */}
-            <motion.div 
-              className="relative lg:pr-12"
-              initial={{ opacity: 0, x: -30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true, margin: "-50px" }}
-              transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] as const }}
-            >
-              <div className="space-y-6">
-                <span className="text-sm font-bold text-cihLightBlue uppercase tracking-widest">
-                  Our Origin Story
-                </span>
-                <h2 className="text-4xl md:text-5xl font-extrabold text-cihBlue tracking-tight leading-[1.1]">
-                  Built by founders,<br /> for founders.
-                </h2>
-                <div className="space-y-4 text-lg text-slate-600 font-medium leading-relaxed">
-                  <p>
-                    Cafe Innovate Hub started with a simple observation: raw talent is everywhere, but access to structured digital training, mentorship, and premium resources is gatekept by geography and cost.
-                  </p>
-                  <p>
-                    We set out to build more than just a bootcamp or a training program. We created a virtual ecosystem where learning digital skills naturally flows into real-world collaboration and business growth.
-                  </p>
-                </div>
-              </div>
-            </motion.div>
 
-            {/* Right Side: Image and Floating Cards */}
-            <div className="relative w-full h-[500px] lg:h-[600px] mt-12 lg:mt-0">
-              
-              {/* Main Background Image */}
-              <div className="absolute right-0 top-0 w-[95%] sm:w-[85%] h-full rounded-[2rem] shadow-2xl overflow-hidden">
-                <Image 
-                  src="https://res.cloudinary.com/dykvipays/image/upload/f_auto,q_auto,w_1000/Upscale_image_and_remove_noise_2K_20260919152445_kwspty.jpg" 
-                  alt="Cafe Innovate Hub Team" 
-                  fill
-                  className="object-cover"
-                />
-              </div>
-
-              {/* Card 1: Mission (Floating) */}
-              <motion.div 
-                className="absolute top-8 left-0 lg:-left-8 z-10 rounded-2xl bg-white/85 backdrop-blur-xl border border-white/40 p-8 shadow-2xl w-[85%] sm:w-[75%] max-w-[340px]"
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-50px" }}
-                transition={{ duration: 0.7, delay: 0.2, ease: [0.16, 1, 0.3, 1] as const }}
-              >
-                <div className="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-cihBlue text-white shadow-md mb-4">
-                  {/* Untitled UI Target / Mission Icon */}
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                    <circle cx="12" cy="12" r="10" />
-                    <circle cx="12" cy="12" r="6" />
-                    <circle cx="12" cy="12" r="2" />
-                  </svg>
-                </div>
-                <h3 className="text-xl font-bold text-slate-900 mb-2">Our Mission</h3>
-                <p className="text-sm text-slate-700 font-medium leading-relaxed">
-                  To democratize access to premium digital education and professional networks, empowering the next generation of creatives and tech entrepreneurs to build sustainable businesses.
-                </p>
-              </motion.div>
-
-              {/* Card 2: Vision (Floating) */}
-              <motion.div 
-                className="absolute bottom-8 left-6 lg:left-8 z-20 rounded-2xl bg-white/85 backdrop-blur-xl border border-white/40 p-8 shadow-2xl w-[85%] sm:w-[75%] max-w-[340px]"
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-50px" }}
-                transition={{ duration: 0.7, delay: 0.4, ease: [0.16, 1, 0.3, 1] as const }}
-              >
-                <div className="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-cihLightBlue text-cihBlueDark shadow-md mb-4">
-                  {/* Untitled UI Eye / Vision Icon */}
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z" />
-                    <circle cx="12" cy="12" r="3" />
-                  </svg>
-                </div>
-                <h3 className="text-xl font-bold text-slate-900 mb-2">Our Vision</h3>
-                <p className="text-sm text-slate-700 font-medium leading-relaxed">
-                  A globally connected network of digital hubs where innovation thrives, transforming talent into global digital leaders who drive real economic impact.
-                </p>
-              </motion.div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-
-      {/* Team Section */}
-      <section className="py-24 bg-slate-50 border-b border-slate-200">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="mb-12 md:mb-16 text-center max-w-3xl mx-auto">
-            <h2 className="text-4xl font-extrabold text-cihBlue tracking-tight mb-4">
-              Meet the Team
-            </h2>
-            <p className="text-lg text-slate-600 font-medium font-sans">
-              The passionate minds behind Cafe Innovate Hub, dedicated to empowering the next generation of digital leaders.
-            </p>
-          </div>
-          
-          <motion.div 
-            className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto"
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-40px" }}
-            variants={containerVariants}
-          >
-            {/* Team Member 1: Mercy Kowu */}
-            <motion.div variants={cardVariants} className="bg-white border border-slate-200 rounded-3xl flex flex-col shadow-sm hover:shadow-lg transition-shadow relative group overflow-hidden">
-              {/* Image container acts as a full-width header */}
-              <div className="w-full bg-gradient-to-b from-blue-50 to-blue-100 relative pt-[80%] sm:pt-[100%] overflow-hidden">
-                <Image 
-                  src="https://res.cloudinary.com/dykvipays/image/upload/539088.jpg_iylwly.jpg" 
-                  alt="Mercy Kowu" 
-                  fill
-                  className="object-cover object-bottom group-hover:scale-105 transition-transform duration-700 ease-in-out"
-                />
-              </div>
-
-              {/* Text container below the image */}
-              <div className="p-6 sm:p-8 relative flex-grow flex flex-col">
-                <div className="absolute -top-6 right-6 z-10">
-                  <a href="https://www.linkedin.com/in/mercy-kowu-523732407/" target="_blank" rel="noopener noreferrer" className="flex h-12 w-12 items-center justify-center rounded-full bg-white text-slate-400 hover:text-cihBlue shadow-md transition-all border border-slate-100 hover:scale-110" aria-label="LinkedIn Profile">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                      <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
-                      <rect x="2" y="9" width="4" height="12"></rect>
-                      <circle cx="4" cy="4" r="2"></circle>
-                    </svg>
-                  </a>
-                </div>
-                <h3 className="text-2xl font-bold font-sans text-slate-900 mb-1">Mercy Kowu</h3>
-                <p className="text-cihLightBlue font-bold text-sm font-sans uppercase tracking-widest mb-4">Community Manager</p>
-                <p className="text-slate-600 font-medium font-sans leading-relaxed mt-auto">
-                  Nursing student at Obafemi Awolowo University who also explores project management, community management, and content strategy. As Community Manager at Cafe Innovate Hub, she builds and engages a vibrant community while driving strategic initiatives.
-                </p>
-              </div>
-            </motion.div>
-            
-            {/* Team Member 2: Peaceland Nmesoma Obiechefu */}
-            <motion.div variants={cardVariants} className="bg-white border border-slate-200 rounded-3xl flex flex-col shadow-sm hover:shadow-lg transition-shadow relative group overflow-hidden">
-              {/* Image container acts as a full-width header */}
-              <div className="w-full bg-gradient-to-b from-blue-50 to-blue-100 relative pt-[80%] sm:pt-[100%] overflow-hidden">
-                <Image 
-                  src="https://res.cloudinary.com/dykvipays/image/upload/c02d90d3-6b4d-4758-84da-9c908a33e54c_derstt.jpg" 
-                  alt="Peaceland Nmesoma Obiechefu" 
-                  fill
-                  className="object-cover object-bottom group-hover:scale-105 transition-transform duration-700 ease-in-out"
-                />
-              </div>
-
-              {/* Text container below the image */}
-              <div className="p-6 sm:p-8 relative flex-grow flex flex-col">
-                <div className="absolute -top-6 right-6 z-10">
-                  <a href="https://www.linkedin.com/in/peaceland-obiechefu/" target="_blank" rel="noopener noreferrer" className="flex h-12 w-12 items-center justify-center rounded-full bg-white text-slate-400 hover:text-cihBlue shadow-md transition-all border border-slate-100 hover:scale-110" aria-label="LinkedIn Profile">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                      <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
-                      <rect x="2" y="9" width="4" height="12"></rect>
-                      <circle cx="4" cy="4" r="2"></circle>
-                    </svg>
-                  </a>
-                </div>
-                <h3 className="text-2xl font-bold font-sans text-slate-900 mb-1">Peaceland Nmesoma Obiechefu</h3>
-                <p className="text-cihLightBlue font-bold text-sm font-sans uppercase tracking-widest mb-4">Virtual Assistant</p>
-                <p className="text-slate-600 font-medium font-sans leading-relaxed mt-auto">
-                  Virtual Assistant specializing in partnership research, digital operations, and executive support. Over 3 years helping founders stay organized, building databases, and running content systems. B.Sc. from Imo State University, based in Enugu.
-                </p>
-              </div>
-            </motion.div>
-          </motion.div>
-        </div>
-      </section>
 
       {/* Testimonials Section (Continuous Marquee) */}
-      <section id="community" className="py-24 bg-slate-50 border-b border-slate-200 overflow-hidden flex flex-col items-center relative">
-        <div className="text-center max-w-3xl mx-auto mb-16 px-4">
-          <h2 className="text-4xl font-extrabold text-cihBlue tracking-tight mb-4">
+      <section id="community" className="py-32 bg-[#0a0f0d] border-y border-[#0a0f0d] overflow-hidden flex flex-col items-center relative z-10 shadow-2xl">
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff05_1px,transparent_1px),linear-gradient(to_bottom,#ffffff05_1px,transparent_1px)] bg-[size:24px_24px]"></div>
+        <div className="text-center max-w-3xl mx-auto mb-20 px-4 relative z-10">
+          <h2 className="text-4xl md:text-5xl font-bricolage font-black text-white tracking-tight mb-4">
             Real people. Real growth.
           </h2>
-          <p className="text-lg text-slate-600 font-medium font-sans">
+          <p className="text-lg text-slate-400 font-medium font-sans">
             Hear from those who have been through our programs.
           </p>
         </div>
@@ -623,32 +472,11 @@ export default function Home() {
           </div>
           
           {/* Subtle gradient edges for the marquee to fade smoothly */}
-          <div className="absolute inset-y-0 left-0 w-16 md:w-32 bg-gradient-to-r from-slate-50 to-transparent pointer-events-none z-10"></div>
-          <div className="absolute inset-y-0 right-0 w-16 md:w-32 bg-gradient-to-l from-slate-50 to-transparent pointer-events-none z-10"></div>
+          <div className="absolute inset-y-0 left-0 w-16 md:w-32 bg-gradient-to-r from-[#0a0f0d] to-transparent pointer-events-none z-10"></div>
+          <div className="absolute inset-y-0 right-0 w-16 md:w-32 bg-gradient-to-l from-[#0a0f0d] to-transparent pointer-events-none z-10"></div>
         </div>
       </section>
 
-      {/* FAQ Section */}
-      <section className="py-24 bg-cihBlue text-white border-t border-cihBlueDark">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div 
-            className="text-center max-w-3xl mx-auto mb-12"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-40px" }}
-            transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] as const }}
-          >
-            <h2 className="text-4xl font-extrabold text-white tracking-tight mb-4">
-              Frequently Asked Questions
-            </h2>
-            <p className="text-lg text-slate-300 font-medium leading-relaxed font-sans">
-              Everything you need to know about our programs, mentorship, and community.
-            </p>
-          </motion.div>
-          
-          <FaqAccordion />
-        </div>
-      </section>
 
       {/* Blog / Latest Articles Section */}
       <section id="blog" className="py-24 bg-slate-50 border-t border-slate-200">
@@ -680,7 +508,13 @@ export default function Home() {
               className="bg-white border border-slate-200 rounded-2xl overflow-hidden group flex flex-col hover:border-slate-300 transition-colors shadow-sm hover:shadow-lg"
             >
               <div className="aspect-video bg-slate-100 w-full overflow-hidden relative">
-                <div className="absolute inset-0 bg-slate-200 group-hover:scale-105 transition-transform duration-500"></div>
+                <Image 
+                  src="https://res.cloudinary.com/dykvipays/image/upload/f_auto,q_auto,w_600/Upscale_image_remove_noise_2K_20260919135611_mctuby.jpg" 
+                  alt="Design Trends" 
+                  fill 
+                  className="object-cover group-hover:scale-105 transition-transform duration-500" 
+                />
+                <div className="absolute inset-0 bg-slate-900/10 group-hover:bg-transparent transition-colors duration-500"></div>
               </div>
               <div className="p-6 flex flex-col flex-grow">
                 <div className="text-xs font-bold text-slate-500 uppercase tracking-widest mb-3">
@@ -707,7 +541,13 @@ export default function Home() {
               className="bg-white border border-slate-200 rounded-2xl overflow-hidden group flex flex-col hover:border-slate-300 transition-colors shadow-sm hover:shadow-lg"
             >
               <div className="aspect-video bg-slate-100 w-full overflow-hidden relative">
-                <div className="absolute inset-0 bg-slate-200 group-hover:scale-105 transition-transform duration-500"></div>
+                <Image 
+                  src="https://res.cloudinary.com/dykvipays/image/upload/f_auto,q_auto,w_600/DMM_pz1swq.png" 
+                  alt="Marketing Trends" 
+                  fill 
+                  className="object-cover group-hover:scale-105 transition-transform duration-500" 
+                />
+                <div className="absolute inset-0 bg-slate-900/10 group-hover:bg-transparent transition-colors duration-500"></div>
               </div>
               <div className="p-6 flex flex-col flex-grow">
                 <div className="text-xs font-bold text-slate-500 uppercase tracking-widest mb-3">
@@ -734,7 +574,13 @@ export default function Home() {
               className="bg-white border border-slate-200 rounded-2xl overflow-hidden group flex flex-col hover:border-slate-300 transition-colors shadow-sm hover:shadow-lg"
             >
               <div className="aspect-video bg-slate-100 w-full overflow-hidden relative">
-                <div className="absolute inset-0 bg-slate-200 group-hover:scale-105 transition-transform duration-500"></div>
+                <Image 
+                  src="https://res.cloudinary.com/dykvipays/image/upload/f_auto,q_auto,w_600/Modify_business_owner_image_2K_20260919125210_hswh8s.jpg" 
+                  alt="Community Spotlight" 
+                  fill 
+                  className="object-cover group-hover:scale-105 transition-transform duration-500" 
+                />
+                <div className="absolute inset-0 bg-slate-900/10 group-hover:bg-transparent transition-colors duration-500"></div>
               </div>
               <div className="p-6 flex flex-col flex-grow">
                 <div className="text-xs font-bold text-slate-500 uppercase tracking-widest mb-3">

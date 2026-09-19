@@ -13,7 +13,7 @@ export interface EclipseButtonProps extends HTMLMotionProps<"button"> {
   children: React.ReactNode;
   className?: string;
   spotlightColor?: string;
-  variant?: "primary" | "secondary" | "outline" | "dark";
+  variant?: "primary" | "secondary" | "outline" | "dark" | "yellow" | "ghost";
   size?: "default" | "sm" | "lg";
 }
 
@@ -78,6 +78,8 @@ export const EclipseButton = React.forwardRef<
       outline:
         "bg-white/80 backdrop-blur-md text-cihBlue border border-slate-200 shadow-xs hover:border-cihBlue/30",
       dark: "bg-cihBlueDark text-white border border-white/10 shadow-lg",
+      yellow: "bg-cihYellow text-slate-900 border border-yellow-500/30 shadow-md hover:bg-yellow-400",
+      ghost: "bg-transparent text-white border border-white/30 hover:bg-white/10 hover:border-white shadow-sm",
     };
 
     const sizeStyles = {
