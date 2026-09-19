@@ -6,6 +6,7 @@ import EclipseButton from "@/components/ui/eclipse-button";
 import FaqAccordion from "@/components/ui/FaqAccordion";
 import { OfferCarousel, OfferCardProps } from "@/components/ui/offer-carousel";
 import Image from "next/image";
+import Link from "next/link";
 
 // Framer Motion variants with explicit cubic-bezier tuple typing
 const containerVariants: Variants = {
@@ -112,8 +113,8 @@ export default function Home() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.1, ease: [0.16, 1, 0.3, 1] as const }}
           >
-            Practical digital skills.<br />
-            Real business growth.
+            Practical digital skills for<br />
+            real business growth.
           </motion.h1>
 
           <motion.p 
@@ -122,7 +123,7 @@ export default function Home() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.2, ease: [0.16, 1, 0.3, 1] as const }}
           >
-            Empower your career and scale your business with hands-on training, expert mentorship, and a community of innovators at Cafe Innovate Hub.
+            Empowering business owners and young professionals with digital skills to improve their business and career.
           </motion.p>
           
           {/* Hero CTAs */}
@@ -133,10 +134,7 @@ export default function Home() {
             transition={{ duration: 0.7, delay: 0.3, ease: [0.16, 1, 0.3, 1] as const }}
           >
             <EclipseButton variant="primary">
-              Start Learning
-            </EclipseButton>
-            <EclipseButton variant="outline">
-              Explore Programs
+              Explore Our Trainings
             </EclipseButton>
           </motion.div>
         </motion.div>
@@ -145,75 +143,123 @@ export default function Home() {
       {/* Impact Section */}
       <section className="relative py-16 bg-slate-50 border-y border-slate-200 shadow-xs z-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            className="text-center mb-12"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-40px" }}
+            transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] as const }}
+          >
+            <h2 className="text-3xl md:text-4xl font-extrabold text-cihBlue tracking-tight max-w-3xl mx-auto">
+              A year of real impact, one person and one business at a time.
+            </h2>
+          </motion.div>
           <motion.div 
-            className="grid grid-cols-1 md:grid-cols-3 gap-10 divide-y md:divide-y-0 md:divide-x divide-slate-100 text-center"
+            className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-4 divide-y-0 md:divide-x divide-slate-200 text-center"
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: "-40px" }}
             variants={containerVariants}
           >
-            {/* Stat 1: 200+ */}
-            <motion.div variants={fadeInUp} className="flex flex-col items-center justify-center p-6 transition-transform hover:-translate-y-1">
-              <AnimatedCounter 
-                value={200} 
-                suffix="+" 
-                className="font-bricolage text-6xl md:text-7xl font-black text-cihBlue tracking-tighter" 
-              />
-              <p className="mt-4 text-sm font-bold text-slate-500 uppercase tracking-widest">
-                Students Trained
-              </p>
-            </motion.div>
-
-            {/* Stat 2: 50+ */}
-            <motion.div variants={fadeInUp} className="flex flex-col items-center justify-center p-6 transition-transform hover:-translate-y-1">
+            {/* Stat 1: 50+ */}
+            <motion.div variants={fadeInUp} className="flex flex-col items-center justify-center p-4 transition-transform hover:-translate-y-1">
               <AnimatedCounter 
                 value={50} 
                 suffix="+" 
-                className="font-bricolage text-6xl md:text-7xl font-black text-cihBlue tracking-tighter" 
+                className="font-bricolage text-5xl md:text-6xl font-black text-cihBlue tracking-tighter" 
               />
-              <p className="mt-4 text-sm font-bold text-slate-500 uppercase tracking-widest">
-                Business Partners
+              <p className="mt-3 text-xs md:text-sm font-bold text-slate-500 uppercase tracking-widest">
+                Businesses Trained
+              </p>
+            </motion.div>
+
+            {/* Stat 2: 200+ */}
+            <motion.div variants={fadeInUp} className="flex flex-col items-center justify-center p-4 transition-transform hover:-translate-y-1">
+              <AnimatedCounter 
+                value={200} 
+                suffix="+" 
+                className="font-bricolage text-5xl md:text-6xl font-black text-cihBlue tracking-tighter" 
+              />
+              <p className="mt-3 text-xs md:text-sm font-bold text-slate-500 uppercase tracking-widest">
+                Professionals Trained
               </p>
             </motion.div>
 
             {/* Stat 3: 5 */}
-            <motion.div variants={fadeInUp} className="flex flex-col items-center justify-center p-6 transition-transform hover:-translate-y-1">
+            <motion.div variants={fadeInUp} className="flex flex-col items-center justify-center p-4 transition-transform hover:-translate-y-1">
               <AnimatedCounter 
                 value={5} 
-                className="font-bricolage text-6xl md:text-7xl font-black text-cihBlue tracking-tighter" 
+                className="font-bricolage text-5xl md:text-6xl font-black text-cihBlue tracking-tighter" 
               />
-              <p className="mt-4 text-sm font-bold text-slate-500 uppercase tracking-widest">
-                Core Programs
+              <p className="mt-3 text-xs md:text-sm font-bold text-slate-500 uppercase tracking-widest">
+                Cohorts Run
+              </p>
+            </motion.div>
+
+            {/* Stat 4: Bi-monthly */}
+            <motion.div variants={fadeInUp} className="flex flex-col items-center justify-center p-4 transition-transform hover:-translate-y-1">
+              <div className="font-bricolage text-4xl md:text-5xl font-black text-cihBlue tracking-tighter leading-tight">
+                Bi monthly
+              </div>
+              <p className="mt-3 text-xs md:text-sm font-bold text-slate-500 uppercase tracking-widest">
+                free live webinars
               </p>
             </motion.div>
           </motion.div>
         </div>
       </section>
 
+      {/* What We Do Section */}
+      <section className="relative py-24 bg-white border-b border-slate-200 z-10">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-40px" }}
+            transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] as const }}
+            className="space-y-8"
+          >
+            <h2 className="text-3xl md:text-4xl font-extrabold text-cihBlue tracking-tight">
+              What We Do
+            </h2>
+            <div className="text-lg md:text-xl text-slate-600 font-medium leading-relaxed space-y-6">
+              <p>
+                Cafe Innovate Hub is a digital skills accelerator helping small business owners and young Professionals grow through practical, accessible digital skills training programs.
+              </p>
+              <p>
+                From digital marketing to graphic design, we teach the skills that turn a phone and an internet connection into real opportunity, and we keep it affordable so cost is never the reason someone or a business, gets left behind.
+              </p>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
       {/* Programs Section with Top-Down Layout */}
-      <section className="relative py-24 bg-slate-50 border-b border-slate-200">
+      <section id="programs" className="relative py-24 bg-slate-50 border-b border-slate-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
           {/* Header Row */}
           <motion.div 
-            className="flex flex-col md:flex-row justify-between md:items-end gap-6 mb-12"
+            className="flex flex-col items-center text-center gap-6 mb-12 mx-auto"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-50px" }}
-            transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] as const }}
+            viewport={{ once: true, margin: "-40px" }}
+            transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] as const }}
           >
-            <div className="max-w-2xl space-y-4">
-              <h2 className="text-4xl md:text-5xl font-extrabold text-cihBlue tracking-tight leading-[1.1]">
+            <div className="max-w-2xl">
+              <h2 className="text-4xl font-extrabold text-cihBlue tracking-tight mb-4">
                 Our Training Programs
               </h2>
               <p className="text-lg text-slate-600 font-medium leading-relaxed">
                 Master industry-leading skills through hands-on, intensive bootcamps designed for real-world impact and immediate business growth.
               </p>
             </div>
-            <div className="shrink-0">
-              <EclipseButton variant="outline">
-                View Full Catalog
-              </EclipseButton>
+            <div className="shrink-0 mt-2">
+              <Link href="/programs">
+                <EclipseButton variant="outline">
+                  View Full Catalog
+                </EclipseButton>
+              </Link>
             </div>
           </motion.div>
 
@@ -228,27 +274,30 @@ export default function Home() {
             <OfferCarousel offers={[
               {
                 title: "Graphic Design Bootcamp",
-                description: "Master visual communication, branding, and UI design using industry-standard tools.",
+                description: "A free training for beginners ready to add design to their skill set.",
                 tag: "8 Weeks",
                 imageSrc: "https://res.cloudinary.com/dykvipays/image/upload/f_auto,q_auto,w_800,c_scale/Learn_Graphic_Design_from_Scratch_6_hgcjru.png",
                 brandName: "Cafe Innovate Hub",
-                brandLogoSrc: "https://res.cloudinary.com/dykvipays/image/upload/f_auto,q_auto,w_250,c_scale/CIH_Black_logo_fadnbk.png"
+                brandLogoSrc: "https://res.cloudinary.com/dykvipays/image/upload/f_auto,q_auto,w_250,c_scale/CIH_Black_logo_fadnbk.png",
+                href: "/programs/graphic-design"
               },
               {
                 title: "Digital Marketing",
-                description: "Drive scalable growth through advanced SEO, paid media strategies, and data-driven campaigns.",
+                description: "Practical marketing skills to help any business attract customers and sell online.",
                 tag: "4 Weeks",
                 imageSrc: "https://res.cloudinary.com/dykvipays/image/upload/f_auto,q_auto,w_800,c_scale/DMM_pz1swq.png",
                 brandName: "Cafe Innovate Hub",
-                brandLogoSrc: "https://res.cloudinary.com/dykvipays/image/upload/f_auto,q_auto,w_250,c_scale/CIH_Black_logo_fadnbk.png"
+                brandLogoSrc: "https://res.cloudinary.com/dykvipays/image/upload/f_auto,q_auto,w_250,c_scale/CIH_Black_logo_fadnbk.png",
+                href: "/programs/digital-marketing"
               },
               {
-                title: "D-DAM",
-                description: "The full digital transformation journey for your business operations. Move your entire ecosystem online.",
-                tag: "Flagship",
+                title: "Driving Digital Adoption for MSMEs (D-DAM)",
+                description: "Our flagship Digital Transformation program designed to help MSMEs adopt the digital tools and systems to grow.",
+                tag: "Coming Soon",
                 imageSrc: "https://res.cloudinary.com/dykvipays/image/upload/f_auto,q_auto,w_800,c_scale/Upscale_image_remove_noise_2K_20260919135611_mctuby.jpg",
                 brandName: "Cafe Innovate Hub",
-                brandLogoSrc: "https://res.cloudinary.com/dykvipays/image/upload/f_auto,q_auto,w_250,c_scale/CIH_Black_logo_fadnbk.png"
+                brandLogoSrc: "https://res.cloudinary.com/dykvipays/image/upload/f_auto,q_auto,w_250,c_scale/CIH_Black_logo_fadnbk.png",
+                href: "/programs/d-dam"
               }
             ]} />
           </motion.div>
@@ -256,7 +305,7 @@ export default function Home() {
       </section>
 
       {/* About Section */}
-      <section className="relative py-24 bg-gradient-to-b from-slate-50 to-blue-50 border-b border-slate-200 overflow-hidden">
+      <section id="about" className="relative py-24 bg-gradient-to-b from-slate-50 to-blue-50 border-b border-slate-200 overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center lg:min-h-[600px] relative">
             
@@ -432,13 +481,13 @@ export default function Home() {
       </section>
 
       {/* Testimonials Section (Continuous Marquee) */}
-      <section className="py-24 bg-slate-50 border-b border-slate-200 overflow-hidden flex flex-col items-center relative">
+      <section id="community" className="py-24 bg-slate-50 border-b border-slate-200 overflow-hidden flex flex-col items-center relative">
         <div className="text-center max-w-3xl mx-auto mb-16 px-4">
           <h2 className="text-4xl font-extrabold text-cihBlue tracking-tight mb-4">
-            Hear from Our Community
+            Real people. Real growth.
           </h2>
           <p className="text-lg text-slate-600 font-medium font-sans">
-            Success stories from the designers, marketers, and founders who call Cafe Innovate Hub their home.
+            Hear from those who have been through our programs.
           </p>
         </div>
 
@@ -464,7 +513,7 @@ export default function Home() {
               <div key={loopIndex} className="flex gap-6 shrink-0">
                 
                 {/* Card 1 */}
-                <div className="w-[350px] md:w-[420px] min-w-[350px] bg-cihBlue text-white rounded-3xl p-8 shadow-xl flex flex-col justify-between shrink-0">
+                <div className="w-[300px] md:w-[360px] min-w-[300px] bg-gradient-to-br from-cihBlue via-[#0b3880] to-[#061e47] border border-white/10 text-white rounded-3xl p-6 md:p-8 shadow-xl flex flex-col justify-between shrink-0">
                   <div>
                     {/* Untitled UI Quote Icon (White) */}
                     <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-white mb-6 opacity-90">
@@ -472,7 +521,7 @@ export default function Home() {
                       <path d="M10 11c0 2.5-1.5 5-4 6"/>
                       <path d="M21 11c0 2.5-1.5 5-4 6"/>
                     </svg>
-                    <p className="text-white text-lg font-medium font-sans leading-relaxed mb-8">
+                    <p className="text-slate-100 text-base font-medium font-sans leading-relaxed mb-8">
                       "Since I joined Cafe Innovate Hub, I have learned how to market my business more intentionally. I learned useful tips on using Facebook Marketplace, Instagram, creating better captions, and knowing what kind of content to post. I am now more intentional and consistent with how I promote Midefreshmart online."
                     </p>
                   </div>
@@ -493,7 +542,7 @@ export default function Home() {
                 </div>
 
                 {/* Card 2 */}
-                <div className="w-[350px] md:w-[420px] min-w-[350px] bg-cihBlue text-white rounded-3xl p-8 shadow-xl flex flex-col justify-between shrink-0">
+                <div className="w-[300px] md:w-[360px] min-w-[300px] bg-gradient-to-br from-cihBlue via-[#0b3880] to-[#061e47] border border-white/10 text-white rounded-3xl p-6 md:p-8 shadow-xl flex flex-col justify-between shrink-0">
                   <div>
                     {/* Untitled UI Quote Icon (White) */}
                     <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-white mb-6 opacity-90">
@@ -501,7 +550,7 @@ export default function Home() {
                       <path d="M10 11c0 2.5-1.5 5-4 6"/>
                       <path d="M21 11c0 2.5-1.5 5-4 6"/>
                     </svg>
-                    <p className="text-white text-lg font-medium font-sans leading-relaxed mb-8">
+                    <p className="text-slate-100 text-base font-medium font-sans leading-relaxed mb-8">
                       "Since connecting with Cafe Innovate Hub, I have gained tremendous value. The community introduced me to powerful digital tools. I frequently leverage CapCut, Facebook Marketplace, and Ads to promote my brand. These skills, combined with practical tips on consistent content creation and audience engagement, have significantly strengthened my brand’s online presence."
                     </p>
                   </div>
@@ -517,7 +566,7 @@ export default function Home() {
                 </div>
 
                 {/* Card 3 (Duplicate of 1 for scrolling width) */}
-                <div className="w-[350px] md:w-[420px] min-w-[350px] bg-cihBlue text-white rounded-3xl p-8 shadow-xl flex flex-col justify-between shrink-0">
+                <div className="w-[300px] md:w-[360px] min-w-[300px] bg-gradient-to-br from-cihBlue via-[#0b3880] to-[#061e47] border border-white/10 text-white rounded-3xl p-6 md:p-8 shadow-xl flex flex-col justify-between shrink-0">
                   <div>
                     {/* Untitled UI Quote Icon (White) */}
                     <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-white mb-6 opacity-90">
@@ -525,7 +574,7 @@ export default function Home() {
                       <path d="M10 11c0 2.5-1.5 5-4 6"/>
                       <path d="M21 11c0 2.5-1.5 5-4 6"/>
                     </svg>
-                    <p className="text-white text-lg font-medium font-sans leading-relaxed mb-8">
+                    <p className="text-slate-100 text-base font-medium font-sans leading-relaxed mb-8">
                       "Since I joined Cafe Innovate Hub, I have learned how to market my business more intentionally. I learned useful tips on using Facebook Marketplace, Instagram, creating better captions, and knowing what kind of content to post. I am now more intentional and consistent with how I promote Midefreshmart online."
                     </p>
                   </div>
@@ -546,7 +595,7 @@ export default function Home() {
                 </div>
 
                 {/* Card 4 (Duplicate of 2 for scrolling width) */}
-                <div className="w-[350px] md:w-[420px] min-w-[350px] bg-cihBlue text-white rounded-3xl p-8 shadow-xl flex flex-col justify-between shrink-0">
+                <div className="w-[300px] md:w-[360px] min-w-[300px] bg-gradient-to-br from-cihBlue via-[#0b3880] to-[#061e47] border border-white/10 text-white rounded-3xl p-6 md:p-8 shadow-xl flex flex-col justify-between shrink-0">
                   <div>
                     {/* Untitled UI Quote Icon (White) */}
                     <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-white mb-6 opacity-90">
@@ -554,7 +603,7 @@ export default function Home() {
                       <path d="M10 11c0 2.5-1.5 5-4 6"/>
                       <path d="M21 11c0 2.5-1.5 5-4 6"/>
                     </svg>
-                    <p className="text-white text-lg font-medium font-sans leading-relaxed mb-8">
+                    <p className="text-slate-100 text-base font-medium font-sans leading-relaxed mb-8">
                       "Since connecting with Cafe Innovate Hub, I have gained tremendous value. The community introduced me to powerful digital tools. I frequently leverage CapCut, Facebook Marketplace, and Ads to promote my brand. These skills, combined with practical tips on consistent content creation and audience engagement, have significantly strengthened my brand’s online presence."
                     </p>
                   </div>
@@ -602,7 +651,7 @@ export default function Home() {
       </section>
 
       {/* Blog / Latest Articles Section */}
-      <section className="py-24 bg-slate-50 border-t border-slate-200">
+      <section id="blog" className="py-24 bg-slate-50 border-t border-slate-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col md:flex-row md:justify-between md:items-end mb-12 space-y-6 md:space-y-0">
             <div>

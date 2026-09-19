@@ -25,6 +25,8 @@ const ChevronRightIcon = () => (
   </svg>
 );
 
+import Link from "next/link";
+
 export interface OfferCardProps {
   title: string;
   description: string;
@@ -37,7 +39,7 @@ export interface OfferCardProps {
 
 export function OfferCard({ title, description, imageSrc, href = "#", tag }: OfferCardProps) {
   return (
-    <motion.a 
+    <Link 
       href={href}
       className="flex flex-col w-[320px] min-h-[420px] rounded-3xl overflow-hidden group shrink-0 snap-start bg-gradient-to-br from-cihBlue via-[#0b3880] to-[#061e47] border border-white/10 shadow-sm hover:shadow-xl transition-shadow duration-300"
     >
@@ -79,7 +81,7 @@ export function OfferCard({ title, description, imageSrc, href = "#", tag }: Off
           </div>
         </div>
       </div>
-    </motion.a>
+    </Link>
   );
 }
 
@@ -121,7 +123,7 @@ export function OfferCarousel({ offers }: OfferCarouselProps) {
       </div>
 
       {/* Navigation Controls */}
-      <div className="flex items-center justify-end gap-3 mt-2 px-4 sm:px-6 lg:px-8">
+      <div className="flex items-center justify-center gap-3 mt-2 px-4 sm:px-6 lg:px-8">
         <button 
           onClick={() => scroll("left")}
           className="flex items-center justify-center w-12 h-12 rounded-full bg-white border border-slate-200 text-slate-500 hover:bg-cihLightBlue hover:text-white hover:border-cihLightBlue shadow-sm transition-all focus:outline-none focus:ring-2 focus:ring-cihLightBlue focus:ring-offset-2"

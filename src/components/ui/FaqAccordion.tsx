@@ -11,23 +11,23 @@ interface FaqItem {
 const faqs: FaqItem[] = [
   {
     question: "How can I join a Cafe Innovate Hub training program?",
-    answer: "You can apply directly through our website by selecting a program from our catalog. Applications are reviewed on a rolling basis, and our admissions team will guide you through the next steps, including enrollment and scholarship options."
+    answer: "You can join by checking our website and social media pages for open calls, upcoming training programs, and application instructions. Some programs are free, while others are offered at a highly affordable fee. If you are unsure which program is right for you, send us a message and our team will guide you."
   },
   {
-    question: "Do I need prior experience to join the bootcamps?",
-    answer: "No prior experience is required for our foundational bootcamps. Our curriculum is designed to take you from beginner to industry-ready, providing comprehensive mentorship and hands-on projects."
+    question: "Does Cafe Innovate Hub offer training for small businesses?",
+    answer: "Yes. We support MSMEs and small business owners with practical digital skills and digital transformation training. Our programs are designed to help businesses improve their online presence, use digital tools more effectively, reach new customers, and build simpler workflows using tools such as social media, automation, AI, and business management tools."
   },
   {
-    question: "What makes the CIH community different from other online networks?",
-    answer: "CIH is built specifically for digital creators and tech founders. You gain direct access to a curated virtual community of innovators, exclusive online networking events, expert mentorship, and a global talent pool."
+    question: "Can my organisation partner with Cafe Innovate Hub?",
+    answer: "Yes. We welcome partnerships with organisations, businesses, institutions, industry experts, facilitators, and community leaders who share our goal of expanding access to practical digital skills. You can contact us to discuss training partnerships, sponsorships, speaking opportunities, community projects, technical support, or other collaboration ideas."
   },
   {
-    question: "Are there scholarships or financial aid available?",
-    answer: "Yes! Our mission is to democratize digital education. We offer partial and full scholarships for underrepresented talent. You can indicate your interest in financial aid during the standard application process."
+    question: "How can I support or donate to Cafe Innovate Hub?",
+    answer: "You can support our work by making a donation, sponsoring a program, partnering with us, providing learning resources, or volunteering your expertise. Your support helps us provide free or affordable training, engage facilitators, support participants, and reach young people and small business owners who may not otherwise have access to digital skills opportunities."
   },
   {
-    question: "Can my company partner with Cafe Innovate Hub?",
-    answer: "Absolutely. We actively collaborate with industry partners for hiring pipelines, corporate training, and event sponsorships. Please reach out via our contact page to explore partnership opportunities."
+    question: "How soon will I receive a response after contacting you?",
+    answer: "Our team aims to respond to messages as soon as possible. For general enquiries, training questions, and partnership requests, please allow a reasonable response period, especially during active training programs. To help us respond more effectively, include your name, the reason for contacting us, and any relevant details in your message."
   }
 ];
 
@@ -54,7 +54,7 @@ export default function FaqAccordion() {
               </span>
               <div 
                 className={`shrink-0 flex items-center justify-center h-8 w-8 rounded-full transition-colors ${
-                  isOpen ? 'bg-cihYellow text-cihBlueDark' : 'bg-white/10 text-white group-hover:bg-white/20'
+                  isOpen ? 'bg-cihYellow text-cihBlueDark' : 'bg-white/10 text-cihYellow group-hover:bg-cihYellow group-hover:text-cihBlueDark'
                 }`}
               >
                 {isOpen ? (

@@ -27,25 +27,25 @@ export default function Navbar() {
             Home
           </Link>
           <Link
-            href="#about"
+            href="/#about"
             className="transition-colors hover:text-cihBlue"
           >
             About
           </Link>
           <Link
-            href="#programs"
+            href="/#programs"
             className="transition-colors hover:text-cihBlue"
           >
             Programs
           </Link>
           <Link
-            href="#community"
+            href="/#community"
             className="transition-colors hover:text-cihBlue"
           >
-            Community
+            Join the Community
           </Link>
           <Link
-            href="#blog"
+            href="/#blog"
             className="transition-colors hover:text-cihBlue"
           >
             Blog
@@ -54,9 +54,11 @@ export default function Navbar() {
 
         {/* Action Button - Using EclipseButton standard */}
         <div className="flex items-center gap-3">
-          <EclipseButton variant="primary" className="py-2.5 px-5 text-sm">
-            Join the Hub
-          </EclipseButton>
+          <Link href="/#community">
+            <EclipseButton variant="primary" className="py-2.5 px-5 text-sm">
+              Join the Community
+            </EclipseButton>
+          </Link>
         </div>
       </div>
     </header>
