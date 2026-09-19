@@ -1,5 +1,5 @@
 import Link from "next/link";
-
+import Image from "next/image";
 export default function Footer() {
   return (
     <footer className="mt-auto border-t border-cihBlue/20 bg-cihBlueDark text-white">
@@ -8,12 +8,13 @@ export default function Footer() {
           {/* Brand Info */}
           <div className="space-y-4 md:col-span-2">
             <div className="flex items-center gap-3">
-              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-cihBlue text-cihYellow shadow-md">
-                <span className="text-xl font-black font-bricolage">CIH</span>
-              </div>
-              <span className="text-xl font-bold text-white tracking-wide font-sans">
-                Cafe Innovate Hub
-              </span>
+              <Image 
+                src="https://res.cloudinary.com/dykvipays/image/upload/f_auto,q_auto,w_250,c_scale/CIH_Black_logo_fadnbk.png" 
+                width={160} 
+                height={40} 
+                alt="Cafe Innovate Hub" 
+                className="object-contain brightness-0 invert"
+              />
             </div>
             <p className="max-w-md text-sm leading-relaxed text-slate-300 font-sans">
               Fueling bold ideas and brewing high-impact innovation. A dynamic virtual ecosystem connecting innovators, founders, technologists, and creatives.

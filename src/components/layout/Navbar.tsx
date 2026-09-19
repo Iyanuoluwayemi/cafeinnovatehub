@@ -1,23 +1,21 @@
 import Link from "next/link";
 import EclipseButton from "@/components/ui/eclipse-button";
+import Image from "next/image";
 
 export default function Navbar() {
   return (
     <header className="sticky top-0 z-50 w-full border-b border-slate-200 bg-white/95 backdrop-blur-md">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
         {/* Brand */}
-        <Link href="/" className="flex items-center gap-3 group">
-          <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-cihBlue text-white shadow-sm transition-transform group-hover:scale-105">
-            <span className="text-xl font-extrabold tracking-wider">CIH</span>
-          </div>
-          <div className="flex flex-col">
-            <span className="text-lg font-bold leading-tight text-cihBlue group-hover:text-cihLightBlue transition-colors">
-              Cafe Innovate Hub
-            </span>
-            <span className="text-xs font-medium text-slate-500">
-              Innovate • Connect • Create
-            </span>
-          </div>
+        <Link href="/" className="flex items-center gap-3 group shrink-0">
+          <Image 
+            src="https://res.cloudinary.com/dykvipays/image/upload/f_auto,q_auto,w_250,c_scale/CIH_Black_logo_fadnbk.png" 
+            width={120} 
+            height={30} 
+            alt="Cafe Innovate Hub" 
+            priority
+            className="object-contain"
+          />
         </Link>
 
         {/* Navigation Links */}

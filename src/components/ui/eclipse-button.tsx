@@ -14,6 +14,7 @@ export interface EclipseButtonProps extends HTMLMotionProps<"button"> {
   className?: string;
   spotlightColor?: string;
   variant?: "primary" | "secondary" | "outline" | "dark";
+  size?: "default" | "sm" | "lg";
 }
 
 export const EclipseButton = React.forwardRef<
@@ -26,6 +27,7 @@ export const EclipseButton = React.forwardRef<
       className = "",
       spotlightColor = "rgba(83, 172, 255, 0.35)",
       variant = "primary",
+      size = "default",
       onMouseMove,
       onMouseEnter,
       onMouseLeave,
@@ -78,6 +80,12 @@ export const EclipseButton = React.forwardRef<
       dark: "bg-cihBlueDark text-white border border-white/10 shadow-lg",
     };
 
+    const sizeStyles = {
+      default: "px-7 py-3.5 text-base",
+      sm: "px-4 py-2 text-sm",
+      lg: "px-8 py-4 text-lg",
+    };
+
     return (
       <motion.button
         ref={(node) => {
@@ -98,7 +106,7 @@ export const EclipseButton = React.forwardRef<
         onMouseMove={handleMouseMove}
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
-        className={`relative inline-flex items-center justify-center overflow-hidden rounded-full px-7 py-3.5 text-base font-bold transition-colors cursor-pointer select-none group ${variantStyles[variant]} ${className}`}
+        className={`relative inline-flex items-center justify-center overflow-hidden rounded-full font-bold transition-colors cursor-pointer select-none group ${variantStyles[variant]} ${sizeStyles[size]} ${className}`}
         {...props}
       >
         {/* Eclipse border overlay */}

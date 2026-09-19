@@ -4,6 +4,7 @@ import { motion, Variants } from "framer-motion";
 import AnimatedCounter from "@/components/ui/AnimatedCounter";
 import EclipseButton from "@/components/ui/eclipse-button";
 import FaqAccordion from "@/components/ui/FaqAccordion";
+import { OfferCarousel, OfferCardProps } from "@/components/ui/offer-carousel";
 import Image from "next/image";
 
 // Framer Motion variants with explicit cubic-bezier tuple typing
@@ -189,136 +190,77 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Programs Section with Split Layout & Staggered Bento Cards */}
+      {/* Programs Section with Top-Down Layout */}
       <section className="relative py-24 bg-slate-50 border-b border-slate-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 relative">
-            
-            {/* Left Side: Sticky Heading */}
-            <motion.div 
-              className="lg:col-span-5 relative"
-              initial={{ opacity: 0, x: -30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true, margin: "-50px" }}
-              transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] as const }}
-            >
-              <div className="lg:sticky lg:top-32 space-y-6">
-                <h2 className="text-4xl md:text-5xl font-extrabold text-cihBlue tracking-tight leading-[1.1]">
-                  Our Training Programs
-                </h2>
-                <p className="text-lg text-slate-600 font-medium leading-relaxed max-w-md">
-                  Master industry-leading skills through hands-on, intensive bootcamps designed for real-world impact and immediate business growth.
-                </p>
-                <div className="pt-4">
-                  <EclipseButton variant="outline">
-                    View Full Catalog
-                  </EclipseButton>
-                </div>
-              </div>
-            </motion.div>
+          
+          {/* Header Row */}
+          <motion.div 
+            className="flex flex-col md:flex-row justify-between md:items-end gap-6 mb-12"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] as const }}
+          >
+            <div className="max-w-2xl space-y-4">
+              <h2 className="text-4xl md:text-5xl font-extrabold text-cihBlue tracking-tight leading-[1.1]">
+                Our Training Programs
+              </h2>
+              <p className="text-lg text-slate-600 font-medium leading-relaxed">
+                Master industry-leading skills through hands-on, intensive bootcamps designed for real-world impact and immediate business growth.
+              </p>
+            </div>
+            <div className="shrink-0">
+              <EclipseButton variant="outline">
+                View Full Catalog
+              </EclipseButton>
+            </div>
+          </motion.div>
 
-            {/* Right Side: Staggered Bento Cards Cascade */}
-            <motion.div 
-              className="lg:col-span-7 space-y-6"
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, margin: "-50px" }}
-              variants={containerVariants}
-            >
-              {/* Card 1: Graphic Design Bootcamp */}
-              <motion.div 
-                variants={cardVariants}
-                className="group rounded-3xl bg-white border border-slate-200 p-8 shadow-sm transition-all duration-300 hover:scale-[1.02] hover:shadow-xl hover:border-cihLightBlue/50 flex flex-col sm:flex-row gap-6 items-start justify-between"
-              >
-                <div className="flex gap-6 items-start">
-                  <div className="shrink-0 flex h-14 w-14 items-center justify-center rounded-2xl bg-cihBlue/5 text-cihBlue group-hover:scale-110 group-hover:bg-cihBlue group-hover:text-white transition-all duration-300">
-                    {/* Untitled UI Layers / Design Icon */}
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                      <path d="M12 2L2 7l10 5 10-5-10-5z" />
-                      <path d="M2 17l10 5 10-5" />
-                      <path d="M2 12l10 5 10-5" />
-                    </svg>
-                  </div>
-                  <div>
-                    <h3 className="text-2xl font-bold text-slate-900 mb-2">Graphic Design Bootcamp</h3>
-                    <p className="text-slate-600 leading-relaxed font-medium">
-                      Master visual communication, branding, and UI design using industry-standard tools like Figma, Illustrator, and Photoshop. Create a portfolio that converts.
-                    </p>
-                  </div>
-                </div>
-                <div className="shrink-0 pt-4 sm:pt-0">
-                  <EclipseButton variant="primary">
-                    Apply Now
-                  </EclipseButton>
-                </div>
-              </motion.div>
-
-              {/* Card 2: Digital Marketing */}
-              <motion.div 
-                variants={cardVariants}
-                className="group rounded-3xl bg-white border border-slate-200 p-8 shadow-sm transition-all duration-300 hover:scale-[1.02] hover:shadow-xl hover:border-cihLightBlue/50 flex flex-col sm:flex-row gap-6 items-start justify-between"
-              >
-                <div className="flex gap-6 items-start">
-                  <div className="shrink-0 flex h-14 w-14 items-center justify-center rounded-2xl bg-cihBlue/5 text-cihBlue group-hover:scale-110 group-hover:bg-cihBlue group-hover:text-white transition-all duration-300">
-                    {/* Untitled UI Trending Up / Growth Icon */}
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                      <polyline points="22 7 13.5 15.5 8.5 10.5 2 17" />
-                      <polyline points="16 7 22 7 22 13" />
-                    </svg>
-                  </div>
-                  <div>
-                    <h3 className="text-2xl font-bold text-slate-900 mb-2">Digital Marketing</h3>
-                    <p className="text-slate-600 leading-relaxed font-medium">
-                      Drive scalable growth through advanced SEO, paid media strategies, social commerce, and data-driven marketing campaigns.
-                    </p>
-                  </div>
-                </div>
-                <div className="shrink-0 pt-4 sm:pt-0">
-                  <EclipseButton variant="primary">
-                    Apply Now
-                  </EclipseButton>
-                </div>
-              </motion.div>
-
-              {/* Card 3: D-DAM */}
-              <motion.div 
-                variants={cardVariants}
-                className="group rounded-3xl bg-white border border-slate-200 p-8 shadow-sm transition-all duration-300 hover:scale-[1.02] hover:shadow-xl hover:border-cihLightBlue/50 flex flex-col sm:flex-row gap-6 items-start justify-between"
-              >
-                <div className="flex gap-6 items-start">
-                  <div className="shrink-0 flex h-14 w-14 items-center justify-center rounded-2xl bg-cihBlue/5 text-cihBlue group-hover:scale-110 group-hover:bg-cihBlue group-hover:text-white transition-all duration-300">
-                    {/* Untitled UI Database / Analytics Icon */}
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                      <ellipse cx="12" cy="5" rx="9" ry="3" />
-                      <path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3" />
-                      <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5" />
-                    </svg>
-                  </div>
-                  <div>
-                    <h3 className="text-2xl font-bold text-slate-900 mb-2">D-DAM</h3>
-                    <p className="text-slate-600 leading-relaxed font-medium">
-                      Digital Data Analytics & Management. Transform raw data into strategic business insights using industry tools, dashboarding, and analytics infrastructure.
-                    </p>
-                  </div>
-                </div>
-                <div className="shrink-0 pt-4 sm:pt-0">
-                  <EclipseButton variant="primary">
-                    Apply Now
-                  </EclipseButton>
-                </div>
-              </motion.div>
-            </motion.div>
-
-          </div>
+          {/* Carousel Row */}
+          <motion.div 
+            className="w-full overflow-hidden"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 0.7, delay: 0.2, ease: [0.16, 1, 0.3, 1] as const }}
+          >
+            <OfferCarousel offers={[
+              {
+                title: "Graphic Design Bootcamp",
+                description: "Master visual communication, branding, and UI design using industry-standard tools.",
+                tag: "8 Weeks",
+                imageSrc: "https://res.cloudinary.com/dykvipays/image/upload/f_auto,q_auto,w_800,c_scale/Learn_Graphic_Design_from_Scratch_6_hgcjru.png",
+                brandName: "Cafe Innovate Hub",
+                brandLogoSrc: "https://res.cloudinary.com/dykvipays/image/upload/f_auto,q_auto,w_250,c_scale/CIH_Black_logo_fadnbk.png"
+              },
+              {
+                title: "Digital Marketing",
+                description: "Drive scalable growth through advanced SEO, paid media strategies, and data-driven campaigns.",
+                tag: "4 Weeks",
+                imageSrc: "https://res.cloudinary.com/dykvipays/image/upload/f_auto,q_auto,w_800,c_scale/DMM_pz1swq.png",
+                brandName: "Cafe Innovate Hub",
+                brandLogoSrc: "https://res.cloudinary.com/dykvipays/image/upload/f_auto,q_auto,w_250,c_scale/CIH_Black_logo_fadnbk.png"
+              },
+              {
+                title: "D-DAM",
+                description: "The full digital transformation journey for your business operations. Move your entire ecosystem online.",
+                tag: "Flagship",
+                imageSrc: "https://res.cloudinary.com/dykvipays/image/upload/f_auto,q_auto,w_800,c_scale/Upscale_image_remove_noise_2K_20260919135611_mctuby.jpg",
+                brandName: "Cafe Innovate Hub",
+                brandLogoSrc: "https://res.cloudinary.com/dykvipays/image/upload/f_auto,q_auto,w_250,c_scale/CIH_Black_logo_fadnbk.png"
+              }
+            ]} />
+          </motion.div>
         </div>
       </section>
 
       {/* About Section */}
       <section className="relative py-24 bg-gradient-to-b from-slate-50 to-blue-50 border-b border-slate-200 overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-8 relative">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center lg:min-h-[600px] relative">
             
-            {/* Left Side: Sticky Origin Story */}
+            {/* Left Side: Origin Story */}
             <motion.div 
               className="relative lg:pr-12"
               initial={{ opacity: 0, x: -30 }}
@@ -326,7 +268,7 @@ export default function Home() {
               viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] as const }}
             >
-              <div className="lg:sticky lg:top-32 space-y-6">
+              <div className="space-y-6">
                 <span className="text-sm font-bold text-cihLightBlue uppercase tracking-widest">
                   Our Origin Story
                 </span>
@@ -344,52 +286,62 @@ export default function Home() {
               </div>
             </motion.div>
 
-            {/* Right Side: Overlapping Glass Cards */}
-            <div className="relative pt-10 pb-20 lg:py-10">
-              {/* Card 1: Mission */}
+            {/* Right Side: Image and Floating Cards */}
+            <div className="relative w-full h-[500px] lg:h-[600px] mt-12 lg:mt-0">
+              
+              {/* Main Background Image */}
+              <div className="absolute right-0 top-0 w-[95%] sm:w-[85%] h-full rounded-[2rem] shadow-2xl overflow-hidden">
+                <Image 
+                  src="https://res.cloudinary.com/dykvipays/image/upload/f_auto,q_auto,w_1000/Upscale_image_and_remove_noise_2K_20260919152445_kwspty.jpg" 
+                  alt="Cafe Innovate Hub Team" 
+                  fill
+                  className="object-cover"
+                />
+              </div>
+
+              {/* Card 1: Mission (Floating) */}
               <motion.div 
-                className="relative z-10 rounded-3xl bg-white/70 backdrop-blur-lg border border-white p-8 md:p-10 shadow-xl shadow-slate-200/50 w-[90%] md:w-[85%]"
-                initial={{ opacity: 0, y: 50 }}
+                className="absolute top-8 left-0 lg:-left-8 z-10 rounded-2xl bg-white/85 backdrop-blur-xl border border-white/40 p-8 shadow-2xl w-[85%] sm:w-[75%] max-w-[340px]"
+                initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-50px" }}
-                transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] as const }}
+                transition={{ duration: 0.7, delay: 0.2, ease: [0.16, 1, 0.3, 1] as const }}
               >
-                <div className="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-cihBlue text-white shadow-md mb-6">
+                <div className="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-cihBlue text-white shadow-md mb-4">
                   {/* Untitled UI Target / Mission Icon */}
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                     <circle cx="12" cy="12" r="10" />
                     <circle cx="12" cy="12" r="6" />
                     <circle cx="12" cy="12" r="2" />
                   </svg>
                 </div>
-                <h3 className="text-2xl font-bold text-slate-900 mb-3">Our Mission</h3>
-                <p className="text-slate-600 font-medium leading-relaxed">
+                <h3 className="text-xl font-bold text-slate-900 mb-2">Our Mission</h3>
+                <p className="text-sm text-slate-700 font-medium leading-relaxed">
                   To democratize access to premium digital education and professional networks, empowering the next generation of creatives and tech entrepreneurs to build sustainable businesses.
                 </p>
               </motion.div>
 
-              {/* Card 2: Vision */}
+              {/* Card 2: Vision (Floating) */}
               <motion.div 
-                className="relative z-20 rounded-3xl bg-white/70 backdrop-blur-lg border border-white p-8 md:p-10 shadow-xl shadow-slate-200/50 w-[90%] md:w-[85%] ml-auto -mt-16 md:-mt-24"
-                initial={{ opacity: 0, y: 50 }}
+                className="absolute bottom-8 left-6 lg:left-8 z-20 rounded-2xl bg-white/85 backdrop-blur-xl border border-white/40 p-8 shadow-2xl w-[85%] sm:w-[75%] max-w-[340px]"
+                initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-50px" }}
-                transition={{ duration: 0.7, delay: 0.2, ease: [0.16, 1, 0.3, 1] as const }}
+                transition={{ duration: 0.7, delay: 0.4, ease: [0.16, 1, 0.3, 1] as const }}
               >
-                <div className="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-cihLightBlue text-cihBlueDark shadow-md mb-6">
+                <div className="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-cihLightBlue text-cihBlueDark shadow-md mb-4">
                   {/* Untitled UI Eye / Vision Icon */}
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                     <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z" />
                     <circle cx="12" cy="12" r="3" />
                   </svg>
                 </div>
-                <h3 className="text-2xl font-bold text-slate-900 mb-3">Our Vision</h3>
-                <p className="text-slate-600 font-medium leading-relaxed">
+                <h3 className="text-xl font-bold text-slate-900 mb-2">Our Vision</h3>
+                <p className="text-sm text-slate-700 font-medium leading-relaxed">
                   A globally connected network of digital hubs where innovation thrives, transforming talent into global digital leaders who drive real economic impact.
                 </p>
               </motion.div>
             </div>
-
           </div>
         </div>
       </section>
@@ -415,18 +367,22 @@ export default function Home() {
             variants={containerVariants}
           >
             {/* Team Member 1: Mercy Kowu */}
-            <motion.div variants={cardVariants} className="bg-white border border-slate-200 rounded-3xl p-8 flex flex-col justify-between shadow-sm hover:shadow-lg transition-shadow relative group">
-              <div>
-                <div className="flex justify-between items-start mb-6">
-                  <Image 
-                    src="https://res.cloudinary.com/dykvipays/image/upload/539088.jpg_iylwly.jpg" 
-                    alt="Mercy Kowu" 
-                    width={64} 
-                    height={64} 
-                    className="w-16 h-16 rounded-full object-cover shadow-sm ring-4 ring-slate-50"
-                  />
-                  <a href="https://www.linkedin.com/in/mercy-kowu-523732407/" target="_blank" rel="noopener noreferrer" className="text-slate-400 hover:text-cihBlue transition-colors" aria-label="LinkedIn Profile">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <motion.div variants={cardVariants} className="bg-white border border-slate-200 rounded-3xl flex flex-col shadow-sm hover:shadow-lg transition-shadow relative group overflow-hidden">
+              {/* Image container acts as a full-width header */}
+              <div className="w-full bg-gradient-to-b from-blue-50 to-blue-100 relative pt-[80%] sm:pt-[100%] overflow-hidden">
+                <Image 
+                  src="https://res.cloudinary.com/dykvipays/image/upload/539088.jpg_iylwly.jpg" 
+                  alt="Mercy Kowu" 
+                  fill
+                  className="object-cover object-bottom group-hover:scale-105 transition-transform duration-700 ease-in-out"
+                />
+              </div>
+
+              {/* Text container below the image */}
+              <div className="p-6 sm:p-8 relative flex-grow flex flex-col">
+                <div className="absolute -top-6 right-6 z-10">
+                  <a href="https://www.linkedin.com/in/mercy-kowu-523732407/" target="_blank" rel="noopener noreferrer" className="flex h-12 w-12 items-center justify-center rounded-full bg-white text-slate-400 hover:text-cihBlue shadow-md transition-all border border-slate-100 hover:scale-110" aria-label="LinkedIn Profile">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                       <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
                       <rect x="2" y="9" width="4" height="12"></rect>
                       <circle cx="4" cy="4" r="2"></circle>
@@ -435,25 +391,29 @@ export default function Home() {
                 </div>
                 <h3 className="text-2xl font-bold font-sans text-slate-900 mb-1">Mercy Kowu</h3>
                 <p className="text-cihLightBlue font-bold text-sm font-sans uppercase tracking-widest mb-4">Community Manager</p>
-                <p className="text-slate-600 font-medium font-sans leading-relaxed">
+                <p className="text-slate-600 font-medium font-sans leading-relaxed mt-auto">
                   Nursing student at Obafemi Awolowo University who also explores project management, community management, and content strategy. As Community Manager at Cafe Innovate Hub, she builds and engages a vibrant community while driving strategic initiatives.
                 </p>
               </div>
             </motion.div>
             
             {/* Team Member 2: Peaceland Nmesoma Obiechefu */}
-            <motion.div variants={cardVariants} className="bg-white border border-slate-200 rounded-3xl p-8 flex flex-col justify-between shadow-sm hover:shadow-lg transition-shadow relative group">
-              <div>
-                <div className="flex justify-between items-start mb-6">
-                  <Image 
-                    src="https://res.cloudinary.com/dykvipays/image/upload/c02d90d3-6b4d-4758-84da-9c908a33e54c_derstt.jpg" 
-                    alt="Peaceland Nmesoma Obiechefu" 
-                    width={64} 
-                    height={64} 
-                    className="w-16 h-16 rounded-full object-cover shadow-sm ring-4 ring-slate-50"
-                  />
-                  <a href="https://www.linkedin.com/in/peaceland-obiechefu/" target="_blank" rel="noopener noreferrer" className="text-slate-400 hover:text-cihBlue transition-colors" aria-label="LinkedIn Profile">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <motion.div variants={cardVariants} className="bg-white border border-slate-200 rounded-3xl flex flex-col shadow-sm hover:shadow-lg transition-shadow relative group overflow-hidden">
+              {/* Image container acts as a full-width header */}
+              <div className="w-full bg-gradient-to-b from-blue-50 to-blue-100 relative pt-[80%] sm:pt-[100%] overflow-hidden">
+                <Image 
+                  src="https://res.cloudinary.com/dykvipays/image/upload/c02d90d3-6b4d-4758-84da-9c908a33e54c_derstt.jpg" 
+                  alt="Peaceland Nmesoma Obiechefu" 
+                  fill
+                  className="object-cover object-bottom group-hover:scale-105 transition-transform duration-700 ease-in-out"
+                />
+              </div>
+
+              {/* Text container below the image */}
+              <div className="p-6 sm:p-8 relative flex-grow flex flex-col">
+                <div className="absolute -top-6 right-6 z-10">
+                  <a href="https://www.linkedin.com/in/peaceland-obiechefu/" target="_blank" rel="noopener noreferrer" className="flex h-12 w-12 items-center justify-center rounded-full bg-white text-slate-400 hover:text-cihBlue shadow-md transition-all border border-slate-100 hover:scale-110" aria-label="LinkedIn Profile">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                       <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
                       <rect x="2" y="9" width="4" height="12"></rect>
                       <circle cx="4" cy="4" r="2"></circle>
@@ -462,7 +422,7 @@ export default function Home() {
                 </div>
                 <h3 className="text-2xl font-bold font-sans text-slate-900 mb-1">Peaceland Nmesoma Obiechefu</h3>
                 <p className="text-cihLightBlue font-bold text-sm font-sans uppercase tracking-widest mb-4">Virtual Assistant</p>
-                <p className="text-slate-600 font-medium font-sans leading-relaxed">
+                <p className="text-slate-600 font-medium font-sans leading-relaxed mt-auto">
                   Virtual Assistant specializing in partnership research, digital operations, and executive support. Over 3 years helping founders stay organized, building databases, and running content systems. B.Sc. from Imo State University, based in Enugu.
                 </p>
               </div>
@@ -517,8 +477,13 @@ export default function Home() {
                     </p>
                   </div>
                   <div className="flex items-center gap-4 mt-auto">
-                    <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-cihLightBlue/20 text-white font-bold font-sans ring-2 ring-white/10">
-                      MF
+                    <div className="shrink-0 w-12 h-12 relative rounded-full overflow-hidden ring-2 ring-white/20">
+                      <Image 
+                        src="https://res.cloudinary.com/dykvipays/image/upload/556300.jpg_uxifis.jpg"
+                        alt="@MideFreshMart"
+                        fill
+                        className="object-cover"
+                      />
                     </div>
                     <div>
                       <h4 className="text-white font-bold font-sans">@MideFreshMart</h4>
@@ -541,13 +506,8 @@ export default function Home() {
                     </p>
                   </div>
                   <div className="flex items-center gap-4 mt-auto">
-                    <div className="shrink-0 w-12 h-12 relative rounded-full overflow-hidden ring-2 ring-white/20">
-                      <Image 
-                        src="https://res.cloudinary.com/dykvipays/image/upload/556300.jpg_uxifis.jpg"
-                        alt="Mr Olumide"
-                        fill
-                        className="object-cover"
-                      />
+                    <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-cihLightBlue/20 text-white font-bold font-sans ring-2 ring-white/10">
+                      MO
                     </div>
                     <div>
                       <h4 className="text-white font-bold font-sans">Mr Olumide</h4>
@@ -570,8 +530,13 @@ export default function Home() {
                     </p>
                   </div>
                   <div className="flex items-center gap-4 mt-auto">
-                    <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-cihLightBlue/20 text-white font-bold font-sans ring-2 ring-white/10">
-                      MF
+                    <div className="shrink-0 w-12 h-12 relative rounded-full overflow-hidden ring-2 ring-white/20">
+                      <Image 
+                        src="https://res.cloudinary.com/dykvipays/image/upload/556300.jpg_uxifis.jpg"
+                        alt="@MideFreshMart"
+                        fill
+                        className="object-cover"
+                      />
                     </div>
                     <div>
                       <h4 className="text-white font-bold font-sans">@MideFreshMart</h4>
@@ -594,13 +559,8 @@ export default function Home() {
                     </p>
                   </div>
                   <div className="flex items-center gap-4 mt-auto">
-                    <div className="shrink-0 w-12 h-12 relative rounded-full overflow-hidden ring-2 ring-white/20">
-                      <Image 
-                        src="https://res.cloudinary.com/dykvipays/image/upload/556300.jpg_uxifis.jpg"
-                        alt="Mr Olumide"
-                        fill
-                        className="object-cover"
-                      />
+                    <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-cihLightBlue/20 text-white font-bold font-sans ring-2 ring-white/10">
+                      MO
                     </div>
                     <div>
                       <h4 className="text-white font-bold font-sans">Mr Olumide</h4>
