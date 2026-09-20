@@ -4,7 +4,7 @@ import { urlFor } from "../../../sanity/image";
 import Link from "next/link";
 
 export default async function ProgramsCatalog() {
-  const sanityPrograms = await client.fetch("*[_type == 'program']");
+  const sanityPrograms = await client.fetch("*[_type == 'program'] | order(displayOrder asc)");
 
   return (
     <div className="min-h-screen bg-slate-50 font-sans pb-24">

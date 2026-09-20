@@ -10,5 +10,6 @@ export const program = {
     { name: 'duration', type: 'string', title: 'Duration and format' },
     { name: 'cost', type: 'string', title: 'Cost' },
     { name: 'coverImage', type: 'image', title: 'Cover Image', options: { hotspot: true } },
+    { name: 'displayOrder', type: 'number', title: 'Display Order (1 for first, 2 for second, etc.)' },
   ],
 };
