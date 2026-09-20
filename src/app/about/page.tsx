@@ -55,6 +55,7 @@ const buttonBgs = [
 
 export default async function AboutPage() {
   const teamMembers = await client.fetch("*[_type == 'team'] | order(displayOrder asc)");
+  const aboutData = await client.fetch("*[_type == 'about'][0]");
 
   return (
     <div className="min-h-screen bg-slate-50 font-sans pb-24">
@@ -98,14 +99,9 @@ export default async function AboutPage() {
                 <h2 className="text-4xl md:text-5xl font-extrabold text-cihBlue tracking-tight leading-[1.1]">
                   Built by founders,<br /> for founders.
                 </h2>
-                <div className="space-y-4 text-lg text-slate-600 font-medium leading-relaxed">
-                  <p>
-                    Cafe Innovate Hub started with a simple observation: raw talent is everywhere, but access to structured digital training, mentorship, and premium resources is gatekept by geography and cost.
-                  </p>
-                  <p>
-                    We set out to build more than just a bootcamp or a training program. We created a virtual ecosystem where learning digital skills naturally flows into real-world collaboration and business growth.
-                  </p>
-                </div>
+                  <div className="space-y-4 text-lg text-slate-600 font-medium leading-relaxed">
+                    <p>{aboutData?.originStory}</p>
+                  </div>
               </div>
             </MotionDiv>
 
@@ -139,7 +135,7 @@ export default async function AboutPage() {
                 </div>
                 <h3 className="text-xl font-bold text-slate-900 mb-2">Our Mission</h3>
                 <p className="text-sm text-slate-700 font-medium leading-relaxed">
-                  To democratize access to premium digital education and professional networks, empowering the next generation of creatives and tech entrepreneurs to build sustainable businesses.
+                  {aboutData?.mission}
                 </p>
               </MotionDiv>
 
@@ -159,7 +155,7 @@ export default async function AboutPage() {
                 </div>
                 <h3 className="text-xl font-bold text-slate-900 mb-2">Our Vision</h3>
                 <p className="text-sm text-slate-700 font-medium leading-relaxed">
-                  A globally connected network of digital hubs where innovation thrives, transforming talent into global digital leaders who drive real economic impact.
+                  {aboutData?.vision}
                 </p>
               </MotionDiv>
             </div>

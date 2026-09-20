@@ -1,0 +1,1 @@
+export default { name: 'about', title: 'About Page', type: 'document', fields: [ { name: 'title', title: 'Internal Title', type: 'string', initialValue: 'About Page Content' }, { name: 'originStory', title: 'Origin Story', type: 'text' }, { name: 'mission', title: 'Mission', type: 'text' }, { name: 'vision', title: 'Vision', type: 'text' } ] };

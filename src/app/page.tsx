@@ -1,6 +1,7 @@
-"use client";
-
-import { motion, Variants } from "framer-motion";
+import { client } from "../../sanity/client";
+import { urlFor } from "../../sanity/image";
+import { MotionDiv, MotionH1, MotionP, MotionSpan, MotionSection, MotionArticle } from "@/components/ui/motion-wrapper";
+import { Variants } from "framer-motion";
 import AnimatedCounter from "@/components/ui/AnimatedCounter";
 import EclipseButton from "@/components/ui/eclipse-button";
 import FaqAccordion from "@/components/ui/FaqAccordion";
@@ -42,7 +43,8 @@ const fadeInUp: Variants = {
   },
 };
 
-export default function Home() {
+export default async function Home() {
+  const homeData = await client.fetch("*[_type == 'home'][0]");
   return (
     <div className="min-h-screen bg-slate-50 flex flex-col font-sans overflow-x-hidden">
 
@@ -64,7 +66,7 @@ export default function Home() {
         <div className="relative z-20 w-full max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center flex flex-col items-center mt-12 lg:mt-24">
           
           {/* Floating Pill Tags (Decorative) */}
-          <motion.div 
+          <MotionDiv 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.1 }}
@@ -72,8 +74,8 @@ export default function Home() {
           >
             <span className="w-2 h-2 rounded-full bg-cihLightBlue"></span>
             Build Smart
-          </motion.div>
-          <motion.div 
+          </MotionDiv>
+          <MotionDiv 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.3 }}
@@ -81,50 +83,47 @@ export default function Home() {
           >
             <span className="w-2 h-2 rounded-full bg-cihYellow"></span>
             Grow Faster
-          </motion.div>
+          </MotionDiv>
 
-          <motion.h1 
+          <MotionH1 
             className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bricolage font-black text-white leading-[1.1] tracking-tight mb-8"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           >
-            Practical digital skills.<br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-slate-300 to-slate-500">
-              Real business growth.
-            </span>
-          </motion.h1>
+            {homeData?.heroHeadline}
+          </MotionH1>
 
-          <motion.p 
+          <MotionP 
             className="text-lg md:text-xl text-slate-300 max-w-2xl font-medium leading-relaxed mb-10"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
           >
-            Empowering business owners and young professionals with digital skills to improve their business, operations, and career.
-          </motion.p>
+            {homeData?.heroSubheadline}
+          </MotionP>
 
-          <motion.div 
+          <MotionDiv 
             className="flex flex-col sm:flex-row items-center justify-center gap-4 w-full sm:w-auto"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
           >
-            <Link href="/programs">
+            <Link href={homeData?.primaryCtaLink || "/programs"}>
               <EclipseButton variant="yellow" className="w-full sm:w-auto px-8 py-4 text-base">
-                Explore Our Trainings
+                {homeData?.primaryCtaText}
               </EclipseButton>
             </Link>
-            <Link href="/community">
+            <Link href={homeData?.secondaryCtaLink || "/community"}>
               <EclipseButton variant="ghost" className="w-full sm:w-auto px-8 py-4 text-base">
-                Join the Community
+                {homeData?.secondaryCtaText}
               </EclipseButton>
             </Link>
-          </motion.div>
+          </MotionDiv>
         </div>
 
         {/* Impact Numbers integrated beautifully below */}
-        <motion.div 
+        <MotionDiv 
           className="relative z-20 w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 mt-32 lg:mt-48"
           initial="hidden"
           whileInView="visible"
@@ -139,28 +138,15 @@ export default function Home() {
             </div>
             
             <div className="lg:col-span-3 grid grid-cols-2 md:grid-cols-4 gap-8">
-              <motion.div variants={cardVariants} className="flex flex-col">
-                <span className="text-5xl font-bricolage font-black text-cihYellow mb-2">50+</span>
-                <span className="text-sm text-slate-400 font-medium uppercase tracking-widest">Businesses Trained</span>
-              </motion.div>
-
-              <motion.div variants={cardVariants} className="flex flex-col">
-                <span className="text-5xl font-bricolage font-black text-cihLightBlue mb-2">200+</span>
-                <span className="text-sm text-slate-400 font-medium uppercase tracking-widest">Professionals</span>
-              </motion.div>
-
-              <motion.div variants={cardVariants} className="flex flex-col">
-                <span className="text-5xl font-bricolage font-black text-white mb-2">5</span>
-                <span className="text-sm text-slate-400 font-medium uppercase tracking-widest">Cohorts Run</span>
-              </motion.div>
-
-              <motion.div variants={cardVariants} className="flex flex-col">
-                <span className="text-3xl font-bricolage font-black text-white mb-3">Bi-monthly</span>
-                <span className="text-sm text-slate-400 font-medium uppercase tracking-widest leading-relaxed">Free Live<br/>Webinars</span>
-              </motion.div>
+              {homeData?.stats?.map((stat: any, index: number) => (
+                <MotionDiv key={index} variants={cardVariants} className="flex flex-col">
+                  <span className={`text-5xl font-bricolage font-black mb-2 ${index === 0 ? 'text-[#facc15]' : index === 1 ? 'text-[#3b82f6]' : 'text-white'}`}>{stat.value}</span>
+                  <span className="text-sm text-slate-400 font-medium uppercase tracking-widest">{stat.label}</span>
+                </MotionDiv>
+              ))}
             </div>
           </div>
-        </motion.div>
+        </MotionDiv>
       </section>
 
 
@@ -175,7 +161,7 @@ export default function Home() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-8 items-center">
             
             {/* Left Content */}
-            <motion.div
+            <MotionDiv
               initial={{ opacity: 0, x: -30 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true, margin: "-40px" }}
@@ -205,10 +191,10 @@ export default function Home() {
                   </svg>
                 </Link>
               </div>
-            </motion.div>
+            </MotionDiv>
 
             {/* Right Image / Composition */}
-            <motion.div
+            <MotionDiv
               initial={{ opacity: 0, scale: 0.95 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true, margin: "-40px" }}
@@ -229,7 +215,7 @@ export default function Home() {
               </div>
 
               {/* Floating Stat Card overlapping */}
-              <motion.div 
+              <MotionDiv 
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
@@ -242,10 +228,10 @@ export default function Home() {
                   </div>
                   <span className="text-xs font-bold text-slate-400 uppercase tracking-widest">Accessible</span>
                 </div>
-                <span className="text-3xl font-bricolage font-black text-slate-900">100%</span>
+                <span className="text-3xl font-bricolage font-black text-slate-900">{homeData?.badgeTitle}</span>
                 <span className="text-sm font-medium text-slate-500 leading-tight">Focus on practical, hands-on growth</span>
-              </motion.div>
-            </motion.div>
+              </MotionDiv>
+            </MotionDiv>
 
           </div>
         </div>
@@ -261,7 +247,7 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           
           {/* Header Row */}
-          <motion.div 
+          <MotionDiv 
             className="flex flex-col items-center text-center gap-6 mb-12 mx-auto"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -283,10 +269,10 @@ export default function Home() {
                 </EclipseButton>
               </Link>
             </div>
-          </motion.div>
+          </MotionDiv>
 
           {/* Carousel Row */}
-          <motion.div 
+          <MotionDiv 
             className="w-full overflow-hidden"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -322,7 +308,7 @@ export default function Home() {
                 href: "/programs/d-dam"
               }
             ]} />
-          </motion.div>
+          </MotionDiv>
         </div>
       </section>
 
@@ -495,7 +481,7 @@ export default function Home() {
             </div>
           </div>
           
-          <motion.div 
+          <MotionDiv 
             className="grid grid-cols-1 md:grid-cols-3 gap-8"
             initial="hidden"
             whileInView="visible"
@@ -503,7 +489,7 @@ export default function Home() {
             variants={containerVariants}
           >
             {/* Article 1 */}
-            <motion.article 
+            <MotionArticle 
               variants={cardVariants}
               className="bg-white border border-slate-200 rounded-2xl overflow-hidden group flex flex-col hover:border-slate-300 transition-colors shadow-sm hover:shadow-lg"
             >
@@ -533,10 +519,10 @@ export default function Home() {
                   </svg>
                 </a>
               </div>
-            </motion.article>
+            </MotionArticle>
 
             {/* Article 2 */}
-            <motion.article 
+            <MotionArticle 
               variants={cardVariants}
               className="bg-white border border-slate-200 rounded-2xl overflow-hidden group flex flex-col hover:border-slate-300 transition-colors shadow-sm hover:shadow-lg"
             >
@@ -566,10 +552,10 @@ export default function Home() {
                   </svg>
                 </a>
               </div>
-            </motion.article>
+            </MotionArticle>
 
             {/* Article 3 */}
-            <motion.article 
+            <MotionArticle 
               variants={cardVariants}
               className="bg-white border border-slate-200 rounded-2xl overflow-hidden group flex flex-col hover:border-slate-300 transition-colors shadow-sm hover:shadow-lg"
             >
@@ -599,8 +585,8 @@ export default function Home() {
                   </svg>
                 </a>
               </div>
-            </motion.article>
-          </motion.div>
+            </MotionArticle>
+          </MotionDiv>
         </div>
       </section>
     </div>
