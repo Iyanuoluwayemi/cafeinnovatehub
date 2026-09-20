@@ -39,18 +39,17 @@ export interface OfferCardProps {
 
 export function OfferCard({ title, description, imageSrc, href = "#", tag }: OfferCardProps) {
   return (
-    <Link 
-      href={href}
+    <div 
       className="flex flex-col w-[320px] min-h-[440px] rounded-[2rem] group shrink-0 snap-start bg-white border border-slate-200 shadow-sm hover:shadow-2xl hover:-translate-y-1 transition-all duration-500 p-3"
     >
       <div className="flex flex-col flex-1 p-5 pb-4">
         {/* Header (Tag & Arrow) */}
-        <div className="flex justify-between items-start mb-6">
+        <div className="flex justify-between items-start gap-4 mb-6">
           {tag && (
-            <span className="text-xs font-bold text-slate-400 uppercase tracking-widest">{tag}</span>
+            <span className="text-xs font-bold text-slate-400 uppercase tracking-widest flex-1">{tag}</span>
           )}
-          <div className="w-10 h-10 rounded-full border border-slate-200 flex items-center justify-center text-slate-400 group-hover:bg-cihBlue group-hover:text-white group-hover:border-cihBlue transition-colors group-hover:-rotate-45 shadow-sm">
-            <ArrowRightIcon className="w-5 h-5" />
+          <div className="flex items-center justify-center w-8 h-8 rounded-full border border-slate-200 flex-shrink-0 text-slate-400 group-hover:bg-[#0f172a] group-hover:text-white transition-colors group-hover:-rotate-45 shadow-sm">
+            <ArrowRightIcon className="w-4 h-4" />
           </div>
         </div>
 
@@ -78,7 +77,7 @@ export function OfferCard({ title, description, imageSrc, href = "#", tag }: Off
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
         </div>
       </div>
-    </Link>
+    </div>
   );
 }
 
