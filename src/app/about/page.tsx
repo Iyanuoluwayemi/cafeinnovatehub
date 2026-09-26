@@ -97,7 +97,7 @@ export default async function AboutPage() {
                   Our Origin Story
                 </span>
                 <h2 className="text-4xl md:text-5xl font-extrabold text-cihBlue tracking-tight leading-[1.1]">
-                  Built by founders,<br /> for founders.
+                  How It All Started
                 </h2>
                   <div className="space-y-4 text-lg text-slate-600 font-medium leading-relaxed">
                     <p>{aboutData?.originStory}</p>
@@ -201,7 +201,7 @@ export default async function AboutPage() {
                 >
                   
                   {/* IMAGE BLOCK */}
-                  <div className={`relative rounded-[2rem] overflow-hidden aspect-[3/4] shadow-md group bg-slate-200 ${isEven ? 'order-1' : 'order-2'}`}>
+                  <div className={"relative rounded-[2rem] overflow-hidden aspect-[3/4] shadow-md group bg-slate-200 order-1"}>
                     {member.image ? (
                       <Image 
                         src={urlFor(member.image).url()} 
@@ -240,7 +240,7 @@ export default async function AboutPage() {
                   </div>
 
                   {/* TEXT BLOCK */}
-                  <div className={`rounded-[2rem] p-8 shadow-md flex flex-col justify-center ${colorClass} ${isEven ? 'order-2' : 'order-1'}`}>
+                  <div className={`rounded-[2rem] p-8 shadow-md flex flex-col justify-center ${colorClass} order-2`}>
                      <h3 className="text-xl font-bold mb-4">{member.role}</h3>
                      <p className="text-sm opacity-90 leading-relaxed">{member.bio}</p>
                   </div>
