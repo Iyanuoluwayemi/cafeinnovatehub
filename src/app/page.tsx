@@ -46,6 +46,8 @@ const fadeInUp: Variants = {
 export default async function Home() {
   const homeData = await client.fetch("*[_type == 'home'][0]");
   const sanityPrograms = await client.fetch("*[_type == 'program'] | order(displayOrder asc)");
+  const getYoutubeId = (url?: string) => { if (!url) return null; const match = url.match(/(?:youtu\.be\/|youtube\.com\/(?:.*v=|.*\/|.*embed\/))([^&?]+)/); return match ? match[1] : null; };
+  const videoId = getYoutubeId(homeData?.featureVideoUrl);
   return (
     <div className="min-h-screen bg-slate-50 flex flex-col font-sans overflow-x-hidden">
 
@@ -203,20 +205,13 @@ export default async function Home() {
               <div className="absolute top-10 right-10 w-[80%] h-[80%] bg-blue-50 rounded-[3rem] -z-10 rotate-6"></div>
               
               {/* The Standardized Image Container */}
-              <div className="relative w-[90%] h-[90%] rounded-3xl overflow-hidden shadow-2xl border-4 border-white bg-slate-100">
-                {homeData?.featureVideoUrl ? (
-                  <iframe 
-                    src={homeData.featureVideoUrl} 
-                    title="Feature Video" 
-                    frameBorder="0" 
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                    allowFullScreen
-                    className="absolute top-0 left-0 w-full h-full object-cover"
-                  ></iframe>
+              {videoId ? (
+                  <iframe className="w-full aspect-video rounded-xl shadow-lg" src={`https://www.youtube.com/embed/${videoId}?autoplay=1&mute=1`} allow="autoplay; encrypted-media; picture-in-picture" allowFullScreen></iframe>
                 ) : (
-                  <div className="flex items-center justify-center w-full h-full text-slate-400 font-medium">Video coming soon</div>
+                  <div className="relative w-[90%] h-[90%] rounded-3xl overflow-hidden shadow-2xl border-4 border-white bg-slate-100 flex items-center justify-center">
+                    <div className="text-slate-400 font-medium">Video coming soon</div>
+                  </div>
                 )}
-              </div>
 
               {/* Floating Stat Card overlapping */}
               <MotionDiv 
@@ -581,3 +576,6 @@ export default async function Home() {
     </div>
   );
 }
+
+
+
