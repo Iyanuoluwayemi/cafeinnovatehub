@@ -11,5 +11,7 @@ export const program = {
     { name: 'cost', type: 'string', title: 'Cost' },
     { name: 'coverImage', type: 'image', title: 'Cover Image', options: { hotspot: true } },
     { name: 'displayOrder', type: 'number', title: 'Display Order (1 for first, 2 for second, etc.)' },
+    { name: 'videoEmbedCode', title: 'YouTube Embed Code', type: 'text', description: 'Paste the full <iframe> code here.' },
+    { name: 'registrationLink', title: 'Registration Form Link', type: 'string', description: 'Paste the Google Form or waitlist link here.' }
   ],
 };

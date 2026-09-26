@@ -1,7 +1,17 @@
 import Image from "next/image";
 import EclipseButton from "@/components/ui/eclipse-button";
+import { client } from "../../../../sanity/client";
+import { urlFor } from "../../../../sanity/image";
+import { notFound } from "next/navigation";
 
-export default function DigitalMarketingProgram() {
+export default async function DynamicProgramPage({ params }: { params: { slug: string } }) {
+  const query = `*[_type == "program" && slug.current == $slug][0]`;
+  const program = await client.fetch(query, { slug: params.slug });
+
+  if (!program) {
+    notFound();
+  }
+
   return (
     <div className="min-h-screen bg-slate-50 font-sans pb-24">
       {/* Hero Section (Gradient + Video) */}
@@ -12,24 +22,32 @@ export default function DigitalMarketingProgram() {
           <div className="space-y-6">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/20 backdrop-blur-md border border-white/20 text-white text-sm font-bold tracking-widest uppercase">
               <span className="w-2 h-2 rounded-full bg-cihBlue"></span>
-              4 Weeks
+              {program.duration || 'Program'}
             </div>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bricolage font-black text-white leading-tight max-w-xl">
-              Digital Marketing
+              {program.title}
             </h1>
             <p className="text-lg md:text-xl text-white/90 font-medium max-w-lg">
-              A practical training that teaches you how to market and grow a business online, using tools and strategies you can start applying immediately.
+              {program.shortDescription}
             </p>
           </div>
 
-          {/* Hero Right (Video Player) */}
+          {/* Hero Right (Video Player or Cover) */}
           <div className="w-full aspect-video rounded-3xl overflow-hidden shadow-2xl border border-white/20 bg-slate-900 relative">
-            <iframe 
-              src="YOUTUBE_LINK_HERE" 
-              className="w-full h-full absolute inset-0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-              allowFullScreen
-            />
+            {program.videoEmbedCode ? (
+              <div className="aspect-video w-full overflow-hidden rounded-xl [&>iframe]:w-full [&>iframe]:h-full" dangerouslySetInnerHTML={{ __html: program.videoEmbedCode }} />
+            ) : program.coverImage ? (
+              <Image 
+                src={urlFor(program.coverImage).url()} 
+                alt={program.title}
+                fill
+                className="object-cover"
+              />
+            ) : (
+              <div className="flex items-center justify-center w-full h-full text-slate-500 font-medium">
+                Media coming soon
+              </div>
+            )}
           </div>
 
         </div>
@@ -46,7 +64,7 @@ export default function DigitalMarketingProgram() {
             <div className="bg-white rounded-[2rem] p-8 shadow-sm border border-slate-100">
               <h2 className="text-2xl font-bold text-cihBlue mb-4">What it is</h2>
               <p className="text-slate-600 font-medium leading-relaxed text-lg">
-                A practical training that teaches you how to market and grow a business online, using tools and strategies you can start applying immediately.
+                {program.shortDescription}
               </p>
             </div>
 
@@ -54,19 +72,19 @@ export default function DigitalMarketingProgram() {
             <div className="bg-white rounded-[2rem] p-8 shadow-sm border border-slate-100">
               <h2 className="text-2xl font-bold text-cihBlue mb-4">Who it is for</h2>
               <p className="text-slate-600 font-medium leading-relaxed text-lg">
-                Small business owners, aspiring digital marketing professionals, and anyone who wants to stop guessing and start selling sustainably online.
+                {program.targetAudience}
               </p>
             </div>
 
-            {/* What you will learn */}
+            {/* What you will learn - Hardcoded template block */}
             <div className="bg-white rounded-[2rem] p-8 shadow-sm border border-slate-100">
               <h2 className="text-2xl font-bold text-cihBlue mb-6">What you will learn</h2>
               <ul className="space-y-4">
                 {[
-                  "How to attract customers and build visibility online",
-                  "How to plan and create content that actually converts",
-                  "How to use free and affordable digital tools to market like a professional",
-                  "The fundamentals of running a simple, effective marketing strategy"
+                  "The basics and fundamentals",
+                  "How to use standard industry tools",
+                  "How to build a consistent look and system",
+                  "Intensive practice and case studies"
                 ].map((item, index) => (
                   <li key={index} className="flex items-start gap-4">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-cihLightBlue shrink-0 mt-0.5">
@@ -100,18 +118,20 @@ export default function DigitalMarketingProgram() {
               <div className="space-y-6">
                 <div>
                   <div className="text-sm font-bold text-slate-400 uppercase tracking-widest mb-2">Duration and format</div>
-                  <p className="text-slate-800 font-bold mb-2">Live Online classes across 4 weeks</p>
+                  <p className="text-slate-800 font-bold mb-2">{program.duration}</p>
                 </div>
 
                 <div className="pt-4 border-t border-slate-100">
                   <div className="text-sm font-bold text-slate-400 uppercase tracking-widest mb-2">Cost</div>
-                  <p className="text-2xl font-black text-cihBlue">20,000 NGN</p>
+                  <p className="text-2xl font-black text-cihBlue">{program.cost}</p>
                 </div>
 
                 <div className="pt-6">
-                  <EclipseButton variant="primary" className="w-full justify-center py-4 text-lg">
-                    Apply Now
-                  </EclipseButton>
+                  <a href={program.registrationLink || '#'} className="block w-full">
+                    <EclipseButton variant="primary" className="w-full justify-center py-4 text-lg">
+                      Apply Now
+                    </EclipseButton>
+                  </a>
                 </div>
               </div>
 
