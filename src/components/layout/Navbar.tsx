@@ -31,6 +31,7 @@ export default function Navbar() {
     { name: "Programs", href: "/programs" },
     { name: "Join the Community", href: "/community" },
     { name: "Blog", href: "/blog" },
+    { name: "Donate", href: "/donate" },
   ];
 
   if (pathname && pathname.startsWith('/studio')) return null;
