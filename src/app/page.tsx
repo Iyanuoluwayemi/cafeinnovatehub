@@ -5,7 +5,7 @@ import { Variants } from "framer-motion";
 import AnimatedCounter from "@/components/ui/AnimatedCounter";
 import EclipseButton from "@/components/ui/eclipse-button";
 import FaqAccordion from "@/components/ui/FaqAccordion";
-import { OfferCarousel, OfferCardProps } from "@/components/ui/offer-carousel";
+import { OfferCarousel, OfferCard, OfferCardProps } from "@/components/ui/offer-carousel";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -283,15 +283,20 @@ export default async function Home() {
             viewport={{ once: true, margin: "-50px" }}
             transition={{ duration: 0.7, delay: 0.2, ease: [0.16, 1, 0.3, 1] as const }}
           >
-            <OfferCarousel offers={sanityPrograms.map((p: any) => ({
-                title: p.title || "",
-                description: p.shortDescription || "",
-                tag: p.duration || "",
-                imageSrc: p.coverImage ? urlFor(p.coverImage).url() : "https://res.cloudinary.com/dykvipays/image/upload/f_auto,q_auto,w_800/DMM_pz1swq.png",
-                brandName: "Cafe Innovate Hub",
-                brandLogoSrc: "https://res.cloudinary.com/dykvipays/image/upload/f_auto,q_auto,w_250,c_scale/CIH_Black_logo_fadnbk.png",
-                href: `/programs/${p.slug?.current || ''}`
-              }))} />
+            <OfferCarousel>
+              {sanityPrograms.map((p: any, index: number) => (
+                <Link key={p._id || index} href={`/programs/${p.slug?.current || ''}`} className="snap-start shrink-0 h-auto flex">
+                  <OfferCard
+                    title={p.title || ""}
+                    description={p.shortDescription || ""}
+                    tag={p.duration || ""}
+                    imageSrc={p.coverImage ? urlFor(p.coverImage).url() : "https://res.cloudinary.com/dykvipays/image/upload/f_auto,q_auto,w_800/DMM_pz1swq.png"}
+                    brandName="Cafe Innovate Hub"
+                    brandLogoSrc="https://res.cloudinary.com/dykvipays/image/upload/f_auto,q_auto,w_250,c_scale/CIH_Black_logo_fadnbk.png"
+                  />
+                </Link>
+              ))}
+            </OfferCarousel>
           </MotionDiv>
         </div>
       </section>

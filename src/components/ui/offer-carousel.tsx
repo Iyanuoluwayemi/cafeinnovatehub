@@ -81,11 +81,9 @@ export function OfferCard({ title, description, imageSrc, href = "#", tag }: Off
   );
 }
 
-export interface OfferCarouselProps {
-  offers: OfferCardProps[];
-}
+export interface OfferCarouselProps { children?: React.ReactNode; }
 
-export function OfferCarousel({ offers }: OfferCarouselProps) {
+export function OfferCarousel({ children }: OfferCarouselProps) {
   const scrollRef = useRef<HTMLDivElement>(null);
 
   const scroll = (direction: "left" | "right") => {
@@ -99,9 +97,7 @@ export function OfferCarousel({ offers }: OfferCarouselProps) {
     }
   };
 
-  if (!offers || offers.length === 0) {
-    return null;
-  }
+  
 
   return (
     <div className="relative w-full max-w-7xl mx-auto group/carousel">
@@ -111,11 +107,7 @@ export function OfferCarousel({ offers }: OfferCarouselProps) {
         className="flex gap-6 overflow-x-auto snap-x snap-mandatory scrollbar-hide pb-8 pt-4 px-4 sm:px-6 lg:px-8 -mx-4 sm:-mx-6 lg:-mx-8"
         style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
       >
-        {offers.map((offer, index) => (
-          <div key={index} className="snap-start shrink-0 h-auto flex">
-            <OfferCard {...offer} />
-          </div>
-        ))}
+        {children}
       </div>
 
       {/* Navigation Controls */}
@@ -138,3 +130,4 @@ export function OfferCarousel({ offers }: OfferCarouselProps) {
     </div>
   );
 }
+
