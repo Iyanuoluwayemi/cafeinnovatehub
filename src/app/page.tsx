@@ -205,12 +205,8 @@ export default async function Home() {
               <div className="absolute top-10 right-10 w-[80%] h-[80%] bg-blue-50 rounded-[3rem] -z-10 rotate-6"></div>
               
               {/* The Standardized Image Container */}
-              {videoId ? (
-                  <iframe className="w-full aspect-video rounded-xl shadow-lg" src={`https://www.youtube.com/embed/${videoId}?autoplay=1&mute=1`} allow="autoplay; encrypted-media; picture-in-picture" allowFullScreen></iframe>
-                ) : (
-                  <div className="relative w-[90%] h-[90%] rounded-3xl overflow-hidden shadow-2xl border-4 border-white bg-slate-100 flex items-center justify-center">
-                    <div className="text-slate-400 font-medium">Video coming soon</div>
-                  </div>
+              {videoId && (
+                  <iframe className="w-full aspect-video rounded-xl shadow-lg" src={`https://www.youtube.com/embed/${videoId}?autoplay=1&mute=1`} allow="autoplay; encrypted-media; picture-in-picture" allowFullScreen />
                 )}
 
               {/* Floating Stat Card overlapping */}
