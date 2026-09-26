@@ -13,6 +13,8 @@ export default async function DynamicProgramPage({ params }: { params: Promise<{
     notFound();
   }
 
+  const autoplayEmbed = program.videoEmbedCode?.replace(/src="([^"]+)"/, (match: string, url: string) => `src="${url}${url.includes('?') ? '&' : '?'}autoplay=1&mute=1"`);
+
   return (
     <div className="min-h-screen bg-slate-50 font-sans pb-24">
       {/* Hero Section (Gradient + Video) */}
@@ -36,7 +38,7 @@ export default async function DynamicProgramPage({ params }: { params: Promise<{
           {/* Hero Right (Video Player or Cover) */}
           <div className="w-full aspect-video rounded-3xl overflow-hidden shadow-2xl border border-white/20 bg-slate-900 relative">
             {program.videoEmbedCode ? (
-              <div className="aspect-video w-full overflow-hidden rounded-xl [&>iframe]:w-full [&>iframe]:h-full" dangerouslySetInnerHTML={{ __html: program.videoEmbedCode }} />
+              <div className="aspect-video w-full overflow-hidden rounded-xl [&>iframe]:w-full [&>iframe]:h-full" dangerouslySetInnerHTML={{ __html: autoplayEmbed }} />
             ) : program.coverImage ? (
               <Image 
                 src={urlFor(program.coverImage).url()} 
