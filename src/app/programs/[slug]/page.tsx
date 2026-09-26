@@ -4,9 +4,10 @@ import { client } from "../../../../sanity/client";
 import { urlFor } from "../../../../sanity/image";
 import { notFound } from "next/navigation";
 
-export default async function DynamicProgramPage({ params }: { params: { slug: string } }) {
+export default async function DynamicProgramPage({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
   const query = `*[_type == "program" && slug.current == $slug][0]`;
-  const program = await client.fetch(query, { slug: params.slug });
+  const program = await client.fetch(query, { slug });
 
   if (!program) {
     notFound();
