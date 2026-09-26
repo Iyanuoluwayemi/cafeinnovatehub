@@ -22,7 +22,7 @@ export default async function ProgramsCatalog() {
 
       {/* Grid */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 justify-items-center">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8 justify-items-center">
           {sanityPrograms.map((program: any, idx: number) => (
             <Link key={program._id || idx} href={`/programs/${program.slug?.current || ''}`} className="w-full flex justify-center">
               <OfferCard 

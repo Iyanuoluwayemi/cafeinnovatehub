@@ -24,12 +24,12 @@ fields: [
 },
 
 /* FEATURE SECTION */
-{ name: 'featureTag', title: 'Eyebrow Tag (e.g. DIGITAL SKILLS ACCELERATOR)', type: 'string', group: 'feature' },
-{ name: 'featureHeadline', title: 'Feature Headline', type: 'string', group: 'feature' },
-{ name: 'featureDescription', title: 'Feature Description', type: 'text', group: 'feature' },
+{ name: 'featureTag', title: 'Eyebrow Tag', type: 'string', group: 'feature', initialValue: 'What We Do' },
+{ name: 'featureHeadline', title: 'Feature Headline', type: 'string', group: 'feature', initialValue: 'What We Do' },
+{ name: 'featureDescription', title: 'Feature Description', type: 'text', group: 'feature', initialValue: 'Cafe Innovate Hub is a digital skills accelerator empowering MSMEs for a digital future.' },
 { name: 'featureLinkText', title: 'Link Text', type: 'string', group: 'feature' },
 { name: 'featureLinkUrl', title: 'Link URL', type: 'string', group: 'feature' },
-{ name: 'featureImage', title: 'Feature Side Image', type: 'image', options: { hotspot: true }, group: 'feature' },
+{ name: 'featureVideoUrl', title: 'Feature YouTube Video URL', type: 'string', group: 'feature' },
 { name: 'badgeTitle', title: 'Floating Badge Title (e.g. 100%)', type: 'string', group: 'feature' },
 { name: 'badgeSubtitle', title: 'Floating Badge Subtitle', type: 'string', group: 'feature' }
 ]

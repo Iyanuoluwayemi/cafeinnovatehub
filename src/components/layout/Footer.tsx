@@ -17,7 +17,7 @@ export default function Footer() {
               />
             </div>
             <p className="max-w-md text-sm leading-relaxed text-slate-300 font-sans">
-              Fueling bold ideas and brewing high-impact innovation. A dynamic virtual ecosystem connecting innovators, founders, technologists, and creatives.
+              Cafe Innovate Hub is a digital skills accelerator empowering MSMEs for a digital future.
             </p>
             {/* Social Links */}
             <div className="flex items-center gap-4 pt-4">

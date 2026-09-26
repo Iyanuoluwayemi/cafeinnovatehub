@@ -45,6 +45,7 @@ const fadeInUp: Variants = {
 
 export default async function Home() {
   const homeData = await client.fetch("*[_type == 'home'][0]");
+  const sanityPrograms = await client.fetch("*[_type == 'program'] | order(displayOrder asc)");
   return (
     <div className="min-h-screen bg-slate-50 flex flex-col font-sans overflow-x-hidden">
 
@@ -170,17 +171,14 @@ export default async function Home() {
             >
               <span className="text-sm font-bold text-cihLightBlue uppercase tracking-widest flex items-center gap-2">
                 <span className="w-2 h-2 rounded-full bg-cihLightBlue"></span>
-                Digital Skills Accelerator
+                {homeData?.featureTag || "Empowering MSMEs for a digital future"}
               </span>
               <h2 className="text-4xl md:text-5xl lg:text-6xl font-bricolage font-black text-cihBlue leading-[1.1] tracking-tight">
-                Turn a phone and internet connection into real opportunity.
+                {homeData?.featureHeadline || "What We Do"}
               </h2>
               <div className="text-lg text-slate-600 font-medium leading-relaxed space-y-6">
                 <p>
-                  Cafe Innovate Hub is helping small business owners and young professionals grow through practical, accessible digital skills training programs.
-                </p>
-                <p>
-                  From digital marketing to graphic design, we keep our trainings affordable—and often free—so cost is never the reason someone gets left behind.
+                  {homeData?.featureDescription || "Cafe Innovate Hub is a digital skills accelerator empowering MSMEs for a digital future."}
                 </p>
               </div>
               <div className="pt-4">
@@ -205,13 +203,19 @@ export default async function Home() {
               <div className="absolute top-10 right-10 w-[80%] h-[80%] bg-blue-50 rounded-[3rem] -z-10 rotate-6"></div>
               
               {/* The Standardized Image Container */}
-              <div className="relative w-[90%] h-[90%] rounded-3xl overflow-hidden shadow-2xl border-4 border-white">
-                <Image
-                  src="https://res.cloudinary.com/dykvipays/image/upload/f_auto,q_auto,w_800/DMM_pz1swq.png"
-                  alt="Cafe Innovate Hub Training"
-                  fill
-                  className="object-cover"
-                />
+              <div className="relative w-[90%] h-[90%] rounded-3xl overflow-hidden shadow-2xl border-4 border-white bg-slate-100">
+                {homeData?.featureVideoUrl ? (
+                  <iframe 
+                    src={homeData.featureVideoUrl} 
+                    title="Feature Video" 
+                    frameBorder="0" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                    allowFullScreen
+                    className="absolute top-0 left-0 w-full h-full object-cover"
+                  ></iframe>
+                ) : (
+                  <div className="flex items-center justify-center w-full h-full text-slate-400 font-medium">Video coming soon</div>
+                )}
               </div>
 
               {/* Floating Stat Card overlapping */}
@@ -279,35 +283,15 @@ export default async function Home() {
             viewport={{ once: true, margin: "-50px" }}
             transition={{ duration: 0.7, delay: 0.2, ease: [0.16, 1, 0.3, 1] as const }}
           >
-            <OfferCarousel offers={[
-              {
-                title: "Graphic Design Bootcamp",
-                description: "A free training for beginners ready to add design to their skill set.",
-                tag: "8 Weeks",
-                imageSrc: "https://res.cloudinary.com/dykvipays/image/upload/f_auto,q_auto,w_800,c_scale/Learn_Graphic_Design_from_Scratch_6_hgcjru.png",
+            <OfferCarousel offers={sanityPrograms.map((p: any) => ({
+                title: p.title || "",
+                description: p.shortDescription || "",
+                tag: p.duration || "",
+                imageSrc: p.coverImage ? urlFor(p.coverImage).url() : "https://res.cloudinary.com/dykvipays/image/upload/f_auto,q_auto,w_800/DMM_pz1swq.png",
                 brandName: "Cafe Innovate Hub",
                 brandLogoSrc: "https://res.cloudinary.com/dykvipays/image/upload/f_auto,q_auto,w_250,c_scale/CIH_Black_logo_fadnbk.png",
-                href: "/programs/graphic-design"
-              },
-              {
-                title: "Digital Marketing",
-                description: "Practical marketing skills to help any business attract customers and sell online.",
-                tag: "4 Weeks",
-                imageSrc: "https://res.cloudinary.com/dykvipays/image/upload/f_auto,q_auto,w_800,c_scale/DMM_pz1swq.png",
-                brandName: "Cafe Innovate Hub",
-                brandLogoSrc: "https://res.cloudinary.com/dykvipays/image/upload/f_auto,q_auto,w_250,c_scale/CIH_Black_logo_fadnbk.png",
-                href: "/programs/digital-marketing"
-              },
-              {
-                title: "Driving Digital Adoption for MSMEs (D-DAM)",
-                description: "Our flagship Digital Transformation program designed to help MSMEs adopt the digital tools and systems to grow.",
-                tag: "Coming Soon",
-                imageSrc: "https://res.cloudinary.com/dykvipays/image/upload/f_auto,q_auto,w_800,c_scale/Upscale_image_remove_noise_2K_20260919135611_mctuby.jpg",
-                brandName: "Cafe Innovate Hub",
-                brandLogoSrc: "https://res.cloudinary.com/dykvipays/image/upload/f_auto,q_auto,w_250,c_scale/CIH_Black_logo_fadnbk.png",
-                href: "/programs/d-dam"
-              }
-            ]} />
+                href: `/programs/${p.slug?.current || ''}`
+              }))} />
           </MotionDiv>
         </div>
       </section>
