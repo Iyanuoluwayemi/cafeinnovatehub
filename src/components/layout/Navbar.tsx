@@ -51,7 +51,7 @@ export default function Navbar() {
             height={30} 
             alt="Cafe Innovate Hub" 
             priority
-            className="object-contain"
+            className="object-contain w-auto h-auto"
           />
         </Link>
 

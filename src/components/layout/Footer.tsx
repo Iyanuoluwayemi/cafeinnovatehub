@@ -16,7 +16,7 @@ export default async function Footer() {
                 width={160} 
                 height={40} 
                 alt="Cafe Innovate Hub" 
-                className="object-contain brightness-0 invert"
+                className="object-contain brightness-0 invert w-auto h-auto"
               />
             </div>
             <p className="max-w-md text-sm leading-relaxed text-slate-300 font-sans">

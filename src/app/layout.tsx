@@ -31,10 +31,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html
-      lang="en"
+    <html lang="en"
       className={`${bricolageGrotesque.variable} ${figtree.variable} h-full antialiased scroll-smooth`}
-    >
+     data-scroll-behavior="smooth">
       <body className="min-h-full flex flex-col font-sans bg-slate-50 text-slate-900 selection:bg-cihBlue selection:text-white">
         <Navbar />
         <main className="flex-1">{children}</main>

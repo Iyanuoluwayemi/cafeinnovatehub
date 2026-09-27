@@ -62,7 +62,7 @@ export default async function Home() {
           <Image
             src="https://res.cloudinary.com/dykvipays/image/upload/f_auto,q_auto,w_1920/Upscale_image_remove_noise_2K_20260919135611_mctuby.jpg"
             alt="Cafe Innovate Hub Immersive Background"
-            fill
+            fill sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
             priority
             className="object-cover object-top opacity-50 mix-blend-luminosity"
           />
@@ -346,7 +346,7 @@ export default async function Home() {
                       <Image 
                         src="https://res.cloudinary.com/dykvipays/image/upload/556300.jpg_uxifis.jpg"
                         alt="@MideFreshMart"
-                        fill
+                        fill sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                         className="object-cover"
                       />
                     </div>
@@ -399,7 +399,7 @@ export default async function Home() {
                       <Image 
                         src="https://res.cloudinary.com/dykvipays/image/upload/556300.jpg_uxifis.jpg"
                         alt="@MideFreshMart"
-                        fill
+                        fill sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                         className="object-cover"
                       />
                     </div>
@@ -479,7 +479,7 @@ export default async function Home() {
                   <Image 
                     src={post.mainImage ? urlFor(post.mainImage).url() : "https://res.cloudinary.com/dykvipays/image/upload/f_auto,q_auto,w_600/Upscale_image_remove_noise_2K_20260919135611_mctuby.jpg"} 
                     alt={post.title} 
-                    fill 
+                    fill sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" 
                     className="object-cover group-hover:scale-105 transition-transform duration-500" 
                   />
                   <div className="absolute inset-0 bg-slate-900/10 group-hover:bg-transparent transition-colors duration-500"></div>
