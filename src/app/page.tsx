@@ -208,9 +208,7 @@ export default async function Home() {
               <div className="absolute top-10 right-10 w-[80%] h-[80%] bg-blue-50 rounded-[3rem] -z-10 rotate-6"></div>
               
               {/* The Standardized Image Container */}
-              {videoId && (
-                  <iframe className="w-full aspect-video rounded-xl shadow-lg" src={`https://www.youtube.com/embed/${videoId}?autoplay=1&mute=1`} allow="autoplay; encrypted-media; picture-in-picture" allowFullScreen />
-                )}
+              {videoId ? <iframe className="w-full aspect-video rounded-xl shadow-lg" src={`https://www.youtube.com/embed/${videoId}`} allow="encrypted-media; picture-in-picture" allowFullScreen /> : null}
 
               {/* Floating Stat Card overlapping */}
               <MotionDiv 
