@@ -46,6 +46,9 @@ const fadeInUp: Variants = {
 export default async function Home() {
   const homeData = await client.fetch("*[_type == 'home'][0]");
   const sanityPrograms = await client.fetch("*[_type == 'program'] | order(displayOrder asc)");
+  const sanityTestimonials = await client.fetch("*[_type == 'testimonial']");
+  const sanityInsights = await client.fetch("*[_type == 'post'] | order(publishedAt desc)[0...3]");
+  const footerData = await client.fetch("*[_type == 'footer'][0]");
   const getYoutubeId = (url?: string) => { if (!url) return null; const match = url.match(/(?:youtu\.be\/|youtube\.com\/(?:.*v=|.*\/|.*embed\/))([^&?]+)/); return match ? match[1] : null; };
   const videoId = getYoutubeId(homeData?.featureVideoUrl);
   return (
@@ -468,104 +471,40 @@ export default async function Home() {
             viewport={{ once: true, margin: "-40px" }}
             variants={containerVariants}
           >
-            {/* Article 1 */}
-            <MotionArticle 
-              variants={cardVariants}
-              className="bg-white border border-slate-200 rounded-2xl overflow-hidden group flex flex-col hover:border-slate-300 transition-colors shadow-sm hover:shadow-lg"
-            >
-              <div className="aspect-video bg-slate-100 w-full overflow-hidden relative">
-                <Image 
-                  src="https://res.cloudinary.com/dykvipays/image/upload/f_auto,q_auto,w_600/Upscale_image_remove_noise_2K_20260919135611_mctuby.jpg" 
-                  alt="Design Trends" 
-                  fill 
-                  className="object-cover group-hover:scale-105 transition-transform duration-500" 
-                />
-                <div className="absolute inset-0 bg-slate-900/10 group-hover:bg-transparent transition-colors duration-500"></div>
-              </div>
-              <div className="p-6 flex flex-col flex-grow">
-                <div className="text-xs font-bold text-slate-500 uppercase tracking-widest mb-3">
-                  Design
+            {sanityInsights.map((post: any, idx: number) => (
+              <MotionArticle 
+                key={post._id || idx}
+                variants={cardVariants}
+                className="bg-white border border-slate-200 rounded-2xl overflow-hidden group flex flex-col hover:border-slate-300 transition-colors shadow-sm hover:shadow-lg"
+              >
+                <div className="aspect-video bg-slate-100 w-full overflow-hidden relative">
+                  <Image 
+                    src={post.mainImage ? urlFor(post.mainImage).url() : "https://res.cloudinary.com/dykvipays/image/upload/f_auto,q_auto,w_600/Upscale_image_remove_noise_2K_20260919135611_mctuby.jpg"} 
+                    alt={post.title} 
+                    fill 
+                    className="object-cover group-hover:scale-105 transition-transform duration-500" 
+                  />
+                  <div className="absolute inset-0 bg-slate-900/10 group-hover:bg-transparent transition-colors duration-500"></div>
                 </div>
-                <h3 className="text-xl font-bold font-sans text-slate-900 mb-3 group-hover:text-cihBlue transition-colors">
-                  10 UI Trends Shaping the Future of Web Apps
-                </h3>
-                <p className="text-slate-600 font-medium mb-6 flex-grow line-clamp-3">
-                  Explore how micro-interactions, dark mode strategies, and glassmorphism are redefining user experiences in modern web applications.
-                </p>
-                <a href="#" className="inline-flex items-center text-cihLightBlue font-bold hover:text-cihBlue transition-colors group/link w-fit">
-                  Read More 
-                  <svg className="ml-2 w-4 h-4 transform group-hover/link:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                  </svg>
-                </a>
-              </div>
-            </MotionArticle>
-
-            {/* Article 2 */}
-            <MotionArticle 
-              variants={cardVariants}
-              className="bg-white border border-slate-200 rounded-2xl overflow-hidden group flex flex-col hover:border-slate-300 transition-colors shadow-sm hover:shadow-lg"
-            >
-              <div className="aspect-video bg-slate-100 w-full overflow-hidden relative">
-                <Image 
-                  src="https://res.cloudinary.com/dykvipays/image/upload/f_auto,q_auto,w_600/DMM_pz1swq.png" 
-                  alt="Marketing Trends" 
-                  fill 
-                  className="object-cover group-hover:scale-105 transition-transform duration-500" 
-                />
-                <div className="absolute inset-0 bg-slate-900/10 group-hover:bg-transparent transition-colors duration-500"></div>
-              </div>
-              <div className="p-6 flex flex-col flex-grow">
-                <div className="text-xs font-bold text-slate-500 uppercase tracking-widest mb-3">
-                  Marketing
+                <div className="p-6 flex flex-col flex-grow">
+                  <div className="text-xs font-bold text-slate-500 uppercase tracking-widest mb-3">
+                    {post.category || 'Insight'}
+                  </div>
+                  <h3 className="text-xl font-bold font-sans text-slate-900 mb-3 group-hover:text-cihBlue transition-colors">
+                    {post.title}
+                  </h3>
+                  <p className="text-slate-600 font-medium mb-6 flex-grow line-clamp-3">
+                    {post.excerpt}
+                  </p>
+                  <Link href={`/blog/${post.slug?.current || ''}`} className="inline-flex items-center text-cihLightBlue font-bold hover:text-cihBlue transition-colors group/link w-fit">
+                    Read More 
+                    <svg className="ml-2 w-4 h-4 transform group-hover/link:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                    </svg>
+                  </Link>
                 </div>
-                <h3 className="text-xl font-bold font-sans text-slate-900 mb-3 group-hover:text-cihBlue transition-colors">
-                  The Power of Data-Driven Storytelling
-                </h3>
-                <p className="text-slate-600 font-medium mb-6 flex-grow line-clamp-3">
-                  Learn how to leverage analytics to craft compelling narratives that resonate with your audience and drive actual business conversions.
-                </p>
-                <a href="#" className="inline-flex items-center text-cihLightBlue font-bold hover:text-cihBlue transition-colors group/link w-fit">
-                  Read More 
-                  <svg className="ml-2 w-4 h-4 transform group-hover/link:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                  </svg>
-                </a>
-              </div>
-            </MotionArticle>
-
-            {/* Article 3 */}
-            <MotionArticle 
-              variants={cardVariants}
-              className="bg-white border border-slate-200 rounded-2xl overflow-hidden group flex flex-col hover:border-slate-300 transition-colors shadow-sm hover:shadow-lg"
-            >
-              <div className="aspect-video bg-slate-100 w-full overflow-hidden relative">
-                <Image 
-                  src="https://res.cloudinary.com/dykvipays/image/upload/f_auto,q_auto,w_600/Modify_business_owner_image_2K_20260919125210_hswh8s.jpg" 
-                  alt="Community Spotlight" 
-                  fill 
-                  className="object-cover group-hover:scale-105 transition-transform duration-500" 
-                />
-                <div className="absolute inset-0 bg-slate-900/10 group-hover:bg-transparent transition-colors duration-500"></div>
-              </div>
-              <div className="p-6 flex flex-col flex-grow">
-                <div className="text-xs font-bold text-slate-500 uppercase tracking-widest mb-3">
-                  Community
-                </div>
-                <h3 className="text-xl font-bold font-sans text-slate-900 mb-3 group-hover:text-cihBlue transition-colors">
-                  Alumni Spotlight: Building a SaaS in 30 Days
-                </h3>
-                <p className="text-slate-600 font-medium mb-6 flex-grow line-clamp-3">
-                  Read how one of our bootcamp graduates went from absolute beginner to launching a fully functional SaaS product that generates recurring revenue.
-                </p>
-                <a href="#" className="inline-flex items-center text-cihLightBlue font-bold hover:text-cihBlue transition-colors group/link w-fit">
-                  Read More 
-                  <svg className="ml-2 w-4 h-4 transform group-hover/link:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                  </svg>
-                </a>
-              </div>
-            </MotionArticle>
+              </MotionArticle>
+            ))}
           </MotionDiv>
         </div>
       </section>
