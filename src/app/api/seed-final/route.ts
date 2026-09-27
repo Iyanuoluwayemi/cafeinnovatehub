@@ -29,6 +29,7 @@ const insightsData = [
 ];
 
 const footerData = {
+  _id: 'global-footer',
   _type: 'footer',
   tagline: 'Empowering MSMEs for a digital future',
   whatWeDoText: 'Cafe Innovate Hub is a digital skills accelerator...',
@@ -41,12 +42,17 @@ const footerData = {
 
 export async function GET() {
   try {
-    for (const insight of insightsData) {
-      await client.create(insight);
+    for (let index = 0; index < insightsData.length; index++) {
+      const insight = insightsData[index];
+      await client.createOrReplace({
+        ...insight,
+        _id: `seeded-post-${index}`
+      });
     }
-    await client.create(footerData);
     
-    return NextResponse.json({ success: true, message: 'Seeded insights and footer successfully' });
+    await client.createOrReplace(footerData);
+    
+    return NextResponse.json({ success: true, message: 'Seeded insights and footer successfully with createOrReplace' });
   } catch (error: any) {
     return NextResponse.json({ success: false, error: error.message }, { status: 500 });
   }

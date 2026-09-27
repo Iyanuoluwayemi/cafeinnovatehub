@@ -25,8 +25,10 @@ const testimonials = [
 export async function GET() {
   try {
     const results = [];
-    for (const item of testimonials) {
-      const result = await client.create({
+    for (let index = 0; index < testimonials.length; index++) {
+      const item = testimonials[index];
+      const result = await client.createOrReplace({
+        _id: `seeded-testimonial-${index}`,
         _type: 'testimonial',
         quote: item.quote,
         name: item.name,
