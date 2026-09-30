@@ -1,12 +1,26 @@
 import Link from "next/link";
 import Image from "next/image";
 import { client } from "../../../sanity/client";
+import NewsletterForm from "../ui/NewsletterForm";
 export default async function Footer() {
   const footerData = await client.fetch("*[_type == 'footer'][0]");
   const waNum = footerData?.whatsappNumber || '2349030898649';
   return (
     <footer className="mt-auto border-t border-cihBlue/20 bg-cihBlueDark text-white">
       <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+        {/* Newsletter Section */}
+        <div className="mb-16 border-b border-white/10 pb-16 flex flex-col md:flex-row items-center justify-between gap-8">
+          <div className="max-w-xl">
+            <h3 className="text-2xl md:text-3xl font-bricolage font-black mb-3">Join our Newsletter</h3>
+            <p className="text-slate-300 text-sm md:text-base font-medium">
+              Get the latest insights on digital marketing, design tips, and community stories delivered straight to your inbox.
+            </p>
+          </div>
+          <div className="w-full md:w-auto flex-shrink-0">
+            <NewsletterForm />
+          </div>
+        </div>
+
         <div className="grid grid-cols-1 gap-12 md:grid-cols-4">
           {/* Brand Info */}
           <div className="space-y-4 md:col-span-2">
