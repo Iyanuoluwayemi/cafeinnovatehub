@@ -1,8 +1,18 @@
-import React from 'react';
+"use client";
+
+import React, { useState } from 'react';
 import EclipseButton from '@/components/ui/eclipse-button';
-import Link from 'next/link';
 
 export default function DonatePage() {
+  const [copied, setCopied] = useState(false);
+  const paypalEmail = "cafeinnovate@gmail.com";
+
+  const handleCopyPayPal = () => {
+    navigator.clipboard.writeText(paypalEmail);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  };
+
   return (
     <div className="min-h-screen bg-slate-50 flex flex-col font-sans">
       <main className="flex-grow flex items-center justify-center py-24 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
@@ -26,17 +36,26 @@ export default function DonatePage() {
           </p>
           
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <Link href="mailto:cafeinnovate@gmail.com">
+            <a href="https://flutterwave.com/pay/lsuxaiyde2t8" target="_blank" rel="noopener noreferrer">
               <EclipseButton variant="yellow" className="py-4 px-8 text-lg font-bold w-full sm:w-auto shadow-lg hover:-translate-y-1 transition-all duration-500">
-                Make a Donation
+                Donate via Flutterwave
               </EclipseButton>
-            </Link>
-            <Link href="/contact">
-              <EclipseButton variant="outline" className="py-4 px-8 text-lg font-bold w-full sm:w-auto">
-                Contact Us
-              </EclipseButton>
-            </Link>
+            </a>
+            
+            <EclipseButton 
+              onClick={handleCopyPayPal}
+              variant="outline" 
+              className="py-4 px-8 text-lg font-bold w-full sm:w-auto"
+            >
+              {copied ? "PayPal Email Copied!" : "Send with PayPal"}
+            </EclipseButton>
           </div>
+          
+          {copied && (
+            <div className="mt-6 p-4 bg-green-50 text-green-700 font-medium rounded-xl inline-block">
+              Successfully copied <strong>{paypalEmail}</strong> to your clipboard.
+            </div>
+          )}
         </div>
       </main>
     </div>
