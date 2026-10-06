@@ -3,6 +3,8 @@ import { client } from "../../../sanity/client";
 import { urlFor } from "../../../sanity/image";
 import { MotionDiv } from "@/components/ui/motion-wrapper";
 
+export const revalidate = 10;
+
 const containerVariants = {
   hidden: { opacity: 0 },
   visible: {

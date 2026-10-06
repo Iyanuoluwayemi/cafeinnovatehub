@@ -4,6 +4,8 @@ import { client } from "../../../../sanity/client";
 import { urlFor } from "../../../../sanity/image";
 import { notFound } from "next/navigation";
 
+export const revalidate = 10;
+
 export default async function DynamicProgramPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
   const query = `*[_type == "program" && slug.current == $slug][0]`;
@@ -146,3 +148,4 @@ export default async function DynamicProgramPage({ params }: { params: Promise<{
     </div>
   );
 }
+

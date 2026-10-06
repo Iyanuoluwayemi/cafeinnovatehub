@@ -1,9 +1,15 @@
-"use client";
+
 
 import Image from "next/image";
 import EclipseButton from "@/components/ui/eclipse-button";
 
-export default function CommunityPage() {
+import { client } from "../../../sanity/client";
+import { urlFor } from "../../../sanity/image";
+
+export const revalidate = 10;
+
+export default async function CommunityPage() {
+  const testimonials = await client.fetch("*[_type == 'testimonial']");
   const benefits = [
     {
       title: "Connect with peers",
@@ -87,57 +93,46 @@ export default function CommunityPage() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-            {/* Member 1 */}
-            <div className="bg-gradient-to-br from-cihBlue via-[#0b3880] to-[#061e47] border border-white/10 text-white rounded-3xl p-8 shadow-xl flex flex-col justify-between">
-              <div>
-                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-white mb-6 opacity-90">
-                  <path d="M10 11h-4a3 3 0 0 1-3-3v-4a3 3 0 0 1 3-3h4v10zm11 0h-4a3 3 0 0 1-3-3v-4a3 3 0 0 1 3-3h4v10z"/>
-                  <path d="M10 11c0 2.5-1.5 5-4 6"/>
-                  <path d="M21 11c0 2.5-1.5 5-4 6"/>
-                </svg>
-                <p className="text-slate-100 text-base font-medium font-sans leading-relaxed mb-8">
-                  "Since I joined Cafe Innovate Hub, I have learned how to market my business more intentionally. I learned useful tips on using Facebook Marketplace, Instagram, creating better captions, and knowing what kind of content to post."
-                </p>
-              </div>
-              <div className="flex items-center gap-4 mt-auto">
-                <div className="shrink-0 w-12 h-12 relative rounded-full overflow-hidden ring-2 ring-white/20">
-                  <Image 
-                    src="https://res.cloudinary.com/dykvipays/image/upload/556300.jpg_uxifis.jpg"
-                    alt="@MideFreshMart"
-                    fill
-                    className="object-cover"
-                  />
-                </div>
+            
+            {testimonials.length > 0 ? testimonials.map((test: any, idx: number) => (
+              <div key={idx} className="bg-gradient-to-br from-cihBlue via-[#0b3880] to-[#061e47] border border-white/10 text-white rounded-3xl p-8 shadow-xl flex flex-col justify-between">
                 <div>
-                  <h4 className="text-white font-bold font-sans">@MideFreshMart</h4>
-                  <p className="text-cihLightBlue text-sm font-medium font-sans">Community Member</p>
+                  <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-white mb-6 opacity-90">
+                    <path d="M10 11h-4a3 3 0 0 1-3-3v-4a3 3 0 0 1 3-3h4v10zm11 0h-4a3 3 0 0 1-3-3v-4a3 3 0 0 1 3-3h4v10z"/>
+                    <path d="M10 11c0 2.5-1.5 5-4 6"/>
+                    <path d="M21 11c0 2.5-1.5 5-4 6"/>
+                  </svg>
+                  <p className="text-slate-100 text-base font-medium font-sans leading-relaxed mb-8">
+                    "{test.quote}"
+                  </p>
+                </div>
+                <div className="flex items-center gap-4 mt-auto">
+                  {test.image ? (
+                    <div className="shrink-0 w-12 h-12 relative rounded-full overflow-hidden ring-2 ring-white/20">
+                      <Image 
+                        src={urlFor(test.image).url()}
+                        alt={test.name}
+                        fill
+                        className="object-cover"
+                      />
+                    </div>
+                  ) : (
+                    <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-cihLightBlue/20 text-white font-bold font-sans ring-2 ring-white/10">
+                      {test.name.substring(0, 2).toUpperCase()}
+                    </div>
+                  )}
+                  <div>
+                    <h4 className="text-white font-bold font-sans">{test.name}</h4>
+                    <p className="text-cihLightBlue text-sm font-medium font-sans">{test.role}</p>
+                  </div>
                 </div>
               </div>
-            </div>
-
-            {/* Member 2 */}
-            <div className="bg-gradient-to-br from-cihBlue via-[#0b3880] to-[#061e47] border border-white/10 text-white rounded-3xl p-8 shadow-xl flex flex-col justify-between">
-              <div>
-                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-white mb-6 opacity-90">
-                  <path d="M10 11h-4a3 3 0 0 1-3-3v-4a3 3 0 0 1 3-3h4v10zm11 0h-4a3 3 0 0 1-3-3v-4a3 3 0 0 1 3-3h4v10z"/>
-                  <path d="M10 11c0 2.5-1.5 5-4 6"/>
-                  <path d="M21 11c0 2.5-1.5 5-4 6"/>
-                </svg>
-                <p className="text-slate-100 text-base font-medium font-sans leading-relaxed mb-8">
-                  "Since connecting with Cafe Innovate Hub, I have gained tremendous value. The community introduced me to powerful digital tools. I frequently leverage CapCut, Facebook Marketplace, and Ads to promote my brand."
-                </p>
+            )) : (
+              <div className="col-span-full text-center text-slate-500 py-12">
+                No testimonials found.
               </div>
-              <div className="flex items-center gap-4 mt-auto">
-                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-cihLightBlue/20 text-white font-bold font-sans ring-2 ring-white/10">
-                  MO
-                </div>
-                <div>
-                  <h4 className="text-white font-bold font-sans">Mr Olumide</h4>
-                  <p className="text-cihLightBlue text-sm font-medium font-sans">@Declutterify.Ng</p>
-                </div>
-              </div>
-            </div>
-          </div>
+            )}
+</div>
         </div>
       </section>
 
@@ -157,3 +152,5 @@ export default function CommunityPage() {
     </div>
   );
 }
+
+

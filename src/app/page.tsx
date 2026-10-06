@@ -9,6 +9,8 @@ import { OfferCarousel, OfferCard, OfferCardProps } from "@/components/ui/offer-
 import Image from "next/image";
 import Link from "next/link";
 
+export const revalidate = 10;
+
 // Framer Motion variants with explicit cubic-bezier tuple typing
 const containerVariants: Variants = {
   hidden: { opacity: 0 },
@@ -509,6 +511,7 @@ export default async function Home() {
     </div>
   );
 }
+
 
 
 
