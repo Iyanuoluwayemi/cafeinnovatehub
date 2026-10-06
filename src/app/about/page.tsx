@@ -187,7 +187,7 @@ export default async function AboutPage() {
             </p>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="flex flex-wrap justify-center gap-6">
             {teamMembers.map((member: any, index: number) => {
               // 1. Math to determine the alternating layout
               const isEven = index % 2 === 0;
@@ -205,7 +205,7 @@ export default async function AboutPage() {
                 <MotionDiv 
                   key={member._id} 
                   variants={cardVariants} 
-                  className="flex flex-col gap-6"
+                  className="flex flex-col gap-6 w-full md:w-[calc(50%-12px)] lg:w-[calc(25%-18px)] min-w-[250px]"
                 >
                   
                   {/* IMAGE BLOCK */}
