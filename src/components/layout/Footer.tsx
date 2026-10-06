@@ -33,8 +33,11 @@ export default async function Footer() {
                 className="object-contain brightness-0 invert w-auto h-auto"
               />
             </div>
+            <h3 className="text-sm font-bold tracking-wider uppercase text-cihLightBlue font-sans">
+              {footerData?.tagline || "What we do"}
+            </h3>
             <p className="max-w-md text-sm leading-relaxed text-slate-300 font-sans">
-              {footerData?.whatWeDoText || "Cafe Innovate Hub is a digital skills accelerator empowering MSMEs for a digital future."}
+              {footerData?.whatWeDoText || "Empowering MSMEs for a Digital Future"}
             </p>
             {/* Social Links */}
             <div className="flex items-center gap-4 pt-4">

@@ -31,8 +31,8 @@ const insightsData = [
 const footerData = {
   _id: 'global-footer',
   _type: 'footer',
-  tagline: 'Empowering MSMEs for a digital future',
-  whatWeDoText: 'Cafe Innovate Hub is a digital skills accelerator...',
+  tagline: 'What we do',
+  whatWeDoText: 'Empowering MSMEs for a Digital Future',
   whatsappNumber: '2348000000000',
   socialLinks: [
     { platform: 'Twitter', url: 'https://twitter.com' },
