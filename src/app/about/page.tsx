@@ -100,7 +100,15 @@ export default async function AboutPage() {
                   How It All Started
                 </h2>
                   <div className="space-y-4 text-lg text-slate-600 font-medium leading-relaxed">
-                    <p>{aboutData?.originStory}</p>
+                    
+                    {aboutData?.originStory ? (
+                      aboutData.originStory.split('\n').filter((p: string) => p.trim() !== '').map((paragraph: string, idx: number) => (
+                        <p key={idx}>{paragraph}</p>
+                      ))
+                    ) : (
+                      <p>Loading our story...</p>
+                    )}
+
                   </div>
               </div>
             </MotionDiv>
