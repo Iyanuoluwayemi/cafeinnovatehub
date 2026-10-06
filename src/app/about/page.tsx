@@ -72,7 +72,7 @@ export default async function AboutPage() {
               About Us
             </h1>
             <p className="text-xl text-cihLightBlue font-medium leading-relaxed">
-              We are building the premier innovation hub where founders, developers, creators, and technology leaders converge to fuel ideas and brew innovation.
+              We are building a digital skills accelerator where small business owners and young professionals converge to learn practical tools, improve their businesses, and turn a simple internet connection into real opportunity.
             </p>
           </MotionDiv>
         </div>
