@@ -22,3 +22,8 @@ Next.js aggressively caches data by default. To prevent the "Not Updating" bug w
 ## 4. Reusing Queries across Pages
 - Because Sanity separates data from design, do not duplicate schemas unnecessarily.
 - If a data block (like Testimonials) needs to appear on multiple pages, reuse the exact same GROQ query (e.g., `*[_type == "testimonial"]`) across those different Next.js routes.
+
+## 5. Shared UI Components for Sanity Data
+- **Rule:** Never duplicate complex JSX blocks (like Testimonial Cards, Program Cards, or Feature Grids) across multiple Next.js pages.
+- **Implementation:** If a Sanity data object is rendered identically on multiple pages, you MUST extract its UI into a standalone React component within "src/components/ui/" (e.g., "src/components/ui/TestimonialCard.tsx").
+- **Why:** This ensures that when design updates are made (like adding line clamping or fixing overflow bugs), the changes instantly sync across the entire website.

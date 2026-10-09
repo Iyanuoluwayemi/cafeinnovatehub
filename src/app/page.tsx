@@ -1,13 +1,12 @@
 import { client } from "../../sanity/client";
 import { urlFor } from "../../sanity/image";
-import { MotionDiv, MotionH1, MotionP, MotionSpan, MotionSection, MotionArticle } from "@/components/ui/motion-wrapper";
+import { MotionDiv, MotionH1, MotionP, MotionArticle } from "@/components/ui/motion-wrapper";
 import { Variants } from "framer-motion";
-import AnimatedCounter from "@/components/ui/AnimatedCounter";
 import EclipseButton from "@/components/ui/eclipse-button";
-import FaqAccordion from "@/components/ui/FaqAccordion";
-import { OfferCarousel, OfferCard, OfferCardProps } from "@/components/ui/offer-carousel";
+import { OfferCarousel, OfferCard } from "@/components/ui/offer-carousel";
 import Image from "next/image";
 import Link from "next/link";
+import TestimonialCard, { Testimonial } from "@/components/ui/TestimonialCard";
 
 export const revalidate = 10;
 
@@ -36,23 +35,55 @@ const cardVariants: Variants = {
   },
 };
 
-const fadeInUp: Variants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] as const },
+
+
+const fallbackTestimonials: Testimonial[] = [
+  {
+    quote: "Café Innovation Hub has been a very impactful community for me. My first encounter with the hub was through a one-month creative boot camp. We had interesting sessions that covered content creation and photography for our business.",
+    name: "Albert Smith",
+    role: "Community Member"
   },
-};
+  {
+    quote: "Since I joined Cafe Innovate Hub, I have learned how to market my business more intentionally. I learned useful tips on using Facebook Marketplace, Instagram, creating better captions, and knowing what kind of content to post.",
+    name: "@MideFreshMart",
+    role: "Community Member"
+  },
+  {
+    quote: "Since connecting with Cafe Innovate Hub, I have gained tremendous value. The community introduced me to powerful digital tools. I frequently leverage CapCut, Facebook Marketplace, and Ads to promote my brand.",
+    name: "Mr Olumide",
+    role: "@Declutterify.Ng"
+  }
+];
 
 export default async function Home() {
-  const homeData = await client.fetch("*[_type == 'home'][0]");
-  const sanityPrograms = await client.fetch("*[_type == 'program'] | order(displayOrder asc)");
-  const sanityTestimonials = await client.fetch("*[_type == 'testimonial']");
-  const sanityInsights = await client.fetch("*[_type == 'post'] | order(publishedAt desc)[0...3]");
-  const footerData = await client.fetch("*[_type == 'footer'][0]");
+  let homeData: any = null;
+  let sanityPrograms: any = [];
+  let sanityTestimonials: Testimonial[] = [];
+  let sanityInsights: any = [];
+  let footerData: any = null;
+
+  try {
+    [homeData, sanityPrograms, sanityTestimonials, sanityInsights, footerData] = await Promise.all([
+      client.fetch("*[_type == 'home'][0]"),
+      client.fetch("*[_type == 'program'] | order(displayOrder asc)"),
+      client.fetch("*[_type == 'testimonial']"),
+      client.fetch("*[_type == 'post'] | order(publishedAt desc)[0...3]"),
+      client.fetch("*[_type == 'footer'][0]"),
+    ]);
+  } catch (error) {
+    console.error("Sanity fetch error in Home:", error);
+  }
+
   const getYoutubeId = (url?: string) => { if (!url) return null; const match = url.match(/(?:youtu\.be\/|youtube\.com\/(?:.*v=|.*\/|.*embed\/))([^&?]+)/); return match ? match[1] : null; };
   const videoId = getYoutubeId(homeData?.featureVideoUrl);
+
+  const rawList: Testimonial[] = (sanityTestimonials && sanityTestimonials.length > 0)
+    ? sanityTestimonials
+    : fallbackTestimonials;
+  // Ensure enough cards in each marquee loop iteration to span across ultra-wide and 4K displays (>= 4500px per half)
+  const repeatCount = rawList.length > 0 ? Math.max(2, Math.ceil(12 / rawList.length)) : 1;
+  const marqueeCards: Testimonial[] = rawList.length > 0 ? Array(repeatCount).fill(rawList).flat() : [];
+
   return (
     <div className="min-h-screen bg-slate-50 flex flex-col font-sans overflow-x-hidden">
 
@@ -311,66 +342,47 @@ export default async function Home() {
 
         {/* Marquee Wrapper */}
         <div className="relative w-full flex overflow-x-hidden group">
-          <style>{`
-            @keyframes infinite-scroll {
-              0% { transform: translateX(0); }
-              100% { transform: translateX(-50%); }
-            }
-            .animate-infinite-scroll {
-              animation: infinite-scroll 40s linear infinite;
-              display: flex;
-              width: max-content;
-            }
-            .animate-infinite-scroll:hover {
-              animation-play-state: paused;
-            }
-          `}</style>
-          
-          <div className="animate-infinite-scroll flex gap-6 px-3">
-              {[...Array(2)].map((_, loopIndex) => (
-                <div key={loopIndex} className="flex gap-6 shrink-0">
-                  {sanityTestimonials && sanityTestimonials.length > 0 ? sanityTestimonials.map((test: any, idx: number) => (
-                    <div key={idx} className="w-[300px] md:w-[360px] min-w-[300px] bg-gradient-to-br from-cihBlue via-[#0b3880] to-[#061e47] border border-white/10 text-white rounded-3xl p-6 md:p-8 shadow-xl flex flex-col justify-between shrink-0">
-                      <div>
-                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-white mb-6 opacity-90">
-                          <path d="M10 11h-4a3 3 0 0 1-3-3v-4a3 3 0 0 1 3-3h4v10zm11 0h-4a3 3 0 0 1-3-3v-4a3 3 0 0 1 3-3h4v10z"/>
-                          <path d="M10 11c0 2.5-1.5 5-4 6"/>
-                          <path d="M21 11c0 2.5-1.5 5-4 6"/>
-                        </svg>
-                        <p className="text-slate-100 text-base font-medium font-sans leading-relaxed mb-8">
-                          "{test.quote}"
-                        </p>
-                      </div>
-                      <div className="flex items-center gap-4 mt-auto">
-                        {test.image ? (
-                          <div className="shrink-0 w-12 h-12 relative rounded-full overflow-hidden ring-2 ring-white/20">
-                            <Image 
-                              src={urlFor(test.image).url()}
-                              alt={test.name}
-                              fill sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                              className="object-cover"
-                            />
-                          </div>
-                        ) : (
-                          <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-cihLightBlue/20 text-white font-bold font-sans ring-2 ring-white/10">
-                            {test.name ? test.name.substring(0, 2).toUpperCase() : 'CI'}
-                          </div>
-                        )}
-                        <div>
-                          <h4 className="text-white font-bold font-sans">{test.name}</h4>
-                          <p className="text-cihLightBlue text-sm font-medium font-sans">{test.role}</p>
-                        </div>
-                      </div>
-                    </div>
-                  )) : (
-                    <div className="text-white">No testimonials found.</div>
-                  )}
-                </div>
-              ))}
+          {marqueeCards.length > 0 ? (
+            <>
+              <style>{`
+                @keyframes infinite-scroll {
+                  0% { transform: translateX(0); }
+                  100% { transform: translateX(-50%); }
+                }
+                .animate-infinite-scroll {
+                  animation: infinite-scroll 45s linear infinite;
+                  display: flex;
+                  width: max-content;
+                  will-change: transform;
+                }
+                .animate-infinite-scroll:hover {
+                  animation-play-state: paused;
+                }
+                @media (prefers-reduced-motion: reduce) {
+                  .animate-infinite-scroll {
+                    animation: none;
+                  }
+                }
+              `}</style>
+              
+              <div className="animate-infinite-scroll flex gap-6 px-3 py-4">
+                {[...Array(2)].map((_, loopIndex) => (
+                  <div key={loopIndex} className="flex gap-6 shrink-0">
+                    {marqueeCards.map((test: Testimonial, idx: number) => (
+  <TestimonialCard key={`${loopIndex}-${idx}`} test={test} />
+))}
+                  </div>
+                ))}
+              </div>
+              {/* Subtle gradient edges for the marquee to fade smoothly */}
+              <div className="absolute inset-y-0 left-0 w-16 md:w-32 bg-gradient-to-r from-[#0a0f0d] to-transparent pointer-events-none z-10"></div>
+              <div className="absolute inset-y-0 right-0 w-16 md:w-32 bg-gradient-to-l from-[#0a0f0d] to-transparent pointer-events-none z-10"></div>
+            </>
+          ) : (
+            <div className="w-full text-center text-slate-400 py-12">
+              No testimonials found.
             </div>
-          {/* Subtle gradient edges for the marquee to fade smoothly */}
-          <div className="absolute inset-y-0 left-0 w-16 md:w-32 bg-gradient-to-r from-[#0a0f0d] to-transparent pointer-events-none z-10"></div>
-          <div className="absolute inset-y-0 right-0 w-16 md:w-32 bg-gradient-to-l from-[#0a0f0d] to-transparent pointer-events-none z-10"></div>
+          )}
         </div>
       </section>
 
@@ -439,8 +451,3 @@ export default async function Home() {
     </div>
   );
 }
-
-
-
-
-
