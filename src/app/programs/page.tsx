@@ -7,11 +7,11 @@ export default async function ProgramsCatalog() {
   const sanityPrograms = await client.fetch("*[_type == 'program'] | order(displayOrder asc)");
 
   return (
-    <div className="min-h-screen bg-slate-50 font-sans pb-24">
+    <div className="min-h-[100dvh] bg-slate-50 font-sans pb-24">
       {/* Header */}
       <section className="bg-cihBlue text-white py-24 border-b border-cihBlueDark">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center pt-12">
-          <h1 className="text-4xl md:text-5xl font-bricolage font-black tracking-tight mb-6">
+          <h1 className="text-4xl md:text-5xl font-bricolage font-black tracking-tighter mb-6">
             Full Course Catalog
           </h1>
           <p className="text-lg md:text-xl text-slate-300 max-w-2xl mx-auto font-medium">

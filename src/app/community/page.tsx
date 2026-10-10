@@ -33,12 +33,12 @@ export default async function CommunityPage() {
   ];
 
   return (
-    <div className="min-h-screen bg-slate-50 font-sans pb-24">
+    <div className="min-h-[100dvh] bg-slate-50 font-sans pb-24">
       {/* Header */}
       <section className="bg-cihBlue text-white py-24 border-b border-cihBlueDark relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-cihBlue via-cihBlue to-cihBlueDark opacity-90"></div>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center pt-12 relative z-10">
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bricolage font-black tracking-tight mb-6">
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bricolage font-black tracking-tighter mb-6">
             Join the Community
           </h1>
           <p className="text-lg md:text-xl text-slate-300 max-w-3xl mx-auto font-medium leading-relaxed">
@@ -51,7 +51,7 @@ export default async function CommunityPage() {
       <section className="py-24 bg-white border-b border-slate-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-extrabold text-cihBlue tracking-tight mb-4">
+            <h2 className="text-3xl md:text-4xl font-extrabold text-cihBlue tracking-tighter mb-4">
               Why join?
             </h2>
           </div>
@@ -83,7 +83,7 @@ export default async function CommunityPage() {
       <section className="py-24 bg-slate-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16 max-w-3xl mx-auto">
-            <h2 className="text-3xl md:text-4xl font-extrabold text-cihBlue tracking-tight mb-4">
+            <h2 className="text-3xl md:text-4xl font-extrabold text-cihBlue tracking-tighter mb-4">
               Meet our community
             </h2>
             <p className="text-lg text-slate-600 font-medium leading-relaxed">
@@ -107,7 +107,7 @@ export default async function CommunityPage() {
       {/* CTA */}
       <section className="py-24 bg-white border-t border-slate-200 text-center">
         <div className="max-w-3xl mx-auto px-4">
-          <h2 className="text-4xl font-extrabold text-cihBlue tracking-tight mb-8">
+          <h2 className="text-4xl font-extrabold text-cihBlue tracking-tighter mb-8">
             Ready to be part of it?
           </h2>
           <a href="https://wa.me/2349030898649" target="_blank" rel="noopener noreferrer">

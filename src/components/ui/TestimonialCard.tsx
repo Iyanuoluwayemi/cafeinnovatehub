@@ -43,7 +43,7 @@ export default function TestimonialCard({ test }: TestimonialCardProps) {
   const imgUrl = getImageUrl(test.image);
   
   return (
-    <div className="w-[300px] md:w-[360px] min-w-[300px] md:min-w-[360px] h-[280px] bg-gradient-to-br from-cihBlue via-[#0b3880] to-[#061e47] border border-white/10 hover:border-white/20 text-white rounded-3xl p-6 md:p-7 shadow-xl hover:shadow-2xl hover:-translate-y-1 transition-all duration-500 flex flex-col justify-between shrink-0 overflow-hidden">
+    <div className="w-[300px] md:w-[360px] min-w-[300px] md:min-w-[360px] h-[280px] bg-gradient-to-br from-cihBlue via-[#0b3880] to-[#061e47] border border-white/10 hover:border-white/20 text-white rounded-3xl p-6 md:p-7 shadow-xl hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between shrink-0 overflow-hidden">
       <div>
         <svg
           width="28"

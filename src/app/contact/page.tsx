@@ -6,11 +6,11 @@ import FaqAccordion from "@/components/ui/FaqAccordion";
 
 export default function ContactPage() {
   return (
-    <div className="min-h-screen bg-slate-50 font-sans pb-24">
+    <div className="min-h-[100dvh] bg-slate-50 font-sans pb-24">
       {/* Header */}
       <section className="bg-cihBlue text-white py-24 border-b border-cihBlueDark">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center pt-12">
-          <h1 className="text-4xl md:text-5xl font-bricolage font-black tracking-tight mb-6">
+          <h1 className="text-4xl md:text-5xl font-bricolage font-black tracking-tighter mb-6">
             Get in Touch
           </h1>
           <p className="text-lg md:text-xl text-slate-300 max-w-2xl mx-auto font-medium">
@@ -105,7 +105,7 @@ export default function ContactPage() {
       <section className="py-24 bg-white border-t border-slate-200">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-extrabold text-cihBlue tracking-tight mb-4">
+            <h2 className="text-4xl font-extrabold text-cihBlue tracking-tighter mb-4">
               Frequently Asked Questions
             </h2>
             <p className="text-lg text-slate-600 font-medium">

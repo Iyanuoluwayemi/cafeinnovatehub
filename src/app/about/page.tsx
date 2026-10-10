@@ -21,7 +21,7 @@ const cardVariants = {
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] as const },
+    transition: { duration: 0.3, ease: "easeOut" as const },
   },
 };
 
@@ -60,7 +60,7 @@ export default async function AboutPage() {
   const aboutData = await client.fetch("*[_type == 'about'][0]");
 
   return (
-    <div className="min-h-screen bg-slate-50 font-sans pb-24">
+    <div className="min-h-[100dvh] bg-slate-50 font-sans pb-24">
       {/* Header */}
       <section className="bg-cihBlue text-white py-24 border-b border-cihBlueDark">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -68,9 +68,9 @@ export default async function AboutPage() {
             className="max-w-3xl"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, ease: "easeOut" }}
+            transition={{ duration: 0.3, ease: "easeOut" }}
           >
-            <h1 className="text-5xl md:text-6xl font-bricolage font-black tracking-tight mb-6">
+            <h1 className="text-5xl md:text-6xl font-bricolage font-black tracking-tighter mb-6">
               About Us
             </h1>
             <p className="text-xl text-cihLightBlue font-medium leading-relaxed">
@@ -92,13 +92,13 @@ export default async function AboutPage() {
               initial={{ opacity: 0, x: -30 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true, margin: "-50px" }}
-              transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] as const }}
+              transition={{ duration: 0.3, ease: "easeOut" as const }}
             >
               <div className="space-y-6">
                 <span className="text-sm font-bold text-cihLightBlue uppercase tracking-widest">
                   Our Origin Story
                 </span>
-                <h2 className="text-4xl md:text-5xl font-extrabold text-cihBlue tracking-tight leading-[1.1]">
+                <h2 className="text-4xl md:text-5xl font-extrabold text-cihBlue tracking-tighter leading-[1.1]">
                   How It All Started
                 </h2>
                   <div className="space-y-4 text-lg text-slate-600 font-medium leading-relaxed">
@@ -134,7 +134,7 @@ export default async function AboutPage() {
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-50px" }}
-                transition={{ duration: 0.7, delay: 0.2, ease: [0.16, 1, 0.3, 1] as const }}
+                transition={{ duration: 0.3, delay: 0.2, ease: "easeOut" as const }}
               >
                 <div className="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-cihBlue text-white shadow-md mb-4">
                   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -155,7 +155,7 @@ export default async function AboutPage() {
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-50px" }}
-                transition={{ duration: 0.7, delay: 0.4, ease: [0.16, 1, 0.3, 1] as const }}
+                transition={{ duration: 0.3, delay: 0.4, ease: "easeOut" as const }}
               >
                 <div className="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-cihLightBlue text-cihBlueDark shadow-md mb-4">
                   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -181,7 +181,7 @@ export default async function AboutPage() {
         
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="mb-12 md:mb-20 text-center max-w-3xl mx-auto">
-            <h2 className="text-4xl md:text-5xl font-bricolage font-black text-cihBlue tracking-tight mb-4">
+            <h2 className="text-4xl md:text-5xl font-bricolage font-black text-cihBlue tracking-tighter mb-4">
               Meet the Team
             </h2>
             <p className="text-lg text-slate-600 font-medium font-sans">

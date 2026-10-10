@@ -29,8 +29,8 @@ const cardVariants: Variants = {
     y: 0,
     scale: 1,
     transition: {
-      duration: 0.6,
-      ease: [0.16, 1, 0.3, 1] as const,
+      duration: 0.3,
+      ease: "easeOut" as const,
     },
   },
 };
@@ -85,7 +85,7 @@ export default async function Home() {
   const marqueeCards: Testimonial[] = rawList.length > 0 ? Array(repeatCount).fill(rawList).flat() : [];
 
   return (
-    <div className="min-h-screen bg-slate-50 flex flex-col font-sans overflow-x-hidden">
+    <div className="min-h-[100dvh] bg-slate-50 flex flex-col font-sans overflow-x-hidden">
 
       {/* Immersive Dark Hero & Impact Section */}
       <section className="relative w-full overflow-hidden bg-[#0a0f0d] pt-32 pb-24 lg:pt-40 lg:pb-32 flex flex-col items-center">
@@ -108,7 +108,7 @@ export default async function Home() {
           <MotionDiv 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.1 }}
+            transition={{ duration: 0.3, delay: 0.1 }}
             className="absolute -top-12 left-10 md:left-20 px-4 py-2 bg-white/10 backdrop-blur-md rounded-full border border-white/20 text-white text-xs font-bold tracking-widest flex items-center gap-2 hidden md:flex"
           >
             <span className="w-2 h-2 rounded-full bg-cihLightBlue"></span>
@@ -117,7 +117,7 @@ export default async function Home() {
           <MotionDiv 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.3 }}
+            transition={{ duration: 0.3, delay: 0.3 }}
             className="absolute top-20 -right-4 md:right-12 px-4 py-2 bg-white/10 backdrop-blur-md rounded-full border border-white/20 text-white text-xs font-bold tracking-widest flex items-center gap-2 hidden md:flex"
           >
             <span className="w-2 h-2 rounded-full bg-cihYellow"></span>
@@ -125,10 +125,10 @@ export default async function Home() {
           </MotionDiv>
 
           <MotionH1 
-            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bricolage font-black text-white leading-[1.1] tracking-tight mb-8"
+            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bricolage font-black text-white leading-[1.1] tracking-tighter mb-8"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+            transition={{ duration: 0.3, ease: "easeOut" }}
           >
             {homeData?.heroHeadline}
           </MotionH1>
@@ -137,7 +137,7 @@ export default async function Home() {
             className="text-lg md:text-xl text-slate-300 max-w-2xl font-medium leading-relaxed mb-10"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+            transition={{ duration: 0.3, delay: 0.2, ease: "easeOut" }}
           >
             {homeData?.heroSubheadline}
           </MotionP>
@@ -146,7 +146,7 @@ export default async function Home() {
             className="flex flex-col sm:flex-row items-center justify-center gap-4 w-full sm:w-auto"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
+            transition={{ duration: 0.3, delay: 0.3, ease: "easeOut" }}
           >
             <Link href={homeData?.primaryCtaLink || "/programs"}>
               <EclipseButton variant="yellow" className="w-full sm:w-auto px-8 py-4 text-base">
@@ -204,14 +204,14 @@ export default async function Home() {
               initial={{ opacity: 0, x: -30 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true, margin: "-40px" }}
-              transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+              transition={{ duration: 0.3, ease: "easeOut" }}
               className="space-y-8 lg:pr-12"
             >
               <span className="text-sm font-bold text-cihLightBlue uppercase tracking-widest flex items-center gap-2">
                 <span className="w-2 h-2 rounded-full bg-cihLightBlue"></span>
                 {homeData?.featureTag || "Empowering MSMEs for a digital future"}
               </span>
-              <h2 className="text-4xl md:text-5xl lg:text-6xl font-bricolage font-black text-cihBlue leading-[1.1] tracking-tight">
+              <h2 className="text-4xl md:text-5xl lg:text-6xl font-bricolage font-black text-cihBlue leading-[1.1] tracking-tighter">
                 {homeData?.featureHeadline || "What We Do"}
               </h2>
               <div className="text-lg text-slate-600 font-medium leading-relaxed space-y-6">
@@ -234,7 +234,7 @@ export default async function Home() {
               initial={{ opacity: 0, scale: 0.95 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true, margin: "-40px" }}
-              transition={{ duration: 0.7, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+              transition={{ duration: 0.3, delay: 0.2, ease: "easeOut" }}
               className="relative w-full h-[500px] lg:h-[600px] flex items-center justify-center lg:justify-end"
             >
               {/* Decorative shapes behind */}
@@ -248,7 +248,7 @@ export default async function Home() {
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: 0.5, ease: "easeOut" }}
+                transition={{ duration: 0.3, delay: 0.5, ease: "easeOut" }}
                 className="absolute bottom-10 left-0 md:-left-8 bg-white p-6 rounded-3xl shadow-2xl border border-slate-100 flex flex-col gap-1 z-20 w-[240px]"
               >
                 <div className="flex items-center gap-3 mb-2">
@@ -281,10 +281,10 @@ export default async function Home() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-40px" }}
-            transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] as const }}
+            transition={{ duration: 0.3, ease: "easeOut" as const }}
           >
             <div className="max-w-2xl">
-              <h2 className="text-4xl font-extrabold text-cihBlue tracking-tight mb-4">
+              <h2 className="text-4xl font-extrabold text-cihBlue tracking-tighter mb-4">
                 Our Training Programs
               </h2>
               <p className="text-lg text-slate-600 font-medium leading-relaxed">
@@ -306,7 +306,7 @@ export default async function Home() {
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-50px" }}
-            transition={{ duration: 0.7, delay: 0.2, ease: [0.16, 1, 0.3, 1] as const }}
+            transition={{ duration: 0.3, delay: 0.2, ease: "easeOut" as const }}
           >
             <OfferCarousel>
               {sanityPrograms.map((p: any, index: number) => (
@@ -332,7 +332,7 @@ export default async function Home() {
       <section id="community" className="py-32 bg-[#0a0f0d] border-y border-[#0a0f0d] overflow-hidden flex flex-col items-center relative z-10 shadow-2xl">
         <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff05_1px,transparent_1px),linear-gradient(to_bottom,#ffffff05_1px,transparent_1px)] bg-[size:24px_24px]"></div>
         <div className="text-center max-w-3xl mx-auto mb-20 px-4 relative z-10">
-          <h2 className="text-4xl md:text-5xl font-bricolage font-black text-white tracking-tight mb-4">
+          <h2 className="text-4xl md:text-5xl font-bricolage font-black text-white tracking-tighter mb-4">
             Real people. Real growth.
           </h2>
           <p className="text-lg text-slate-400 font-medium font-sans">
@@ -392,7 +392,7 @@ export default async function Home() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col md:flex-row md:justify-between md:items-end mb-12 space-y-6 md:space-y-0">
             <div>
-              <h2 className="text-4xl font-extrabold text-cihBlue tracking-tight mb-4">
+              <h2 className="text-4xl font-extrabold text-cihBlue tracking-tighter mb-4">
                 Latest Insights
               </h2>
               <p className="text-lg text-slate-600 font-medium font-sans max-w-2xl">
@@ -422,9 +422,9 @@ export default async function Home() {
                     src={post.mainImage ? urlFor(post.mainImage).url() : "https://res.cloudinary.com/dykvipays/image/upload/f_auto,q_auto,w_600/Upscale_image_remove_noise_2K_20260919135611_mctuby.jpg"} 
                     alt={post.title} 
                     fill sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" 
-                    className="object-cover group-hover:scale-105 transition-transform duration-500" 
+                    className="object-cover group-hover:scale-105 transition-transform duration-300" 
                   />
-                  <div className="absolute inset-0 bg-slate-900/10 group-hover:bg-transparent transition-colors duration-500"></div>
+                  <div className="absolute inset-0 bg-slate-900/10 group-hover:bg-transparent transition-colors duration-300"></div>
                 </div>
                 <div className="p-6 flex flex-col flex-grow">
                   <div className="text-xs font-bold text-slate-500 uppercase tracking-widest mb-3">

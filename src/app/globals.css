@@ -29,3 +29,23 @@
 body {
   font-family: var(--font-figtree), sans-serif;
 }
+
+/* Native Mobile Overrides */
+html, body {
+  -webkit-tap-highlight-color: transparent;
+  overscroll-behavior-y: none; /* Prevents pull-to-refresh hijacking */
+}
+
+/* Ensure inputs don't trigger iOS zoom */
+input, select, textarea {
+  font-size: 16px !important;
+}
+
+/* Safe areas */
+.safe-area-pt { padding-top: env(safe-area-inset-top); }
+.safe-area-pb { padding-bottom: env(safe-area-inset-bottom); }
+
+
+@custom-variant hover (@media (hover: hover) and (pointer: fine) { &:hover });
+
+

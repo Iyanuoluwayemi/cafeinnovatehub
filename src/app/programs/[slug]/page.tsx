@@ -18,7 +18,7 @@ export default async function DynamicProgramPage({ params }: { params: Promise<{
   const autoplayEmbed = program.videoEmbedCode?.replace(/src="([^"]+)"/, (match: string, url: string) => `src="${url}${url.includes('?') ? '&' : '?'}autoplay=1&mute=1"`);
 
   return (
-    <div className="min-h-screen bg-slate-50 font-sans pb-24">
+    <div className="min-h-[100dvh] bg-slate-50 font-sans pb-24">
       {/* Hero Section (Gradient + Video) */}
       <section className="relative w-full bg-gradient-to-br from-cihYellow to-cihBlue overflow-hidden pt-24">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center max-w-7xl mx-auto py-16 px-6 relative z-10">

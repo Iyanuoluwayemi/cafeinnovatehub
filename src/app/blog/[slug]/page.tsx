@@ -15,7 +15,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
   }
 
   return (
-    <div className="min-h-screen bg-slate-50 font-sans pb-24">
+    <div className="min-h-[100dvh] bg-slate-50 font-sans pb-24">
       {/* Header */}
       <section className="bg-cihBlue text-white py-24 border-b border-cihBlueDark">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center pt-12">
@@ -33,7 +33,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
               {post.publishedAt ? new Date(post.publishedAt).toLocaleDateString() : ""}
             </span>
           </div>
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bricolage font-black tracking-tight mb-6 max-w-4xl mx-auto leading-tight">
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bricolage font-black tracking-tighter mb-6 max-w-4xl mx-auto leading-tight">
             {post.title}
           </h1>
         </div>

@@ -40,7 +40,7 @@ export interface OfferCardProps {
 export function OfferCard({ title, description, imageSrc, href = "#", tag }: OfferCardProps) {
   return (
     <div 
-      className="flex flex-col w-[320px] min-h-[440px] rounded-[2rem] group shrink-0 snap-start bg-white border border-slate-200 shadow-sm hover:shadow-2xl hover:-translate-y-1 transition-all duration-500 p-3"
+      className="flex flex-col w-[320px] min-h-[440px] rounded-[2rem] group shrink-0 snap-start bg-white border border-slate-200 shadow-sm hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 p-3"
     >
       <div className="flex flex-col flex-1 p-5 pb-4">
         {/* Header (Tag & Arrow) */}
@@ -68,9 +68,9 @@ export function OfferCard({ title, description, imageSrc, href = "#", tag }: Off
           src={imageSrc}
           alt={title}
           fill
-          className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+          className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
         />
-        <div className="absolute inset-0 bg-slate-900/10 group-hover:bg-transparent transition-colors duration-500" />
+        <div className="absolute inset-0 bg-slate-900/10 group-hover:bg-transparent transition-colors duration-300" />
         
         {/* Accent floating block over the image */}
         <div className="absolute bottom-4 left-4 w-12 h-12 rounded-2xl bg-cihYellow text-slate-900 flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform z-10">

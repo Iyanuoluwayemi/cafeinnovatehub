@@ -17,11 +17,11 @@ export default async function BlogPage() {
   }`);
 
   return (
-    <div className="min-h-screen bg-slate-50 font-sans pb-24">
+    <div className="min-h-[100dvh] bg-slate-50 font-sans pb-24">
       {/* Header */}
       <section className="bg-cihBlue text-white py-24 border-b border-cihBlueDark">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center pt-12">
-          <h1 className="text-4xl md:text-5xl font-bricolage font-black tracking-tight mb-6">
+          <h1 className="text-4xl md:text-5xl font-bricolage font-black tracking-tighter mb-6">
             Our Blog
           </h1>
           <p className="text-lg md:text-xl text-slate-300 max-w-2xl mx-auto font-medium">
@@ -42,7 +42,7 @@ export default async function BlogPage() {
                       src={post.mainImage ? urlFor(post.mainImage).url() : "https://res.cloudinary.com/dykvipays/image/upload/f_auto,q_auto,w_800/Upscale_image_remove_noise_2K_20260919135611_mctuby.jpg"}
                       alt={post.title || "Blog post image"}
                       fill
-                      className="object-cover group-hover:scale-105 transition-transform duration-700 ease-in-out"
+                      className="object-cover group-hover:scale-105 transition-transform duration-300 ease-out"
                     />
                   </div>
                   <div className="p-8 flex flex-col flex-grow">
