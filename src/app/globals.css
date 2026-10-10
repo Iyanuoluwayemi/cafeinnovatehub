@@ -46,7 +46,8 @@ input, select, textarea {
 .safe-area-pb { padding-bottom: env(safe-area-inset-bottom); }
 
 
-@custom-variant hover (@media (hover: hover) and (pointer: fine) { &:hover });
+
+
 
 
 
