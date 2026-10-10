@@ -27,3 +27,7 @@ Next.js aggressively caches data by default. To prevent the "Not Updating" bug w
 - **Rule:** Never duplicate complex JSX blocks (like Testimonial Cards, Program Cards, or Feature Grids) across multiple Next.js pages.
 - **Implementation:** If a Sanity data object is rendered identically on multiple pages, you MUST extract its UI into a standalone React component within "src/components/ui/" (e.g., "src/components/ui/TestimonialCard.tsx").
 - **Why:** This ensures that when design updates are made (like adding line clamping or fixing overflow bugs), the changes instantly sync across the entire website.
+
+## 6. Strict Navigation & Routing
+- **Rule:** Never leave buttons or anchor tags as dead elements. If a UI element implies navigation (e.g., "Read More", "View All Articles"), it MUST be wrapped in a "next/link" component.
+- **Rule:** Dynamic routing links MUST use the "slug.current" field properly formatted (e.g., <Link href={{/blog/$}{post.slug.current}}}>). Ensure fallback links are in place if a slug is missing.

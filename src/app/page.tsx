@@ -400,7 +400,7 @@ export default async function Home() {
               </p>
             </div>
             <div className="hidden md:block shrink-0">
-              <EclipseButton variant="outline">View All Articles</EclipseButton>
+              <Link href="/blog"><EclipseButton variant="outline">View All Articles</EclipseButton></Link>
             </div>
           </div>
           
@@ -451,5 +451,6 @@ export default async function Home() {
     </div>
   );
 }
+
 
 
