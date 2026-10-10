@@ -110,7 +110,7 @@ export default async function CommunityPage() {
           <h2 className="text-4xl font-extrabold text-cihBlue tracking-tighter mb-8">
             Ready to be part of it?
           </h2>
-          <a href="https://wa.me/2349030898649" target="_blank" rel="noopener noreferrer">
+          <a href="https://wa.link/8fwiwq" target="_blank" rel="noopener noreferrer">
             <EclipseButton variant="primary" className="px-8 py-4 text-lg">
               Join the Community
             </EclipseButton>

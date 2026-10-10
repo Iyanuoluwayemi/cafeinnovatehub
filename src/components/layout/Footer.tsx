@@ -1,10 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
-import { client } from "../../../sanity/client";
 import NewsletterForm from "../ui/NewsletterForm";
-export default async function Footer() {
-  const footerData = await client.fetch("*[_type == 'footer'][0]");
-  const waNum = footerData?.whatsappNumber || '2349030898649';
+export default function Footer() {
   return (
     <footer className="mt-auto border-t border-cihBlue/20 bg-cihBlueDark text-white">
       <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
@@ -34,10 +31,10 @@ export default async function Footer() {
               />
             </div>
             <h3 className="text-sm font-bold tracking-wider uppercase text-cihLightBlue font-sans">
-              {footerData?.tagline || "What we do"}
+              What we do
             </h3>
             <p className="max-w-md text-sm leading-relaxed text-slate-300 font-sans">
-              {footerData?.whatWeDoText || "Empowering MSMEs for a Digital Future"}
+              Empowering MSMEs for a Digital Future
             </p>
             {/* Social Links */}
             <div className="flex items-center gap-4 pt-4">
@@ -114,7 +111,7 @@ export default async function Footer() {
                 </a>
               </li>
               <li>
-                <a href={`https://wa.me/${waNum}?text=I%20want%20to%20join%20the%20community`} target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors cursor-pointer flex items-center gap-2">
+                <a href="https://wa.link/8fwiwq" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors cursor-pointer flex items-center gap-2">
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
                   WhatsApp
                 </a>
