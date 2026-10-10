@@ -9,6 +9,8 @@ groups: [
 fields: [
 { name: 'title', title: 'Internal Title', type: 'string', initialValue: 'Home Page Content', hidden: true },
 
+{ name: 'insightsSubtitle', title: 'Latest Insights Subtitle', type: 'string', initialValue: 'Discover the latest trends in digital marketing, design tips, and stories from our alumni.' },
+
 /* HERO SECTION */
 { name: 'heroHeadline', title: 'Hero Headline', type: 'string', group: 'hero' },
 { name: 'heroSubheadline', title: 'Hero Subheadline', type: 'text', group: 'hero' },
@@ -34,3 +36,4 @@ fields: [
 { name: 'badgeSubtitle', title: 'Floating Badge Subtitle', type: 'string', group: 'feature' }
 ]
 };
+

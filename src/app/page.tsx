@@ -396,7 +396,7 @@ export default async function Home() {
                 Latest Insights
               </h2>
               <p className="text-lg text-slate-600 font-medium font-sans max-w-2xl">
-                Discover the latest trends in digital marketing, design tips, and stories from our alumni.
+                {homeData?.insightsSubtitle || 'Discover the latest trends in digital marketing, design tips, and stories from our alumni.'}
               </p>
             </div>
             <div className="hidden md:block shrink-0">
@@ -451,3 +451,5 @@ export default async function Home() {
     </div>
   );
 }
+
+
