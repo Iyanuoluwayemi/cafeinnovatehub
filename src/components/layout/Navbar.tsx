@@ -37,7 +37,7 @@ export default function Navbar() {
   if (pathname && pathname.startsWith('/studio')) return null;
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-slate-200 bg-white/95 backdrop-blur-md">
+    <header className="sticky top-0 z-50 w-full border-b border-slate-200 bg-white/70 backdrop-blur-xl saturate-150">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
         {/* Brand */}
         <Link 
@@ -85,9 +85,9 @@ export default function Navbar() {
             aria-label="Toggle Menu"
             aria-expanded={isMobileMenuOpen}
           >
-            <span className={`bg-slate-900 block transition-all duration-300 ease-out h-[2px] w-5 rounded-sm ${isMobileMenuOpen ? 'rotate-45 translate-y-[6px]' : '-translate-y-1'}`} />
-            <span className={`bg-slate-900 block transition-all duration-300 ease-out h-[2px] w-5 rounded-sm my-1 ${isMobileMenuOpen ? 'opacity-0' : 'opacity-100'}`} />
-            <span className={`bg-slate-900 block transition-all duration-300 ease-out h-[2px] w-5 rounded-sm ${isMobileMenuOpen ? '-rotate-45 -translate-y-[6px]' : 'translate-y-1'}`} />
+            <span className={`bg-slate-900 block transition-all duration-300 ease-out h-[0.125rem] w-5 rounded-sm ${isMobileMenuOpen ? 'rotate-45 translate-y-[6px]' : '-translate-y-1'}`} />
+            <span className={`bg-slate-900 block transition-all duration-300 ease-out h-[0.125rem] w-5 rounded-sm my-1 ${isMobileMenuOpen ? 'opacity-0' : 'opacity-100'}`} />
+            <span className={`bg-slate-900 block transition-all duration-300 ease-out h-[0.125rem] w-5 rounded-sm ${isMobileMenuOpen ? '-rotate-45 -translate-y-[6px]' : 'translate-y-1'}`} />
           </button>
         </div>
       </div>
@@ -99,7 +99,7 @@ export default function Navbar() {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "100vh" }}
             exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.3, ease: "easeInOut" }}
+            transition={{ duration: 0.3, type: "spring" as const, bounce: 0 }}
             className="md:hidden fixed inset-x-0 top-[73px] bg-white z-40 overflow-hidden flex flex-col border-t border-slate-100 shadow-2xl"
           >
             <nav className="flex flex-col px-6 py-8 gap-6 text-xl font-bold font-bricolage text-slate-800">
@@ -144,3 +144,4 @@ export default function Navbar() {
     </header>
   );
 }
+

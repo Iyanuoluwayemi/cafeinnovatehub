@@ -75,7 +75,7 @@ export default function FaqAccordion() {
                   initial={{ height: 0, opacity: 0 }}
                   animate={{ height: "auto", opacity: 1 }}
                   exit={{ height: 0, opacity: 0 }}
-                  transition={{ duration: 0.3, ease: "easeOut" as const }}
+                  transition={{ duration: 0.3, type: "spring" as const, bounce: 0 }}
                   className="overflow-hidden"
                 >
                   <p className="pb-6 text-slate-300 font-medium leading-relaxed pr-12 font-sans">

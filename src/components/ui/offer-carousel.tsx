@@ -40,7 +40,7 @@ export interface OfferCardProps {
 export function OfferCard({ title, description, imageSrc, href = "#", tag }: OfferCardProps) {
   return (
     <div 
-      className="flex flex-col w-[320px] min-h-[440px] rounded-[2rem] group shrink-0 snap-start bg-white border border-slate-200 shadow-sm hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 p-3"
+      className="flex flex-col w-[20rem] min-h-[27.5rem] rounded-[2rem] group shrink-0 snap-start bg-white border border-slate-200 shadow-sm hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 p-3"
     >
       <div className="flex flex-col flex-1 p-5 pb-4">
         {/* Header (Tag & Arrow) */}
@@ -63,7 +63,7 @@ export function OfferCard({ title, description, imageSrc, href = "#", tag }: Off
       </div>
       
       {/* Bottom Image Container (Bento Style) */}
-      <div className="relative w-full h-[220px] rounded-3xl overflow-hidden mt-auto isolate">
+      <div className="relative w-full h-[13.75rem] rounded-3xl overflow-hidden mt-auto isolate">
         <Image
           src={imageSrc}
           alt={title}

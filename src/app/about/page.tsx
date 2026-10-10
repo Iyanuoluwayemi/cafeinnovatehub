@@ -21,7 +21,7 @@ const cardVariants = {
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.3, ease: "easeOut" as const },
+    transition: { duration: 0.3, type: "spring" as const, bounce: 0 },
   },
 };
 
@@ -68,7 +68,7 @@ export default async function AboutPage() {
             className="max-w-3xl"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.3, ease: "easeOut" }}
+            transition={{ duration: 0.3, type: "spring" as const, bounce: 0 }}
           >
             <h1 className="text-5xl md:text-6xl font-bricolage font-black tracking-tighter mb-6">
               About Us
@@ -84,7 +84,7 @@ export default async function AboutPage() {
       <section className="py-24 bg-white relative overflow-hidden z-10">
         <div className="absolute top-0 left-0 w-full h-full bg-[linear-gradient(to_right,#00000008_1px,transparent_1px),linear-gradient(to_bottom,#00000008_1px,transparent_1px)] bg-[size:24px_24px] pointer-events-none -z-10"></div>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center lg:min-h-[600px] relative">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center lg:min-h-[37.5rem] relative">
             
             {/* Left Side: Origin Story */}
             <MotionDiv 
@@ -92,7 +92,7 @@ export default async function AboutPage() {
               initial={{ opacity: 0, x: -30 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true, margin: "-50px" }}
-              transition={{ duration: 0.3, ease: "easeOut" as const }}
+              transition={{ duration: 0.3, type: "spring" as const, bounce: 0 }}
             >
               <div className="space-y-6">
                 <span className="text-sm font-bold text-cihLightBlue uppercase tracking-widest">
@@ -116,7 +116,7 @@ export default async function AboutPage() {
             </MotionDiv>
 
             {/* Right Side: Image and Floating Cards */}
-            <div className="relative w-full h-[500px] lg:h-[600px] mt-12 lg:mt-0">
+            <div className="relative w-full h-[31.25rem] lg:h-[37.5rem] mt-12 lg:mt-0">
               
               {/* Main Background Image */}
               <div className="absolute right-0 top-0 w-[95%] sm:w-[85%] h-full rounded-[2rem] shadow-2xl overflow-hidden">
@@ -130,11 +130,11 @@ export default async function AboutPage() {
 
               {/* Card 1: Mission (Floating) */}
               <MotionDiv 
-                className="absolute top-8 left-0 lg:-left-8 z-10 rounded-2xl bg-white/85 backdrop-blur-xl border border-white/40 p-8 shadow-2xl w-[85%] sm:w-[75%] max-w-[340px]"
+                className="absolute top-8 left-0 lg:-left-8 z-10 rounded-2xl bg-white/85 backdrop-blur-xl border border-white/40 p-8 shadow-2xl w-[85%] sm:w-[75%] max-w-[21.25rem]"
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-50px" }}
-                transition={{ duration: 0.3, delay: 0.2, ease: "easeOut" as const }}
+                transition={{ duration: 0.3, delay: 0.2, type: "spring" as const, bounce: 0 }}
               >
                 <div className="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-cihBlue text-white shadow-md mb-4">
                   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -151,11 +151,11 @@ export default async function AboutPage() {
 
               {/* Card 2: Vision (Floating) */}
               <MotionDiv 
-                className="absolute bottom-8 left-6 lg:left-8 z-20 rounded-2xl bg-white/85 backdrop-blur-xl border border-white/40 p-8 shadow-2xl w-[85%] sm:w-[75%] max-w-[340px]"
+                className="absolute bottom-8 left-6 lg:left-8 z-20 rounded-2xl bg-white/85 backdrop-blur-xl border border-white/40 p-8 shadow-2xl w-[85%] sm:w-[75%] max-w-[21.25rem]"
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-50px" }}
-                transition={{ duration: 0.3, delay: 0.4, ease: "easeOut" as const }}
+                transition={{ duration: 0.3, delay: 0.4, type: "spring" as const, bounce: 0 }}
               >
                 <div className="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-cihLightBlue text-cihBlueDark shadow-md mb-4">
                   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -177,7 +177,7 @@ export default async function AboutPage() {
       <section className="py-24 bg-white relative overflow-hidden z-10 border-y border-slate-200">
         {/* Subtle Grid & Ambient Lighting */}
         <div className="absolute inset-0 bg-[linear-gradient(to_right,#00000008_1px,transparent_1px),linear-gradient(to_bottom,#00000008_1px,transparent_1px)] bg-[size:24px_24px]"></div>
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[600px] bg-cihLightBlue/[0.04] rounded-full blur-[120px] pointer-events-none -z-10"></div>
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[50rem] h-[37.5rem] bg-cihLightBlue/[0.04] rounded-full blur-[120px] pointer-events-none -z-10"></div>
         
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="mb-12 md:mb-20 text-center max-w-3xl mx-auto">
@@ -207,7 +207,7 @@ export default async function AboutPage() {
                 <MotionDiv 
                   key={member._id} 
                   variants={cardVariants} 
-                  className="flex flex-col gap-6 w-full md:w-[calc(50%-12px)] lg:w-[calc(25%-18px)] min-w-[250px]"
+                  className="flex flex-col gap-6 w-full md:w-[calc(50%-12px)] lg:w-[calc(25%-18px)] min-w-[15.625rem]"
                 >
                   
                   {/* IMAGE BLOCK */}

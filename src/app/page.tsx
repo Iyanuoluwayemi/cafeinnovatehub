@@ -30,7 +30,7 @@ const cardVariants: Variants = {
     scale: 1,
     transition: {
       duration: 0.3,
-      ease: "easeOut" as const,
+      type: "spring" as const, bounce: 0,
     },
   },
 };
@@ -128,7 +128,7 @@ export default async function Home() {
             className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bricolage font-black text-white leading-[1.1] tracking-tighter mb-8"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.3, ease: "easeOut" }}
+            transition={{ duration: 0.3, type: "spring" as const, bounce: 0 }}
           >
             {homeData?.heroHeadline}
           </MotionH1>
@@ -137,7 +137,7 @@ export default async function Home() {
             className="text-lg md:text-xl text-slate-300 max-w-2xl font-medium leading-relaxed mb-10"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.3, delay: 0.2, ease: "easeOut" }}
+            transition={{ duration: 0.3, delay: 0.2, type: "spring" as const, bounce: 0 }}
           >
             {homeData?.heroSubheadline}
           </MotionP>
@@ -146,7 +146,7 @@ export default async function Home() {
             className="flex flex-col sm:flex-row items-center justify-center gap-4 w-full sm:w-auto"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.3, delay: 0.3, ease: "easeOut" }}
+            transition={{ duration: 0.3, delay: 0.3, type: "spring" as const, bounce: 0 }}
           >
             <Link href={homeData?.primaryCtaLink || "/programs"}>
               <EclipseButton variant="yellow" className="w-full sm:w-auto px-8 py-4 text-base">
@@ -193,8 +193,8 @@ export default async function Home() {
       {/* What We Do Section - Upgraded */}
       <section className="relative py-24 md:py-32 bg-white overflow-hidden z-10">
         {/* Soft ambient glows */}
-        <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-cihYellow/[0.05] rounded-full blur-[100px] pointer-events-none -z-10"></div>
-        <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-cihBlue/[0.03] rounded-full blur-[100px] pointer-events-none -z-10"></div>
+        <div className="absolute top-0 right-0 w-[37.5rem] h-[37.5rem] bg-cihYellow/[0.05] rounded-full blur-[100px] pointer-events-none -z-10"></div>
+        <div className="absolute bottom-0 left-0 w-[37.5rem] h-[37.5rem] bg-cihBlue/[0.03] rounded-full blur-[100px] pointer-events-none -z-10"></div>
         
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-8 items-center">
@@ -204,7 +204,7 @@ export default async function Home() {
               initial={{ opacity: 0, x: -30 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true, margin: "-40px" }}
-              transition={{ duration: 0.3, ease: "easeOut" }}
+              transition={{ duration: 0.3, type: "spring" as const, bounce: 0 }}
               className="space-y-8 lg:pr-12"
             >
               <span className="text-sm font-bold text-cihLightBlue uppercase tracking-widest flex items-center gap-2">
@@ -234,8 +234,8 @@ export default async function Home() {
               initial={{ opacity: 0, scale: 0.95 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true, margin: "-40px" }}
-              transition={{ duration: 0.3, delay: 0.2, ease: "easeOut" }}
-              className="relative w-full h-[500px] lg:h-[600px] flex items-center justify-center lg:justify-end"
+              transition={{ duration: 0.3, delay: 0.2, type: "spring" as const, bounce: 0 }}
+              className="relative w-full h-[31.25rem] lg:h-[37.5rem] flex items-center justify-center lg:justify-end"
             >
               {/* Decorative shapes behind */}
               <div className="absolute top-10 right-10 w-[80%] h-[80%] bg-blue-50 rounded-[3rem] -z-10 rotate-6"></div>
@@ -248,8 +248,8 @@ export default async function Home() {
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.3, delay: 0.5, ease: "easeOut" }}
-                className="absolute bottom-10 left-0 md:-left-8 bg-white p-6 rounded-3xl shadow-2xl border border-slate-100 flex flex-col gap-1 z-20 w-[240px]"
+                transition={{ duration: 0.3, delay: 0.5, type: "spring" as const, bounce: 0 }}
+                className="absolute bottom-10 left-0 md:-left-8 bg-white p-6 rounded-3xl shadow-2xl border border-slate-100 flex flex-col gap-1 z-20 w-[15rem]"
               >
                 <div className="flex items-center gap-3 mb-2">
                   <div className="w-10 h-10 rounded-xl bg-cihYellow/20 flex items-center justify-center text-yellow-600">
@@ -271,7 +271,7 @@ export default async function Home() {
         {/* CSS Grid Pattern for depth */}
         <div className="absolute inset-0 bg-[linear-gradient(to_right,#00000008_1px,transparent_1px),linear-gradient(to_bottom,#00000008_1px,transparent_1px)] bg-[size:24px_24px]"></div>
         {/* Soft glowing ambient light */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[600px] bg-cihBlue/[0.03] rounded-full blur-[120px] z-0 pointer-events-none"></div>
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[50rem] h-[37.5rem] bg-cihBlue/[0.03] rounded-full blur-[120px] z-0 pointer-events-none"></div>
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           
@@ -281,7 +281,7 @@ export default async function Home() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-40px" }}
-            transition={{ duration: 0.3, ease: "easeOut" as const }}
+            transition={{ duration: 0.3, type: "spring" as const, bounce: 0 }}
           >
             <div className="max-w-2xl">
               <h2 className="text-4xl font-extrabold text-cihBlue tracking-tighter mb-4">
@@ -306,7 +306,7 @@ export default async function Home() {
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-50px" }}
-            transition={{ duration: 0.3, delay: 0.2, ease: "easeOut" as const }}
+            transition={{ duration: 0.3, delay: 0.2, type: "spring" as const, bounce: 0 }}
           >
             <OfferCarousel>
               {sanityPrograms.map((p: any, index: number) => (
