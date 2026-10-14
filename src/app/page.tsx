@@ -82,7 +82,13 @@ export default async function Home() {
     : fallbackTestimonials;
   // Ensure enough cards in each marquee loop iteration to span across ultra-wide and 4K displays (>= 4500px per half)
   const repeatCount = rawList.length > 0 ? Math.max(2, Math.ceil(12 / rawList.length)) : 1;
-  const marqueeCards: Testimonial[] = rawList.length > 0 ? Array(repeatCount).fill(rawList).flat() : [];
+  const fallbackMetrics = [
+    { value: "50+", label: "BUSINESSES TRAINED" },
+    { value: "200+", label: "PROFESSIONALS" },
+    { value: "5", label: "COHORTS RUN" },
+    { value: "Bi Monthly", label: "FREE LIVE WEBINARS" }
+  ];
+  const metrics = (homeData?.stats && homeData.stats.length > 0) ? homeData.stats : fallbackMetrics;
 
   return (
     <div className="min-h-[100dvh] bg-slate-50 flex flex-col font-sans overflow-x-hidden">
@@ -161,7 +167,27 @@ export default async function Home() {
           </MotionDiv>
         </div>
 
-
+        {/* Metric Achievements Section */}
+        <MotionDiv 
+          className="relative z-20 w-full max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 mt-24 lg:mt-32"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-40px" }}
+          variants={containerVariants}
+        >
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12 border-t border-white/10 pt-16 text-center">
+            {metrics.map((stat: any, index: number) => (
+              <MotionDiv key={index} variants={cardVariants} className="flex flex-col items-center">
+                <span className={`text-4xl sm:text-5xl font-bricolage font-black mb-2 ${index === 0 ? 'text-[#facc15]' : index === 1 ? 'text-[#3b82f6]' : 'text-white'}`}>
+                  {stat.value}
+                </span>
+                <span className="text-xs sm:text-sm text-slate-400 font-medium uppercase tracking-widest">
+                  {stat.label}
+                </span>
+              </MotionDiv>
+            ))}
+          </div>
+        </MotionDiv>
       </section>
 
 

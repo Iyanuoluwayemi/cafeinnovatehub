@@ -41,6 +41,22 @@ export default {
     { name: 'primaryCtaLink', title: 'Primary CTA URL', type: 'string', group: 'hero' },
     { name: 'secondaryCtaText', title: 'Secondary CTA Text', type: 'string', group: 'hero' },
     { name: 'secondaryCtaLink', title: 'Secondary CTA URL', type: 'string', group: 'hero' },
+    {
+      name: 'stats',
+      title: 'Metrics & Achievements',
+      type: 'array',
+      group: 'hero',
+      description: 'Key metrics displayed on the home page (e.g. 50+ Businesses Trained, 200+ Professionals)',
+      of: [
+        {
+          type: 'object',
+          fields: [
+            { name: 'value', title: 'Metric Value (e.g. 200+, 50+)', type: 'string' },
+            { name: 'label', title: 'Metric Label (e.g. PROFESSIONALS)', type: 'string' },
+          ],
+        },
+      ],
+    },
 
     /* FEATURE SECTION */
     { name: 'featureTag', title: 'Eyebrow Tag', type: 'string', group: 'feature', initialValue: 'What We Do' },
