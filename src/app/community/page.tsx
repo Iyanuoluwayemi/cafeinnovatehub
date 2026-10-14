@@ -121,12 +121,10 @@ export default async function CommunityPage() {
               testimonials.slice(0, 3).map((item: any, idx: number) => (
                 <TestimonialCard 
                   key={item._id || idx}
-                  testimonial={{
-                    quote: item.quote,
-                    name: item.name,
-                    role: item.role,
-                    image: item.image ? urlFor(item.image).url() : undefined
-                  }}
+                  quote={item.quote}
+                  name={item.name}
+                  role={item.role}
+                  image={item.image ? urlFor(item.image).url() : undefined}
                 />
               ))
             ) : null}

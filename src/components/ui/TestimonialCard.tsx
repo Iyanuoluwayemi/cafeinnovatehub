@@ -35,13 +35,29 @@ export function getImageUrl(source: any): string | null {
   return null;
 }
 
-interface TestimonialCardProps {
+export interface TestimonialCardProps {
   test?: Testimonial;
   testimonial?: Testimonial;
+  quote?: string;
+  name?: string;
+  role?: string;
+  image?: any;
 }
 
-export default function TestimonialCard({ test, testimonial }: TestimonialCardProps) {
-  const item = test || testimonial || {};
+export default function TestimonialCard({
+  test,
+  testimonial,
+  quote,
+  name,
+  role,
+  image,
+}: TestimonialCardProps) {
+  const item: Testimonial = {
+    quote: quote ?? testimonial?.quote ?? test?.quote,
+    name: name ?? testimonial?.name ?? test?.name,
+    role: role ?? testimonial?.role ?? test?.role,
+    image: image ?? testimonial?.image ?? test?.image,
+  };
   const imgUrl = getImageUrl(item.image);
   
   return (
