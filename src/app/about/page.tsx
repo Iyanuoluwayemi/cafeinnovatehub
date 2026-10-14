@@ -70,12 +70,9 @@ export default async function AboutPage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.3, type: "spring" as const, bounce: 0 }}
           >
-            <h1 className="text-5xl md:text-6xl font-bricolage font-black tracking-tighter mb-6">
+            <h1 className="text-5xl md:text-6xl font-bricolage font-black tracking-tighter">
               About Us
             </h1>
-            <p className="text-xl text-cihLightBlue font-medium leading-relaxed">
-              We are building a digital skills accelerator where small business owners and young professionals converge to learn practical tools, improve their businesses, and turn a simple internet connection into real opportunity.
-            </p>
           </MotionDiv>
         </div>
       </section>
