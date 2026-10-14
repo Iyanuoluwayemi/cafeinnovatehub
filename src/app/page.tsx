@@ -87,7 +87,7 @@ export default async function Home() {
   return (
     <div className="min-h-[100dvh] bg-slate-50 flex flex-col font-sans overflow-x-hidden">
 
-      {/* Immersive Dark Hero & Impact Section */}
+      {/* Immersive Dark Hero Section */}
       <section className="relative w-full overflow-hidden bg-[#0a0f0d] pt-32 pb-24 lg:pt-40 lg:pb-32 flex flex-col items-center">
         {/* Immersive Background Image with deep fade */}
         <div className="absolute inset-0 z-0">
@@ -161,31 +161,7 @@ export default async function Home() {
           </MotionDiv>
         </div>
 
-        {/* Impact Numbers integrated beautifully below */}
-        <MotionDiv 
-          className="relative z-20 w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 mt-32 lg:mt-48"
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-40px" }}
-          variants={containerVariants}
-        >
-          <div className="grid grid-cols-1 lg:grid-cols-4 gap-12 lg:gap-8 items-start border-t border-white/10 pt-16">
-            <div className="lg:col-span-1">
-              <h3 className="text-2xl md:text-3xl font-bricolage font-bold text-white leading-tight">
-                A year of real impact, one person and one business at a time.
-              </h3>
-            </div>
-            
-            <div className="lg:col-span-3 grid grid-cols-2 md:grid-cols-4 gap-8">
-              {homeData?.stats?.map((stat: any, index: number) => (
-                <MotionDiv key={index} variants={cardVariants} className="flex flex-col">
-                  <span className={`text-5xl font-bricolage font-black mb-2 ${index === 0 ? 'text-[#facc15]' : index === 1 ? 'text-[#3b82f6]' : 'text-white'}`}>{stat.value}</span>
-                  <span className="text-sm text-slate-400 font-medium uppercase tracking-widest">{stat.label}</span>
-                </MotionDiv>
-              ))}
-            </div>
-          </div>
-        </MotionDiv>
+
       </section>
 
 

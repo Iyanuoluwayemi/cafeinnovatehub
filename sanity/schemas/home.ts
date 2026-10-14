@@ -19,11 +19,7 @@ fields: [
 { name: 'primaryCtaLink', title: 'Primary CTA URL', type: 'string', group: 'hero' },
 { name: 'secondaryCtaText', title: 'Secondary CTA Text', type: 'string', group: 'hero' },
 { name: 'secondaryCtaLink', title: 'Secondary CTA URL', type: 'string', group: 'hero' },
-{ name: 'stats', title: 'Impact Statistics', type: 'array', group: 'hero', of: [{ type: 'object', fields: [
-{ name: 'value', title: 'Stat Value (e.g. 50+)', type: 'string' },
-{ name: 'label', title: 'Stat Label (e.g. BUSINESSES TRAINED)', type: 'string' }
-]}]
-},
+
 
 /* FEATURE SECTION */
 { name: 'featureTag', title: 'Eyebrow Tag', type: 'string', group: 'feature', initialValue: 'What We Do' },
