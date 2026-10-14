@@ -112,11 +112,11 @@ export default async function AboutPage() {
               </div>
             </MotionDiv>
 
-            {/* Right Side: Image and Floating Cards */}
-            <div className="relative w-full h-[31.25rem] lg:h-[37.5rem] mt-12 lg:mt-0">
+            {/* Right Side: Image and Mission/Vision Cards (Responsive Bento Layout) */}
+            <div className="flex flex-col gap-6 lg:block lg:relative w-full lg:h-[37.5rem] mt-12 lg:mt-0">
               
-              {/* Main Background Image */}
-              <div className="absolute right-0 top-0 w-[95%] sm:w-[85%] h-full rounded-[2rem] shadow-2xl overflow-hidden">
+              {/* Main Image */}
+              <div className="relative w-full aspect-[4/3] lg:aspect-auto lg:absolute lg:right-0 lg:top-0 lg:w-[85%] lg:h-full rounded-[2rem] shadow-2xl overflow-hidden shrink-0">
                 <Image 
                   src="https://res.cloudinary.com/dykvipays/image/upload/f_auto,q_auto,w_1000/Upscale_image_and_remove_noise_2K_20260919152445_kwspty.jpg" 
                   alt="Cafe Innovate Hub Team" 
@@ -125,9 +125,9 @@ export default async function AboutPage() {
                 />
               </div>
 
-              {/* Card 1: Mission (Floating) */}
+              {/* Card 1: Mission */}
               <MotionDiv 
-                className="absolute top-8 left-0 lg:-left-8 z-10 rounded-2xl bg-white/85 backdrop-blur-xl border border-white/40 p-8 shadow-2xl w-[85%] sm:w-[75%] max-w-[21.25rem]"
+                className="relative lg:absolute lg:top-8 lg:left-0 lg:-left-8 z-10 rounded-2xl bg-white/90 backdrop-blur-xl border border-slate-200/60 p-6 sm:p-8 shadow-xl lg:shadow-2xl w-full lg:w-[85%] lg:max-w-[21.25rem]"
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-50px" }}
@@ -146,9 +146,9 @@ export default async function AboutPage() {
                 </p>
               </MotionDiv>
 
-              {/* Card 2: Vision (Floating) */}
+              {/* Card 2: Vision */}
               <MotionDiv 
-                className="absolute bottom-8 left-6 lg:left-8 z-20 rounded-2xl bg-white/85 backdrop-blur-xl border border-white/40 p-8 shadow-2xl w-[85%] sm:w-[75%] max-w-[21.25rem]"
+                className="relative lg:absolute lg:bottom-8 lg:left-6 lg:left-8 z-20 rounded-2xl bg-white/90 backdrop-blur-xl border border-slate-200/60 p-6 sm:p-8 shadow-xl lg:shadow-2xl w-full lg:w-[85%] lg:max-w-[21.25rem]"
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-50px" }}

@@ -24,10 +24,20 @@
   --cih-light-blue: #53ACFF;
   --cih-yellow: #FFEA00;
   --cih-yellow-hover: #FFB703;
+
+  /* Emil Kowalski Custom Easing Curves */
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
+  --ease-drawer: cubic-bezier(0.32, 0.72, 0, 1);
 }
 
 body {
   font-family: var(--font-figtree), sans-serif;
+}
+
+/* Apple Design: Negative tracking for large display headings */
+h1, h2, .font-bricolage {
+  letter-spacing: -0.025em;
 }
 
 /* Native Mobile Overrides */
@@ -51,6 +61,12 @@ button, a, [role="button"] {
   user-select: none;
   -webkit-user-select: none;
   -webkit-touch-callout: none;
+}
+
+/* Instant responsive tactile feedback on press */
+button:active:not(:disabled), [role="button"]:active:not([aria-disabled="true"]) {
+  transform: scale(0.975);
+  transition: transform 120ms var(--ease-out, ease-out);
 }
 
 /* Prevent font inflation in landscape */

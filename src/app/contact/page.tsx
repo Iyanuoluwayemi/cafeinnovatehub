@@ -101,14 +101,18 @@ export default function ContactPage() {
         </div>
       </section>
 
-      {/* FAQ Section */}
-      <section className="py-24 bg-white border-t border-slate-200">
-        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+      {/* FAQ Section (Deep Dark Contrast Section) */}
+      <section className="py-24 sm:py-32 bg-[#0a0f0d] text-white relative overflow-hidden border-t border-white/10">
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff05_1px,transparent_1px),linear-gradient(to_bottom,#ffffff05_1px,transparent_1px)] bg-[size:24px_24px] pointer-events-none"></div>
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[37.5rem] h-[37.5rem] bg-cihBlue/[0.05] rounded-full blur-[120px] pointer-events-none"></div>
+
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-extrabold text-cihBlue tracking-tighter mb-4">
+            <span className="text-xs font-bold text-cihYellow uppercase tracking-widest mb-3 inline-block">Got Questions?</span>
+            <h2 className="text-4xl md:text-5xl font-bricolage font-black text-white tracking-tighter mb-4">
               Frequently Asked Questions
             </h2>
-            <p className="text-lg text-slate-600 font-medium">
+            <p className="text-lg text-slate-400 font-medium">
               Everything you need to know about our programs and community.
             </p>
           </div>

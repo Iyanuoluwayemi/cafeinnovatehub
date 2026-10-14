@@ -10,14 +10,14 @@ import TestimonialCard, { Testimonial } from "@/components/ui/TestimonialCard";
 
 export const revalidate = 10;
 
-// Framer Motion variants with explicit cubic-bezier tuple typing
+// Framer Motion variants with Apple/Emil Kowalski crisp stagger timing
 const containerVariants: Variants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.15,
-      delayChildren: 0.1,
+      staggerChildren: 0.08,
+      delayChildren: 0.05,
     },
   },
 };
@@ -246,21 +246,21 @@ export default async function Home() {
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true, margin: "-40px" }}
               transition={{ duration: 0.3, delay: 0.2, type: "spring" as const, bounce: 0 }}
-              className="relative w-full h-[31.25rem] lg:h-[37.5rem] flex items-center justify-center lg:justify-end"
+              className="relative w-full h-auto min-h-[22rem] lg:h-[37.5rem] flex flex-col items-center justify-center lg:justify-end"
             >
               {/* Decorative shapes behind */}
-              <div className="absolute top-10 right-10 w-[80%] h-[80%] bg-blue-50 rounded-[3rem] -z-10 rotate-6"></div>
+              <div className="absolute top-10 right-10 w-[80%] h-[80%] bg-blue-50 rounded-[3rem] -z-10 rotate-6 hidden sm:block"></div>
               
               {/* The Standardized Image Container */}
-              {videoId ? <iframe className="w-full aspect-video rounded-xl shadow-lg" src={`https://www.youtube.com/embed/${videoId}`} allow="encrypted-media; picture-in-picture" allowFullScreen /> : null}
+              {videoId ? <iframe className="w-full aspect-video rounded-2xl shadow-xl border border-slate-200/60" src={`https://www.youtube.com/embed/${videoId}`} allow="encrypted-media; picture-in-picture" allowFullScreen /> : null}
 
               {/* Floating Stat Card overlapping */}
               <MotionDiv 
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.3, delay: 0.5, type: "spring" as const, bounce: 0 }}
-                className="absolute bottom-10 left-0 md:-left-8 bg-white p-6 rounded-3xl shadow-2xl border border-slate-100 flex flex-col gap-1 z-20 w-[15rem]"
+                transition={{ duration: 0.3, delay: 0.4, type: "spring" as const, bounce: 0 }}
+                className="relative lg:absolute -mt-6 lg:mt-0 self-start ml-2 sm:ml-4 lg:ml-0 lg:bottom-10 lg:-left-8 bg-white p-5 sm:p-6 rounded-3xl shadow-2xl border border-slate-100 flex flex-col gap-1 z-20 w-[15rem]"
               >
                 <div className="flex items-center gap-3 mb-2">
                   <div className="w-10 h-10 rounded-xl bg-cihYellow/20 flex items-center justify-center text-yellow-600">

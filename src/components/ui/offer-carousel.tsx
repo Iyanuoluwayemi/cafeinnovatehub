@@ -35,12 +35,13 @@ export interface OfferCardProps {
   tag?: string;
   brandName?: string;
   brandLogoSrc?: string;
+  className?: string;
 }
 
-export function OfferCard({ title, description, imageSrc, href = "#", tag }: OfferCardProps) {
+export function OfferCard({ title, description, imageSrc, href = "#", tag, className = "" }: OfferCardProps) {
   return (
     <div 
-      className="flex flex-col w-[20rem] min-h-[27.5rem] rounded-[2rem] group shrink-0 snap-start bg-white border border-slate-200 shadow-sm hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 p-3"
+      className={`flex flex-col w-[17.5rem] sm:w-[20rem] min-h-[27.5rem] rounded-[2rem] group shrink-0 snap-start bg-white border border-slate-200 shadow-sm hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 p-3 ${className}`}
     >
       <div className="flex flex-col flex-1 p-5 pb-4">
         {/* Header (Tag & Arrow) */}
@@ -68,7 +69,7 @@ export function OfferCard({ title, description, imageSrc, href = "#", tag }: Off
           src={imageSrc}
           alt={title}
           fill
-          className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300 ease-out"
         />
         <div className="absolute inset-0 bg-slate-900/10 group-hover:bg-transparent transition-colors duration-300" />
         
@@ -97,14 +98,12 @@ export function OfferCarousel({ children }: OfferCarouselProps) {
     }
   };
 
-  
-
   return (
     <div className="relative w-full max-w-7xl mx-auto group/carousel">
       {/* Scroll Container */}
       <div 
         ref={scrollRef}
-        className="flex gap-6 overflow-x-auto snap-x snap-mandatory scrollbar-hide pb-8 pt-4 px-4 sm:px-6 lg:px-8 -mx-4 sm:-mx-6 lg:-mx-8"
+        className="flex gap-6 overflow-x-auto snap-x snap-mandatory scrollbar-hide pb-8 pt-4 px-4 sm:px-6 lg:px-8 -mx-4 sm:-mx-6 lg:-mx-8 touch-pan-y"
         style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
       >
         {children}
@@ -114,14 +113,14 @@ export function OfferCarousel({ children }: OfferCarouselProps) {
       <div className="flex items-center justify-center gap-3 mt-2 px-4 sm:px-6 lg:px-8">
         <button 
           onClick={() => scroll("left")}
-          className="flex items-center justify-center w-12 h-12 rounded-full bg-white border border-slate-200 text-slate-500 hover:bg-cihLightBlue hover:text-white hover:border-cihLightBlue shadow-sm transition-all focus:outline-none focus:ring-2 focus:ring-cihLightBlue focus:ring-offset-2"
+          className="flex items-center justify-center w-12 h-12 rounded-full bg-white border border-slate-200 text-slate-500 hover:bg-cihLightBlue hover:text-white hover:border-cihLightBlue active:scale-95 shadow-sm transition-all focus:outline-none focus:ring-2 focus:ring-cihLightBlue focus:ring-offset-2"
           aria-label="Scroll left"
         >
           <ChevronLeftIcon />
         </button>
         <button 
           onClick={() => scroll("right")}
-          className="flex items-center justify-center w-12 h-12 rounded-full bg-white border border-slate-200 text-slate-500 hover:bg-cihLightBlue hover:text-white hover:border-cihLightBlue shadow-sm transition-all focus:outline-none focus:ring-2 focus:ring-cihLightBlue focus:ring-offset-2"
+          className="flex items-center justify-center w-12 h-12 rounded-full bg-white border border-slate-200 text-slate-500 hover:bg-cihLightBlue hover:text-white hover:border-cihLightBlue active:scale-95 shadow-sm transition-all focus:outline-none focus:ring-2 focus:ring-cihLightBlue focus:ring-offset-2"
           aria-label="Scroll right"
         >
           <ChevronRightIcon />

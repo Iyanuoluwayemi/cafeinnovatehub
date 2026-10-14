@@ -52,6 +52,7 @@ export default async function ProgramsCatalog() {
                   description={`${program.shortDescription} (For: ${program.targetAudience} | Cost: ${program.cost})`}
                   tag={program.duration}
                   href={programHref}
+                  className="!w-full max-w-[26rem]"
                   imageSrc={program.coverImage ? urlFor(program.coverImage).url() : "https://res.cloudinary.com/dykvipays/image/upload/f_auto,q_auto,w_800,c_scale/Upscale_image_remove_noise_2K_20260919135611_mctuby.jpg"}
                   brandName="Cafe Innovate Hub"
                   brandLogoSrc="https://res.cloudinary.com/dykvipays/image/upload/f_auto,q_auto,w_250,c_scale/CIH_Black_logo_fadnbk.png"

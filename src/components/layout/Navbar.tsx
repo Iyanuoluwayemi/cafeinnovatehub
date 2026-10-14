@@ -37,8 +37,8 @@ export default function Navbar() {
   if (pathname && pathname.startsWith('/studio')) return null;
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-slate-200 bg-white/70 backdrop-blur-xl saturate-150">
-      <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
+    <header className="sticky top-0 z-50 w-full border-b border-slate-200 bg-white/75 backdrop-blur-xl saturate-150 safe-area-pt">
+      <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3.5 sm:px-6 lg:px-8">
         {/* Brand */}
         <Link 
           href="/" 
@@ -80,7 +80,7 @@ export default function Navbar() {
 
           {/* Hamburger Button (Mobile) */}
           <button
-            className="md:hidden flex flex-col justify-center items-center w-10 h-10 rounded-full hover:bg-slate-100 transition-colors z-50 relative"
+            className="md:hidden flex flex-col justify-center items-center w-10 h-10 rounded-full hover:bg-slate-100 active:scale-95 transition-all z-50 relative"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             aria-label="Toggle Menu"
             aria-expanded={isMobileMenuOpen}
@@ -96,11 +96,11 @@ export default function Navbar() {
       <AnimatePresence>
         {isMobileMenuOpen && (
           <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "100vh" }}
-            exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.3, type: "spring" as const, bounce: 0 }}
-            className="md:hidden fixed inset-x-0 top-[73px] bg-white z-40 overflow-hidden flex flex-col border-t border-slate-100 shadow-2xl"
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            transition={{ type: "spring", stiffness: 350, damping: 30 }}
+            className="md:hidden fixed inset-x-0 top-[65px] bg-white z-40 overflow-y-auto h-[calc(100dvh-65px)] flex flex-col border-t border-slate-100 shadow-2xl overscroll-contain safe-area-pb"
           >
             <nav className="flex flex-col px-6 py-8 gap-6 text-xl font-bold font-bricolage text-slate-800">
               {navLinks.map((link, index) => (
