@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Bricolage_Grotesque, Figtree } from "next/font/google";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
+import { Toaster } from "sonner";
 import "./globals.css";
 
 export const revalidate = 10;
@@ -43,6 +44,7 @@ export default function RootLayout({
       className={`${bricolageGrotesque.variable} ${figtree.variable} h-full antialiased scroll-smooth`}
      data-scroll-behavior="smooth">
       <body className="min-h-full flex flex-col font-sans bg-slate-50 text-slate-900 selection:bg-cihBlue selection:text-white">
+        <Toaster richColors position="top-right" />
         <Navbar />
         <main className="flex-1">{children}</main>
         <Footer />

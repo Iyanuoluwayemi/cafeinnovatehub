@@ -192,7 +192,7 @@ export default async function Home() {
               </h2>
               <div className="text-lg text-slate-600 font-medium leading-relaxed space-y-6">
                 <p>
-                  {homeData?.featureDescription || "Cafe Innovate Hub is a digital skills accelerator empowering MSMEs for a digital future."}
+                  {homeData?.introCopy || homeData?.featureDescription || "Cafe Innovate Hub is a digital skills accelerator empowering MSMEs for a digital future."}
                 </p>
               </div>
               <div className="pt-4">

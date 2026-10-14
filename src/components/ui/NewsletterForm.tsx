@@ -2,18 +2,19 @@
 
 import React, { useState } from "react";
 import EclipseButton from "./eclipse-button";
+import { toast } from "sonner";
 
 export default function NewsletterForm() {
+  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
-  const [message, setMessage] = useState("");
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!email) return;
 
     setStatus("loading");
-    setMessage("");
+    const toastId = toast.loading("Subscribing to newsletter...");
 
     try {
       const res = await fetch("/api/subscribe", {
@@ -21,53 +22,67 @@ export default function NewsletterForm() {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ email }),
+        body: JSON.stringify({
+          name: name.trim(),
+          email: email.trim(),
+        }),
       });
 
-      const data = await res.json();
+      const data = await res.json().catch(() => null);
 
       if (!res.ok) {
-        throw new Error(data.error || "Something went wrong.");
+        throw new Error(data?.error || `Subscription failed (HTTP ${res.status})`);
       }
 
       setStatus("success");
-      setMessage("Thanks for subscribing!");
+      setName("");
       setEmail("");
+      toast.success("Successfully subscribed!", {
+        id: toastId,
+        description: "Welcome to the Cafe Innovate Hub community newsletter.",
+      });
     } catch (error: any) {
       setStatus("error");
-      setMessage(error.message || "Failed to subscribe. Please try again.");
+      toast.error(error.message || "Failed to subscribe. Please try again.", {
+        id: toastId,
+      });
     }
   };
 
   return (
-    <div className="w-full max-w-md">
+    <div className="w-full max-w-xl">
       <form onSubmit={handleSubmit} className="flex flex-col gap-3">
-        <div className="relative flex items-center">
+        <div className="flex flex-col sm:flex-row gap-2.5">
+          <input
+            type="text"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            disabled={status === "loading"}
+            placeholder="Your name"
+            required
+            className="w-full sm:w-44 px-4 py-3 rounded-xl bg-white text-slate-900 border border-slate-200 focus:ring-2 focus:ring-cihLightBlue focus:border-cihLightBlue outline-none text-base placeholder:text-slate-400 transition-all font-sans"
+          />
           <input
             type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            disabled={status === "loading" || status === "success"}
-            placeholder="Enter your email address"
+            disabled={status === "loading"}
+            placeholder="Your email address"
             required
-            className="w-full px-5 py-4 rounded-xl border border-slate-200 focus:ring-2 focus:ring-cihLightBlue focus:border-cihLightBlue outline-none transition-all text-slate-900 pr-[120px]"
+            className="w-full sm:w-64 px-4 py-3 rounded-xl bg-white text-slate-900 border border-slate-200 focus:ring-2 focus:ring-cihLightBlue focus:border-cihLightBlue outline-none text-base placeholder:text-slate-400 transition-all font-sans"
           />
           <EclipseButton
             type="submit"
-            disabled={status === "loading" || status === "success"}
-            className="absolute right-2 top-2 bottom-2 px-6 py-2 shadow-none"
-            size="sm"
+            variant="yellow"
+            disabled={status === "loading"}
+            className="w-full sm:w-auto px-6 py-3 font-bold text-sm shadow-md shrink-0 justify-center"
           >
-            {status === "loading" ? "..." : "Subscribe"}
+            {status === "loading" ? "Subscribing..." : "Subscribe"}
           </EclipseButton>
         </div>
-        {message && (
-          <p
-            className={`text-sm font-medium pl-1 ${
-              status === "error" ? "text-red-500" : "text-green-600"
-            }`}
-          >
-            {message}
+        {status === "success" && (
+          <p className="text-sm font-medium text-emerald-400 pl-1">
+            ✓ Thanks for subscribing! You are now on our list.
           </p>
         )}
       </form>
