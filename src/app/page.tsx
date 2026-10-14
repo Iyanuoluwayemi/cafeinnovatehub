@@ -82,6 +82,7 @@ export default async function Home() {
     : fallbackTestimonials;
   // Ensure enough cards in each marquee loop iteration to span across ultra-wide and 4K displays (>= 4500px per half)
   const repeatCount = rawList.length > 0 ? Math.max(2, Math.ceil(12 / rawList.length)) : 1;
+  const marqueeCards: Testimonial[] = rawList.length > 0 ? Array(repeatCount).fill(rawList).flat() : [];
   const fallbackMetrics = [
     { value: "50+", label: "BUSINESSES TRAINED" },
     { value: "200+", label: "PROFESSIONALS" },
