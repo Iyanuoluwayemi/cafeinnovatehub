@@ -58,7 +58,7 @@ export default function TestimonialCard({ test, testimonial }: TestimonialCardPr
         </svg>
 
         <p className="text-sm md:text-base font-normal leading-relaxed text-slate-200 line-clamp-4">
-          "{cleanQuote(item.quote)}"
+          &ldquo;{cleanQuote(item.quote)}&rdquo;
         </p>
       </div>
 

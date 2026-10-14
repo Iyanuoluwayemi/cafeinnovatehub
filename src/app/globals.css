@@ -45,6 +45,19 @@ input, select, textarea {
 .safe-area-pt { padding-top: env(safe-area-inset-top); }
 .safe-area-pb { padding-bottom: env(safe-area-inset-bottom); }
 
+/* Native controls: eliminate 300ms tap delay + prevent long-press selection */
+button, a, [role="button"] {
+  touch-action: manipulation;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
+}
+
+/* Prevent font inflation in landscape */
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
 
 
 

@@ -84,10 +84,10 @@ export default async function Home() {
   const repeatCount = rawList.length > 0 ? Math.max(2, Math.ceil(12 / rawList.length)) : 1;
   const marqueeCards: Testimonial[] = rawList.length > 0 ? Array(repeatCount).fill(rawList).flat() : [];
   const fallbackMetrics = [
-    { value: "50+", label: "BUSINESSES TRAINED" },
-    { value: "200+", label: "PROFESSIONALS" },
-    { value: "5", label: "COHORTS RUN" },
-    { value: "Bi Monthly", label: "FREE LIVE WEBINARS" }
+    { value: "over 50+", label: "Businesses trained" },
+    { value: "200+", label: "Professionals trained" },
+    { value: "5", label: "Cohorts run" },
+    { value: "Bi-monthly", label: "Free live webinars" }
   ];
   const metrics = (homeData?.stats && homeData.stats.length > 0) ? homeData.stats : fallbackMetrics;
 
@@ -168,25 +168,33 @@ export default async function Home() {
           </MotionDiv>
         </div>
 
-        {/* Metric Achievements Section */}
+        {/* Impact Numbers integrated beautifully below */}
         <MotionDiv 
-          className="relative z-20 w-full max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 mt-24 lg:mt-32"
+          className="relative z-20 w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 mt-32 lg:mt-48"
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-40px" }}
           variants={containerVariants}
         >
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12 border-t border-white/10 pt-16 text-center">
-            {metrics.map((stat: any, index: number) => (
-              <MotionDiv key={index} variants={cardVariants} className="flex flex-col items-center">
-                <span className={`text-4xl sm:text-5xl font-bricolage font-black mb-2 ${index === 0 ? 'text-[#facc15]' : index === 1 ? 'text-[#3b82f6]' : 'text-white'}`}>
-                  {stat.value}
-                </span>
-                <span className="text-xs sm:text-sm text-slate-400 font-medium uppercase tracking-widest">
-                  {stat.label}
-                </span>
-              </MotionDiv>
-            ))}
+          <div className="grid grid-cols-1 lg:grid-cols-4 gap-12 lg:gap-8 items-start border-t border-white/10 pt-16">
+            <div className="lg:col-span-1">
+              <h3 className="text-2xl md:text-3xl font-bricolage font-bold text-white leading-tight">
+                {homeData?.impactHeading || "Real impact 1 person 1 business at a time"}
+              </h3>
+            </div>
+            
+            <div className="lg:col-span-3 grid grid-cols-2 md:grid-cols-4 gap-8">
+              {metrics.map((stat: any, index: number) => (
+                <MotionDiv key={index} variants={cardVariants} className="flex flex-col">
+                  <span className={`${stat.value?.length > 4 ? 'text-3xl sm:text-4xl' : 'text-4xl sm:text-5xl'} font-bricolage font-black mb-2 ${index === 0 ? 'text-[#facc15]' : index === 1 ? 'text-[#3b82f6]' : 'text-white'}`}>
+                    {stat.value}
+                  </span>
+                  <span className="text-xs sm:text-sm text-slate-400 font-medium uppercase tracking-widest leading-relaxed">
+                    {stat.label}
+                  </span>
+                </MotionDiv>
+              ))}
+            </div>
           </div>
         </MotionDiv>
       </section>
@@ -219,7 +227,7 @@ export default async function Home() {
               </h2>
               <div className="text-lg text-slate-600 font-medium leading-relaxed space-y-6">
                 <p>
-                  {homeData?.introCopy || homeData?.featureDescription || "Cafe Innovate Hub is a digital skills accelerator empowering MSMEs for a digital future."}
+                  {homeData?.introCopy || homeData?.featureDescription || "Cafe Innovate Hub is a digital skills accelerator helping small business owners and young professionals grow through practical, accessible digital skills training programs. From digital marketing to graphic design, we teach the skills that turn a phone and an internet connection into real opportunity, and we keep it affordable so cost is never the reason someone or a business gets left behind."}
                 </p>
               </div>
               <div className="pt-4">
@@ -358,8 +366,10 @@ export default async function Home() {
                   width: max-content;
                   will-change: transform;
                 }
-                .animate-infinite-scroll:hover {
-                  animation-play-state: paused;
+                @media (hover: hover) and (pointer: fine) {
+                  .animate-infinite-scroll:hover {
+                    animation-play-state: paused;
+                  }
                 }
                 @media (prefers-reduced-motion: reduce) {
                   .animate-infinite-scroll {
