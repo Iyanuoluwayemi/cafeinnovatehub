@@ -53,8 +53,8 @@ export default function DonateClient({ data }: { data?: DonateData | null }) {
     });
   } else {
     // Primary Button
-    const btn1Text = data?.buttonText1 || data?.cta1Text || data?.callToAction || "Donate via Flutterwave";
-    const btn1Link = data?.buttonLink1 || data?.cta1Link || "https://flutterwave.com/pay/lsuxaiyde2t8";
+    const btn1Text = data?.cta1Text || data?.buttonText1 || data?.callToAction || "Donate via Flutterwave";
+    const btn1Link = data?.cta1Link || data?.buttonLink1 || "https://flutterwave.com/pay/lsuxaiyde2t8";
     buttons.push({
       text: btn1Text,
       link: btn1Link,
@@ -62,8 +62,8 @@ export default function DonateClient({ data }: { data?: DonateData | null }) {
     });
 
     // Secondary Button
-    const btn2Text = data?.buttonText2 || data?.cta2Text || "Send with PayPal";
-    const btn2Link = data?.buttonLink2 || data?.cta2Link || "https://paypal.me/cafeinnovate";
+    const btn2Text = data?.cta2Text || data?.buttonText2 || "Send with PayPal";
+    const btn2Link = data?.cta2Link || data?.buttonLink2 || "https://paypal.me/cafeinnovate";
     const isEmail = !btn2Link.startsWith('http://') && !btn2Link.startsWith('https://') && !btn2Link.startsWith('/') && btn2Link.includes('@');
     buttons.push({
       text: btn2Text,
