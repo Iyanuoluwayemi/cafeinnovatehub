@@ -3,8 +3,9 @@ export default {
   title: 'Home Page',
   type: 'document',
   groups: [
-    { name: 'hero', title: 'Hero Section' },
-    { name: 'feature', title: 'Feature Section' },
+    { name: 'hero', title: 'Hero & Impact Section' },
+    { name: 'feature', title: 'What We Do (Feature)' },
+    { name: 'insights', title: 'Latest Insights' },
   ],
   fields: [
     { name: 'title', title: 'Internal Title', type: 'string', initialValue: 'Home Page Content', hidden: true },
@@ -13,27 +14,11 @@ export default {
       name: 'insightsSubtitle',
       title: 'Latest Insights Subtitle',
       type: 'string',
+      group: 'insights',
       initialValue: 'Discover the latest trends in digital marketing, design tips, and stories from our alumni.',
     },
 
-    {
-      name: 'impactHeading',
-      title: 'Impact Heading',
-      type: 'string',
-      description: 'Heading for the impact section (e.g. "A year of real impact, one person and one business at a time.")',
-      initialValue: 'A year of real impact, one person and one business at a time.',
-    },
-
-    {
-      name: 'introCopy',
-      title: 'Intro Copy / SEO Accelerator Text',
-      type: 'text',
-      rows: 4,
-      description: 'Specific SEO description of Cafe Innovate Hub as a digital skills accelerator.',
-      initialValue: 'Cafe Innovate Hub is a digital skills accelerator where small business owners and young professionals converge to learn practical tools, improve their businesses, and turn a simple internet connection into real opportunity.',
-    },
-
-    /* HERO SECTION */
+    /* HERO & IMPACT SECTION */
     { name: 'heroHeadline', title: 'Hero Headline', type: 'string', group: 'hero' },
     { name: 'heroSubheadline', title: 'Hero Subheadline', type: 'text', group: 'hero' },
     { name: 'heroImage', title: 'Hero Background Image', type: 'image', options: { hotspot: true }, group: 'hero' },
@@ -41,24 +26,58 @@ export default {
     { name: 'primaryCtaLink', title: 'Primary CTA URL', type: 'string', group: 'hero' },
     { name: 'secondaryCtaText', title: 'Secondary CTA Text', type: 'string', group: 'hero' },
     { name: 'secondaryCtaLink', title: 'Secondary CTA URL', type: 'string', group: 'hero' },
+
+    {
+      name: 'impactHeading',
+      title: 'Impact Section Heading',
+      type: 'string',
+      group: 'hero',
+      description: 'Heading for the metrics impact section (e.g. "Real impact 1 person 1 business at a time")',
+      initialValue: 'Real impact 1 person 1 business at a time',
+    },
+
     {
       name: 'stats',
       title: 'Metrics & Achievements',
       type: 'array',
       group: 'hero',
-      description: 'Key metrics displayed on the home page (e.g. 50+ Businesses Trained, 200+ Professionals)',
+      description: 'Key metrics displayed on the home page (e.g. over 50+ Businesses trained, 200+ Professionals trained)',
       of: [
         {
           type: 'object',
+          name: 'stat',
+          title: 'Metric',
           fields: [
-            { name: 'value', title: 'Metric Value (e.g. 200+, 50+)', type: 'string' },
-            { name: 'label', title: 'Metric Label (e.g. PROFESSIONALS)', type: 'string' },
+            { name: 'value', title: 'Metric Value (e.g. over 50+, 200+, 5, Bi-monthly)', type: 'string' },
+            { name: 'label', title: 'Metric Label (e.g. Businesses trained, Professionals trained)', type: 'string' },
           ],
+          preview: {
+            select: {
+              title: 'value',
+              subtitle: 'label',
+            },
+            prepare({ title, subtitle }: { title?: string; subtitle?: string }) {
+              return {
+                title: title || 'No value',
+                subtitle: subtitle || 'No label',
+              };
+            },
+          },
         },
       ],
     },
 
     /* FEATURE SECTION */
+    {
+      name: 'introCopy',
+      title: 'Intro Copy / SEO Accelerator Text',
+      type: 'text',
+      rows: 4,
+      group: 'feature',
+      description: 'Specific SEO description of Cafe Innovate Hub as a digital skills accelerator.',
+      initialValue: 'Cafe Innovate Hub is a digital skills accelerator helping small business owners and young professionals grow through practical, accessible digital skills training programs. From digital marketing to graphic design, we teach the skills that turn a phone and an internet connection into real opportunity, and we keep it affordable so cost is never the reason someone or a business gets left behind.',
+    },
+
     { name: 'featureTag', title: 'Eyebrow Tag', type: 'string', group: 'feature', initialValue: 'What We Do' },
     { name: 'featureHeadline', title: 'Feature Headline', type: 'string', group: 'feature', initialValue: 'What We Do' },
     { name: 'featureDescription', title: 'Feature Description', type: 'text', group: 'feature', initialValue: 'Cafe Innovate Hub is a digital skills accelerator empowering MSMEs for a digital future.' },
