@@ -36,11 +36,13 @@ export function getImageUrl(source: any): string | null {
 }
 
 interface TestimonialCardProps {
-  test: Testimonial;
+  test?: Testimonial;
+  testimonial?: Testimonial;
 }
 
-export default function TestimonialCard({ test }: TestimonialCardProps) {
-  const imgUrl = getImageUrl(test.image);
+export default function TestimonialCard({ test, testimonial }: TestimonialCardProps) {
+  const item = test || testimonial || {};
+  const imgUrl = getImageUrl(item.image);
   
   return (
     <div className="w-[18.75rem] md:w-[22.5rem] min-w-[18.75rem] md:min-w-[22.5rem] h-[17.5rem] bg-gradient-to-br from-cihBlue via-[#0b3880] to-[#061e47] border border-white/10 hover:border-white/20 text-white rounded-3xl p-6 md:p-7 shadow-xl hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between shrink-0 overflow-hidden">
@@ -49,41 +51,34 @@ export default function TestimonialCard({ test }: TestimonialCardProps) {
           width="28"
           height="28"
           viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="2"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          className="text-white/90 mb-3 shrink-0"
-          aria-hidden="true"
+          fill="currentColor"
+          className="text-cihYellow opacity-90 mb-3"
         >
-          <path d="M10 11h-4a3 3 0 0 1-3-3v-4a3 3 0 0 1 3-3h4v10zm11 0h-4a3 3 0 0 1-3-3v-4a3 3 0 0 1 3-3h4v10z"/>
-          <path d="M10 11c0 2.5-1.5 5-4 6"/>
-          <path d="M21 11c0 2.5-1.5 5-4 6"/>
+          <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
         </svg>
-        <p className="text-slate-100 text-sm md:text-base font-medium font-sans leading-relaxed line-clamp-4">
-          {cleanQuote(test.quote)}
+
+        <p className="text-sm md:text-base font-normal leading-relaxed text-slate-200 line-clamp-4">
+          "{cleanQuote(item.quote)}"
         </p>
       </div>
-      <div className="flex items-center gap-3.5 mt-auto pt-3 shrink-0">
-        {imgUrl ? (
-          <div className="shrink-0 w-11 h-11 relative rounded-full overflow-hidden ring-2 ring-white/20">
-            <Image 
+
+      <div className="flex items-center gap-3.5 pt-3 border-t border-white/10">
+        <div className="w-10 h-10 rounded-full border border-white/20 overflow-hidden relative shrink-0 bg-white/10 flex items-center justify-center font-bold text-xs text-cihYellow">
+          {imgUrl ? (
+            <Image
               src={imgUrl}
-              alt={test.name || 'Testimonial Author'}
+              alt={item.name || "Testimonial"}
               fill
-              sizes="44px"
               className="object-cover"
+              sizes="40px"
             />
-          </div>
-        ) : (
-          <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-cihLightBlue/20 text-white font-bold font-sans text-sm ring-2 ring-white/10">
-            {getInitials(test.name)}
-          </div>
-        )}
-        <div className="min-w-0 flex-1">
-          <h4 className="text-white font-bold font-sans text-sm md:text-base truncate">{test.name}</h4>
-          <p className="text-cihLightBlue text-xs md:text-sm font-medium font-sans truncate">{test.role}</p>
+          ) : (
+            <span>{getInitials(item.name)}</span>
+          )}
+        </div>
+        <div className="overflow-hidden">
+          <div className="font-bold text-sm text-white truncate">{item.name}</div>
+          <div className="text-xs text-slate-300 truncate">{item.role || "Member"}</div>
         </div>
       </div>
     </div>
