@@ -3,8 +3,22 @@ export const program = {
   title: 'Training Program',
   type: 'document',
   fields: [
-    { name: 'title', type: 'string', title: 'Title' },
-    { name: 'slug', type: 'slug', title: 'Slug', options: { source: 'title' } },
+    { 
+      name: 'title', 
+      type: 'string', 
+      title: 'Title',
+      validation: (Rule: any) => Rule.required(),
+    },
+    { 
+      name: 'slug', 
+      type: 'slug', 
+      title: 'Slug', 
+      options: { 
+        source: 'title',
+        maxLength: 96,
+      },
+      validation: (Rule: any) => Rule.required(),
+    },
     { name: 'shortDescription', type: 'text', title: 'What it is' },
     { name: 'targetAudience', type: 'text', title: 'Who it is for' },
     { name: 'duration', type: 'string', title: 'Duration and format' },

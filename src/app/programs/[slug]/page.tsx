@@ -5,17 +5,49 @@ import { urlFor } from "../../../../sanity/image";
 import { notFound } from "next/navigation";
 
 export const revalidate = 10;
+export const dynamicParams = true;
+
+export async function generateStaticParams() {
+  try {
+    const programs = await client.fetch<Array<{ slug?: string }>>(
+      `*[_type == "program" && defined(slug.current)]{ "slug": slug.current }`
+    );
+    return programs.map((p) => ({ slug: p.slug }));
+  } catch (error) {
+    console.error("Error generating static params for programs:", error);
+    return [];
+  }
+}
 
 export default async function DynamicProgramPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
-  const query = `*[_type == "program" && slug.current == $slug][0]`;
-  const program = await client.fetch(query, { slug });
+  
+  const query = `*[_type == "program" && slug.current == $slug][0] {
+    _id,
+    title,
+    slug,
+    shortDescription,
+    targetAudience,
+    duration,
+    cost,
+    coverImage,
+    videoEmbedCode,
+    registrationLink
+  }`;
+  
+  const program = await client.fetch(query, { slug }).catch((err) => {
+    console.error(`Error fetching program for slug "${slug}":`, err);
+    return null;
+  });
 
   if (!program) {
     notFound();
   }
 
-  const autoplayEmbed = program.videoEmbedCode?.replace(/src="([^"]+)"/, (match: string, url: string) => `src="${url}${url.includes('?') ? '&' : '?'}autoplay=1&mute=1"`);
+  const autoplayEmbed = program.videoEmbedCode?.replace(
+    /src="([^"]+)"/,
+    (match: string, url: string) => `src="${url}${url.includes('?') ? '&' : '?'}autoplay=1&mute=1"`
+  );
 
   return (
     <div className="min-h-[100dvh] bg-slate-50 font-sans pb-24">
@@ -40,7 +72,10 @@ export default async function DynamicProgramPage({ params }: { params: Promise<{
           {/* Hero Right (Video Player or Cover) */}
           <div className="w-full aspect-video rounded-3xl overflow-hidden shadow-2xl border border-white/20 bg-slate-900 relative">
             {program.videoEmbedCode ? (
-              <div className="aspect-video w-full overflow-hidden rounded-xl [&>iframe]:w-full [&>iframe]:h-full" dangerouslySetInnerHTML={{ __html: autoplayEmbed }} />
+              <div 
+                className="aspect-video w-full overflow-hidden rounded-xl [&>iframe]:w-full [&>iframe]:h-full" 
+                dangerouslySetInnerHTML={{ __html: autoplayEmbed }} 
+              />
             ) : program.coverImage ? (
               <Image 
                 src={urlFor(program.coverImage).url()} 
@@ -81,7 +116,7 @@ export default async function DynamicProgramPage({ params }: { params: Promise<{
               </p>
             </div>
 
-            {/* What you will learn - Hardcoded template block */}
+            {/* What you will learn */}
             <div className="bg-white rounded-[2rem] p-8 shadow-sm border border-slate-100">
               <h2 className="text-2xl font-bold text-cihBlue mb-6">What you will learn</h2>
               <ul className="space-y-4">
@@ -132,7 +167,7 @@ export default async function DynamicProgramPage({ params }: { params: Promise<{
                 </div>
 
                 <div className="pt-6">
-                  <a href={program.registrationLink || '#'} className="block w-full">
+                  <a href={program.registrationLink || '#'} target="_blank" rel="noopener noreferrer" className="block w-full">
                     <EclipseButton variant="primary" className="w-full justify-center py-4 text-lg">
                       Apply Now
                     </EclipseButton>
@@ -148,4 +183,3 @@ export default async function DynamicProgramPage({ params }: { params: Promise<{
     </div>
   );
 }
-
