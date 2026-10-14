@@ -5,6 +5,7 @@ import { urlFor } from "../../../../sanity/image";
 import Link from "next/link";
 
 export const revalidate = 10;
+export const dynamicParams = true;
 
 export default async function BlogPostPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
