@@ -176,25 +176,17 @@ export default async function Home() {
           viewport={{ once: true, margin: "-40px" }}
           variants={containerVariants}
         >
-          <div className="grid grid-cols-1 lg:grid-cols-4 gap-12 lg:gap-8 items-start border-t border-white/10 pt-16">
-            <div className="lg:col-span-1">
-              <h3 className="text-2xl md:text-3xl font-bricolage font-bold text-white leading-tight">
-                {homeData?.impactHeading || "Real impact 1 person 1 business at a time"}
-              </h3>
-            </div>
-            
-            <div className="lg:col-span-3 grid grid-cols-2 md:grid-cols-4 gap-8">
-              {metrics.map((stat: any, index: number) => (
-                <MotionDiv key={index} variants={cardVariants} className="flex flex-col">
-                  <span className={`${stat.value?.length > 4 ? 'text-3xl sm:text-4xl' : 'text-4xl sm:text-5xl'} font-bricolage font-black mb-2 ${index === 0 ? 'text-[#facc15]' : index === 1 ? 'text-[#3b82f6]' : 'text-white'}`}>
-                    {stat.value}
-                  </span>
-                  <span className="text-xs sm:text-sm text-slate-400 font-medium uppercase tracking-widest leading-relaxed">
-                    {stat.label}
-                  </span>
-                </MotionDiv>
-              ))}
-            </div>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 lg:gap-12 items-start border-t border-white/10 pt-16">
+            {metrics.map((stat: any, index: number) => (
+              <MotionDiv key={index} variants={cardVariants} className="flex flex-col">
+                <span className={`${stat.value?.length > 4 ? 'text-3xl sm:text-4xl' : 'text-4xl sm:text-5xl'} font-bricolage font-black mb-2 ${index === 0 ? 'text-[#facc15]' : index === 1 ? 'text-[#3b82f6]' : 'text-white'}`}>
+                  {stat.value}
+                </span>
+                <span className="text-xs sm:text-sm text-slate-400 font-medium uppercase tracking-widest leading-relaxed">
+                  {stat.label}
+                </span>
+              </MotionDiv>
+            ))}
           </div>
         </MotionDiv>
       </section>

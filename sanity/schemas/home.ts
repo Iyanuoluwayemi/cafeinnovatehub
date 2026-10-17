@@ -29,11 +29,10 @@ export default {
 
     {
       name: 'impactHeading',
-      title: 'Impact Section Heading',
+      title: 'Impact Section Heading (Deprecated)',
       type: 'string',
       group: 'hero',
-      description: 'Heading for the metrics impact section (e.g. "Real impact 1 person 1 business at a time")',
-      initialValue: 'Real impact 1 person 1 business at a time',
+      hidden: true,
     },
 
     {
