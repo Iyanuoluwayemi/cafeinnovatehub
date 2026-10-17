@@ -27,7 +27,13 @@ const defaultBenefits = [
 
 export default async function CommunityPage() {
   const [communityData, testimonials] = await Promise.all([
-    client.fetch("*[_type == 'community'][0]").catch(() => null),
+    client.fetch(`*[_type == 'community'][0] {
+      _id,
+      heading,
+      description,
+      benefits,
+      communityLink
+    }`).catch(() => null),
     client.fetch("*[_type == 'testimonial']").catch(() => [])
   ]);
 
@@ -138,7 +144,11 @@ export default async function CommunityPage() {
           <h2 className="text-4xl font-extrabold text-cihBlue tracking-tighter mb-8">
             Ready to be part of it?
           </h2>
-          <a href="https://wa.link/8fwiwq" target="_blank" rel="noopener noreferrer">
+          <a 
+            href={communityData?.communityLink || "https://wa.link/8fwiwq"} 
+            target="_blank" 
+            rel="noopener noreferrer"
+          >
             <EclipseButton variant="primary" className="px-8 py-4 text-lg">
               Join the Community
             </EclipseButton>
