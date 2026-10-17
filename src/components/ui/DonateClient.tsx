@@ -1,16 +1,9 @@
 "use client";
 
-import React, { useState } from 'react';
+import React from 'react';
 import Link from 'next/link';
 import EclipseButton from '@/components/ui/eclipse-button';
-import { toast } from 'sonner';
-
-interface CtaItem {
-  _key?: string;
-  text?: string;
-  link?: string;
-  variant?: 'yellow' | 'primary' | 'outline' | 'ghost';
-}
+import CopyEmailButton from '@/components/ui/CopyEmailButton';
 
 interface DonateData {
   _id?: string;
@@ -26,61 +19,21 @@ interface DonateData {
   cta2Text?: string;
   cta2Link?: string;
   callToAction?: string;
-  ctas?: CtaItem[];
 }
 
 export default function DonateClient({ data }: { data?: DonateData | null }) {
-  const [copied, setCopied] = useState(false);
-
   const headline = data?.headline || "Donate to support digital access";
   const heading = data?.heading || "Help someone start, grow, and thrive in the digital economy.";
   const rawDescription = data?.description || 
     "Your donation helps Cafe Innovate Hub provide practical digital skills training and digital transformation support for young people, small business owners, and MSMEs.\n\nYour support contributes to facilitator costs, learning resources, participant support, and free or affordable programs for people who may not otherwise have access.";
 
-  // Prepare buttons list dynamically
-  const buttons: Array<{ text: string; link: string; variant: 'yellow' | 'primary' | 'outline' | 'ghost'; isEmail?: boolean }> = [];
+  // CTA 1: Flutterwave (URL)
+  const btn1Text = data?.cta1Text || data?.buttonText1 || data?.callToAction || "Donate via Flutterwave";
+  const btn1Link = data?.cta1Link || data?.buttonLink1 || "https://flutterwave.com/pay/lsuxaiyde2t8";
 
-  if (data?.ctas && data.ctas.length > 0) {
-    data.ctas.forEach((cta) => {
-      const link = cta.link || '#';
-      const isEmail = !link.startsWith('http://') && !link.startsWith('https://') && !link.startsWith('/') && link.includes('@');
-      buttons.push({
-        text: cta.text || 'Donate',
-        link,
-        variant: cta.variant || 'yellow',
-        isEmail,
-      });
-    });
-  } else {
-    // Primary Button
-    const btn1Text = data?.cta1Text || data?.buttonText1 || data?.callToAction || "Donate via Flutterwave";
-    const btn1Link = data?.cta1Link || data?.buttonLink1 || "https://flutterwave.com/pay/lsuxaiyde2t8";
-    buttons.push({
-      text: btn1Text,
-      link: btn1Link,
-      variant: 'yellow',
-    });
-
-    // Secondary Button
-    const btn2Text = data?.cta2Text || data?.buttonText2 || "Send with PayPal";
-    const btn2Link = data?.cta2Link || data?.buttonLink2 || "https://paypal.me/cafeinnovate";
-    const isEmail = !btn2Link.startsWith('http://') && !btn2Link.startsWith('https://') && !btn2Link.startsWith('/') && btn2Link.includes('@');
-    buttons.push({
-      text: btn2Text,
-      link: btn2Link,
-      variant: 'outline',
-      isEmail,
-    });
-  }
-
-  const handleCopy = (value: string) => {
-    navigator.clipboard.writeText(value);
-    setCopied(true);
-    toast.success("Payment address copied to clipboard!", {
-      description: value,
-    });
-    setTimeout(() => setCopied(false), 3000);
-  };
+  // CTA 2: PayPal (Email Copy to Clipboard)
+  const btn2Text = data?.cta2Text || data?.buttonText2 || "Send with PayPal";
+  const btn2Email = data?.cta2Link || data?.buttonLink2 || "cafeinnovatehub@gmail.com";
 
   const paragraphs = rawDescription.split('\n').filter((p) => p.trim() !== '');
 
@@ -115,44 +68,27 @@ export default function DonateClient({ data }: { data?: DonateData | null }) {
           </div>
           
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            {buttons.map((btn, idx) => {
-              if (btn.isEmail) {
-                return (
-                  <EclipseButton 
-                    key={idx}
-                    onClick={() => handleCopy(btn.link)}
-                    variant={btn.variant}
-                    className="py-4 px-8 text-lg font-bold w-full sm:w-auto"
-                  >
-                    {copied ? "Address Copied!" : btn.text}
-                  </EclipseButton>
-                );
-              }
+            {/* CTA 1: Flutterwave (URL link) */}
+            <Link 
+              href={btn1Link} 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="w-full sm:w-auto"
+            >
+              <EclipseButton 
+                variant="yellow" 
+                className="py-4 px-8 text-lg font-bold w-full sm:w-auto shadow-lg hover:-translate-y-1 transition-all duration-300"
+              >
+                {btn1Text}
+              </EclipseButton>
+            </Link>
 
-              return (
-                <Link 
-                  key={idx} 
-                  href={btn.link} 
-                  target={btn.link.startsWith('http') ? '_blank' : undefined} 
-                  rel={btn.link.startsWith('http') ? 'noopener noreferrer' : undefined}
-                  className="w-full sm:w-auto"
-                >
-                  <EclipseButton 
-                    variant={btn.variant} 
-                    className="py-4 px-8 text-lg font-bold w-full sm:w-auto shadow-lg hover:-translate-y-1 transition-all duration-300"
-                  >
-                    {btn.text}
-                  </EclipseButton>
-                </Link>
-              );
-            })}
+            {/* CTA 2: PayPal (Copy Email Button) */}
+            <CopyEmailButton 
+              email={btn2Email} 
+              text={btn2Text} 
+            />
           </div>
-          
-          {copied && (
-            <div className="mt-6 p-4 bg-green-50 text-green-700 font-medium rounded-xl inline-block text-sm">
-              Successfully copied payment address to your clipboard.
-            </div>
-          )}
         </div>
       </main>
     </div>

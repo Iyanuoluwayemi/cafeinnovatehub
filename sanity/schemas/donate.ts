@@ -47,15 +47,16 @@ export const donate = {
     },
     {
       name: 'cta2Link',
-      title: 'CTA 2 Link',
-      type: 'url',
-      description: 'e.g. PayPal.me link or payment URL',
-      initialValue: 'https://paypal.me/cafeinnovate',
+      title: 'CTA 2 Email (PayPal)',
+      type: 'string',
+      description: 'PayPal email address for donors to copy to clipboard',
+      initialValue: 'cafeinnovatehub@gmail.com',
     },
     {
       name: 'ctas',
       title: 'Custom CTA Buttons Array (Optional)',
       type: 'array',
+      hidden: true,
       description: 'Add more custom call to actions if needed.',
       of: [
         {
