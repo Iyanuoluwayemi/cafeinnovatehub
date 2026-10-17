@@ -7,6 +7,39 @@ import { notFound } from "next/navigation";
 export const revalidate = 10;
 export const dynamicParams = true;
 
+interface ParticipantReview {
+  quote?: string;
+  name?: string;
+  role?: string;
+}
+
+interface ProgramDocument {
+  _id: string;
+  title: string;
+  slug?: { current: string };
+  shortDescription?: string;
+  targetAudience?: string;
+  duration?: string;
+  cost?: string;
+  coverImage?: any;
+  videoEmbedCode?: string;
+  registrationLink?: string;
+  whatYouWillLearn?: string[];
+  whatParticipantsSay?: ParticipantReview[];
+}
+
+function formatExternalUrl(url?: string | null): string {
+  if (!url || !url.trim()) return '#';
+  const trimmed = url.trim();
+  if (trimmed.startsWith('http://') || trimmed.startsWith('https://')) {
+    return trimmed;
+  }
+  if (trimmed.startsWith('//')) {
+    return `https:${trimmed}`;
+  }
+  return `https://${trimmed}`;
+}
+
 export async function generateStaticParams() {
   try {
     const programs = await client.fetch<Array<{ slug?: string }>>(
@@ -32,10 +65,12 @@ export default async function DynamicProgramPage({ params }: { params: Promise<{
     cost,
     coverImage,
     videoEmbedCode,
-    registrationLink
+    registrationLink,
+    whatYouWillLearn,
+    whatParticipantsSay
   }`;
   
-  const program = await client.fetch(query, { slug }).catch((err) => {
+  const program: ProgramDocument | null = await client.fetch(query, { slug }).catch((err) => {
     console.error(`Error fetching program for slug "${slug}":`, err);
     return null;
   });
@@ -48,6 +83,8 @@ export default async function DynamicProgramPage({ params }: { params: Promise<{
     /src="([^"]+)"/,
     (match: string, url: string) => `src="${url}${url.includes('?') ? '&' : '?'}autoplay=1&mute=1"`
   );
+
+  const safeRegistrationLink = formatExternalUrl(program.registrationLink);
 
   return (
     <div className="min-h-[100dvh] bg-slate-50 font-sans pb-24">
@@ -74,7 +111,7 @@ export default async function DynamicProgramPage({ params }: { params: Promise<{
             {program.videoEmbedCode ? (
               <div 
                 className="aspect-video w-full overflow-hidden rounded-xl [&>iframe]:w-full [&>iframe]:h-full" 
-                dangerouslySetInnerHTML={{ __html: autoplayEmbed }} 
+                dangerouslySetInnerHTML={{ __html: autoplayEmbed || "" }} 
               />
             ) : program.coverImage ? (
               <Image 
@@ -101,49 +138,66 @@ export default async function DynamicProgramPage({ params }: { params: Promise<{
           <div className="lg:col-span-2 space-y-8">
             
             {/* What it is */}
-            <div className="bg-white rounded-[2rem] p-8 shadow-sm border border-slate-100">
-              <h2 className="text-2xl font-bold text-cihBlue mb-4">What it is</h2>
-              <p className="text-slate-600 font-medium leading-relaxed text-lg">
-                {program.shortDescription}
-              </p>
-            </div>
+            {program.shortDescription && (
+              <div className="bg-white rounded-[2rem] p-8 shadow-sm border border-slate-100">
+                <h2 className="text-2xl font-bold text-cihBlue mb-4">What it is</h2>
+                <p className="text-slate-600 font-medium leading-relaxed text-lg">
+                  {program.shortDescription}
+                </p>
+              </div>
+            )}
 
             {/* Who it is for */}
-            <div className="bg-white rounded-[2rem] p-8 shadow-sm border border-slate-100">
-              <h2 className="text-2xl font-bold text-cihBlue mb-4">Who it is for</h2>
-              <p className="text-slate-600 font-medium leading-relaxed text-lg">
-                {program.targetAudience}
-              </p>
-            </div>
+            {program.targetAudience && (
+              <div className="bg-white rounded-[2rem] p-8 shadow-sm border border-slate-100">
+                <h2 className="text-2xl font-bold text-cihBlue mb-4">Who it is for</h2>
+                <p className="text-slate-600 font-medium leading-relaxed text-lg">
+                  {program.targetAudience}
+                </p>
+              </div>
+            )}
 
             {/* What you will learn */}
-            <div className="bg-white rounded-[2rem] p-8 shadow-sm border border-slate-100">
-              <h2 className="text-2xl font-bold text-cihBlue mb-6">What you will learn</h2>
-              <ul className="space-y-4">
-                {[
-                  "The basics and fundamentals",
-                  "How to use standard industry tools",
-                  "How to build a consistent look and system",
-                  "Intensive practice and case studies"
-                ].map((item, index) => (
-                  <li key={index} className="flex items-start gap-4">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-cihLightBlue shrink-0 mt-0.5">
-                      <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
-                      <polyline points="22 4 12 14.01 9 11.01"/>
-                    </svg>
-                    <span className="text-slate-600 font-medium text-lg leading-relaxed">{item}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
+            {program.whatYouWillLearn && program.whatYouWillLearn.length > 0 && (
+              <div className="bg-white rounded-[2rem] p-8 shadow-sm border border-slate-100">
+                <h2 className="text-2xl font-bold text-cihBlue mb-6">What you will learn</h2>
+                <ul className="space-y-4">
+                  {program.whatYouWillLearn.map((item: string, index: number) => (
+                    <li key={index} className="flex items-start gap-4">
+                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-cihLightBlue shrink-0 mt-0.5">
+                        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                        <polyline points="22 4 12 14.01 9 11.01"/>
+                      </svg>
+                      <span className="text-slate-600 font-medium text-lg leading-relaxed">{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
 
             {/* What past participants say */}
-            <div className="bg-cihBlue text-white rounded-[2rem] p-8 shadow-xl">
-              <h2 className="text-2xl font-bold mb-4">What past participants say</h2>
-              <div className="bg-white/10 p-6 rounded-2xl border border-white/20 italic text-slate-300">
-                Will provide testimonials, once available.
+            {program.whatParticipantsSay && program.whatParticipantsSay.length > 0 && (
+              <div className="bg-cihBlue text-white rounded-[2rem] p-8 shadow-xl space-y-6">
+                <h2 className="text-2xl font-bold mb-4">What past participants say</h2>
+                <div className="space-y-4">
+                  {program.whatParticipantsSay.map((rev: ParticipantReview, index: number) => (
+                    <div key={index} className="bg-white/10 p-6 rounded-2xl border border-white/20 text-slate-200 space-y-3">
+                      {rev.quote && (
+                        <p className="italic leading-relaxed">
+                          &ldquo;{rev.quote.trim().replace(/^["'“]+/, '').replace(/["'”]+$/, '')}&rdquo;
+                        </p>
+                      )}
+                      {(rev.name || rev.role) && (
+                        <div className="pt-2 border-t border-white/10 flex items-center justify-between text-sm">
+                          <span className="font-bold text-cihYellow">{rev.name}</span>
+                          <span className="text-slate-300 text-xs">{rev.role}</span>
+                        </div>
+                      )}
+                    </div>
+                  ))}
+                </div>
               </div>
-            </div>
+            )}
 
           </div>
 
@@ -167,7 +221,12 @@ export default async function DynamicProgramPage({ params }: { params: Promise<{
                 </div>
 
                 <div className="pt-6">
-                  <a href={program.registrationLink || '#'} target="_blank" rel="noopener noreferrer" className="block w-full">
+                  <a 
+                    href={safeRegistrationLink} 
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    className="block w-full"
+                  >
                     <EclipseButton variant="primary" className="w-full justify-center py-4 text-lg">
                       Apply Now
                     </EclipseButton>
